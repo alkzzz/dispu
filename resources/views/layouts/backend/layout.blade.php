@@ -17,6 +17,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -26,6 +28,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @livewireStyles
+    <style>
+        body {
+            font-family: 'Inter', sherif;
+        }
+
+        th,
+        td {
+            vertical-align: middle;
+        }
+    </style>
+    @yield('additional_css')
 </head>
 
 <body class="sb-nav-fixed">
@@ -33,13 +47,19 @@
 
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4 mt-3">
                 @yield('content')
             </div>
         </main>
         @include('layouts.backend.partials.footer')
     </div>
     </div>
+    @livewireScripts
+    {{-- SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
+    @yield('additional_js')
 </body>
 
 </html>

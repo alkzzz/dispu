@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('frontend.index');
 })->name('index');
 
 Route::get('/berita', function () {
-    return view('berita');
+    return view('frontend.berita');
 })->name('berita');
 
 Auth::routes([
@@ -27,4 +27,12 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
   ]);
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    #Kategori
+    Route::get('/dashboard/kategori', [App\Http\Controllers\CategoryController::class, 'index'])->name('dashboard.kategori');
+    #Berita
+    Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');
+    Route::get('/dashboard/berita/create', [App\Http\Controllers\PostController::class, 'create'])->name('dashboard.berita.create');
+});
+

@@ -33,10 +33,21 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td class="col-9">{{ $post->title }}</td>
                             <td class="col-3">
-                                <button class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i> Show</button>
-                                <button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
-                                    Edit</button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                                <a class="btn btn-info btn-sm" href="{{ route('dashboard.berita.show', $post->id) }}"
+                                    role="button"><i class="fa-solid fa-eye"></i>
+                                    Show</a>
+                                <a class="btn btn-warning btn-sm" href="{{ route('dashboard.berita.edit', $post->id) }}"
+                                    role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                <form id="post-{{ $post->id }}"
+                                    class="d-inline"action="{{ route('dashboard.berita.delete', $post->id) }}"
+                                    method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button id="confirmDelete-{{ $post->id }}" data-id={{ $post->id }}
+                                        class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                            class="fa-solid fa-trash-can"></i>
+                                        Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @empty
@@ -58,6 +69,25 @@
     <script>
         $(document).ready(function() {
             $('#postTable').DataTable();
+            $('.confirmDelete').click(function(e) {
+                let id = $(this).data('id');
+                let formPost = $('#post-' + id);
+                console.log(formPost);
+                Swal.fire({
+                    title: 'Hapus Berita?',
+                    text: "Apakah anda yakin akan menghapus berita ini?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '<i class="fa-solid fa-trash-can" ></i> Ya, Hapus saja',
+                    cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        formPost.submit();
+                    }
+                })
+            });
         });
     </script>
 @endsection

@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => ucwords(fake()->sentence(6)),
-            'content' => ucwords(fake()->paragraph(3)),
+            'content' => ucwords(fake()->paragraphs(15, true)),
         ];
     }
 }

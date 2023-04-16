@@ -12,7 +12,7 @@ class CategoryPostSeeder extends Seeder
      */
     public function run(): void
     {
-        \DB::table('category_posts')->truncate();
+        \DB::table('category_post')->truncate();
 
         \App\Models\CategoryPost::factory()->count(20)->create();
     }

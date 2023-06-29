@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="row">
-        <div class="container-fluid">
-            <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="container-fluid pb-md-3">
+            <div id="carouselControls" class="carousel slide md-mh-100" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://picsum.photos/1000/800?random=1" class="d-block w-100" alt="...">
+                        <img src="https://picsum.photos/1000/800?random=1" class="d-block w-100" alt="Gambar Slider 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/800?random=2" class="d-block w-100" alt="...">
+                        <img src="https://picsum.photos/1000/800?random=2" class="d-block w-100" alt="Gambar Slider 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/800?random=3" class="d-block w-100" alt="...">
+                        <img src="https://picsum.photos/1000/800?random=3" class="d-block w-100" alt="Gambar Slider 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
@@ -28,12 +28,12 @@
             </div>
         </div>
     </div>
-    <div class="row bg-white">
+    <div class="row">
         <div class="container-fluid">
-            <div class="jumbotron my-5 md-my-2">
+            <div class="jumbotron my-5">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 md-mt-2 mt-5 order-2">
+                        <div class="col-md-6 mt-4 order-2">
                             <div class="container">
                                 <h5 class="fw-semibold" style="color: #FFD42B">Dinas Pekerjaan Umum dan Penataan Ruang Kota
                                     Banjarbaru</h5>
@@ -69,27 +69,27 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row py-3">
         <div class="container-fluid">
-            <div class="row bg-white">
-                <div class="px-0 col-12 col-md-5 d-none d-md-block">
-                    <div style="padding-top: 5rem; padding-bottom: 5rem">
-                        <img class="img-fluid" src="{{ asset('img/Gambar Section 2.png') }}" alt="Image" />
-                    </div>
+            <div class="row">
+                <div class="px-0 col-12 col-md-5">
+                    <img class="img-fluid py-md-5" src="{{ asset('img/Gambar Section 2.png') }}" alt="Image" />
                 </div>
                 <div class="col-12 col-md-7 bg-warning rounded-3">
-                    <div style="padding-left: 2rem; padding-top: 5rem">
+                    <div class="px-4 py-4">
                         <h2 class="fw-bold mt-4" style="line-height: 2.5rem">Bidang Dinas Pekerjaan Umum dan Penataan Ruang
-                            <br>Kota Banjarbaru
+                            Kota Banjarbaru
                         </h2>
                         <h5 class="mb-4" style="line-height: 2rem">Terdapat 6 Bidang Unit Organisasi dalam Dinas Pekerjaan
                             Umum dan
                             Penataan Ruang <br> Kota
                             Banjarbaru
                         </h5>
+                    </div>
+                    <div class="container">
                         <div class="row">
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3" src="{{ asset('img/icon/icon bidang sekretariat.svg') }}"
                                         alt="Bidang Sekretariat" style="width: 25%; margin: 0 auto;" />
                                     <div class="card-body text-center">
@@ -97,8 +97,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3" src="{{ asset('img/icon/icon bidang bina marga.svg') }}"
                                         alt="Bidang Bina Marga" style="width: 25%; margin: 0 auto;" />
                                     <div class="card-body text-center">
@@ -106,8 +106,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3" src="{{ asset('img/icon/icon bidang tata ruang.svg') }}"
                                         alt="Bidang Tata Ruang" style="width: 25%; margin: 0 auto;" />
                                     <div class="card-body text-center">
@@ -117,8 +117,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3"
                                         src="{{ asset('img/icon/icon bidang cipta karya.svg') }}" alt="Bidang Cipta Karya"
                                         style="width: 25%; margin: 0 auto;" />
@@ -127,8 +127,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3"
                                         src="{{ asset('img/icon/icon bidang pengembangan konstruksi.svg') }}"
                                         alt="Bidang Pengembangan Konstruksi" style="width: 25%; margin: 0 auto;" />
@@ -137,8 +137,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 15rem;">
+                            <div class="col-12 col-md mb-3">
+                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
                                     <img class="card-img-top mt-3"
                                         src="{{ asset('img/icon/icon bidang sumber daya air.svg') }}"
                                         alt="Bidang Sumber Daya Air" style="width: 25%; margin: 0 auto;" />
@@ -151,31 +151,83 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="row">
-        <div class="card text-center rounded-0 border-0">
-            <div class="card-header pt-4 mb-2" style="background-color: transparent;border: none">
-                <h3>Media Sosial</h3>
+    <div class="container py-3">
+        <div class="row">
+            <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
+            <div class="row mt-2">
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 24rem">
+                        <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
+                            style="max-height: 220px">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the
+                                card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 24rem;">
+                        <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
+                            style="max-height: 220px">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the
+                                card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 24rem;">
+                        <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
+                            style="max-height: 220px">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the
+                                card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                        </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-4 py-2 bg-warning">
+        <div class="container mb-3">
+            <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
+            <div class="row mt-4">
+                <div class="col-12 col-md mb-2 d-flex justify-content-center">
+                    <div class="ratio ratio-16x9">
+                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
                     </div>
-                    <div class="col">
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                        </div>
+                </div>
+                <div class="col-12 col-md mb-2 d-flex justify-content-center">
+                    <div class="ratio ratio-16x9">
+                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
                     </div>
-                    <div class="col">
-                        <div class="ratio ratio-16x9">
-                            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                        </div>
+                </div>
+                <div class="col-12 col-md mb-2 d-flex justify-content-center">
+                    <div class="ratio ratio-16x9">
+                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
                     </div>
+                </div>
+                <div class="col-12 col-md mb-2 d-flex justify-content-center">
+                    <div class="ratio ratio-16x9">
+                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center py-2 mt-3">
+                    <a name="" id="" class="btn btn-lg btn-primary" href="#" role="button">Lihat
+                        Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
                 </div>
             </div>
         </div>

@@ -53,7 +53,7 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 50vh;
         }
 
         .wrapper>.container-fluid:last-child {
@@ -121,6 +121,20 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
+                            Bidang
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Bidang Sekretariat</a></li>
+                            <li><a class="dropdown-item" href="#">Bidang Bina Marga</a></li>
+                            <li><a class="dropdown-item" href="#">Bidang Tata Ruang</a></li>
+                            <li><a class="dropdown-item" href="#">Bidang Cipta Karya</a></li>
+                            <li><a class="dropdown-item" href="#">Bidang Pengembangan Konstruksi</a></li>
+                            <li><a class="dropdown-item" href="#">Bidang Sumber Daya Air</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Berita
                         </a>
                         <ul class="dropdown-menu">
@@ -150,6 +164,16 @@
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button">
+                            Galeri
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button">
+                            Kontak
+                        </a>
                     </li>
                 </ul>
                 <div class="mt-2">

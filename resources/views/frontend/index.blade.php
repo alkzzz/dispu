@@ -158,69 +158,131 @@
             <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <div class="card" style="width: 24rem">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem">
                         <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the
-                                card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Judul Berita 1</h5>
+                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti,
+                                dolores
+                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
+                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
+                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
+                            <a href="#" class="btn btn-primary">Read more..</a>
+                        </div>
+                        <div class="card-footer bg-white text-muted">
+                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
                         </div>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem;">
                         <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the
-                                card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Judul Berita 2</h5>
+                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti, dolores
+                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
+                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
+                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
+                            <a href="#" class="btn btn-primary">Read more..</a>
+                        </div>
+                        <div class="card-footer bg-white text-muted">
+                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
                         </div>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
+                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem;">
                         <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the
-                                card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Judul Berita 3</h5>
+                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Deleniti,
+                                dolores
+                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
+                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
+                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
+                            <a href="#" class="btn btn-primary">Read more..</a>
+                        </div>
+                        <div class="card-footer bg-white text-muted">
+                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center py-2 mt-3">
+                    <a name="" id="" class="btn btn-lg btn-primary" href="#" role="button">Lihat
+                        Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="container-fluid mt-4 py-2 bg-warning">
+    <div class="container-fluid mt-4 py-4 bg-warning">
         <div class="container mb-3">
             <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
             <div class="row mt-4">
                 <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="ratio ratio-16x9">
-                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
+                    <div class="card">
+                        <img src="https://picsum.photos/300" class="card-img" alt="...">
+                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan
+                                    Banjarbaru
+                                    Utara</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="ratio ratio-16x9">
-                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
+                    <div class="card">
+                        <img src="https://picsum.photos/300" class="img-fluid rounded" alt="">
+                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan
+                                    Banjarbaru
+                                    Utara</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="ratio ratio-16x9">
-                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
+                    <div class="card">
+                        <img src="https://picsum.photos/300" class="img-fluid rounded" alt="">
+                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan
+                                    Banjarbaru
+                                    Utara</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="ratio ratio-16x9">
-                        <img src="https://picsum.photos/400" class="img-fluid rounded" alt="">
+                    <div class="card">
+                        <img src="https://picsum.photos/300" class="img-fluid rounded" alt="">
+                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan
+                                    Banjarbaru
+                                    Utara</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

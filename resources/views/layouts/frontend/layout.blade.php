@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</title>
+    <title>Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru - @yield('title')</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,7 +53,7 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 50vh;
+            min-height: 65vh;
         }
 
         .wrapper>.container-fluid:last-child {
@@ -65,6 +65,7 @@
             content: "/";
         }
     </style>
+    @yield('extra_css')
 
 </head>
 
@@ -133,15 +134,9 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link" href="{{ url('berita') }}" role="button">
                             Berita
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -166,7 +161,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button">
+                        <a class="nav-link" href="{{ url('galeri') }}" role="button">
                             Galeri
                         </a>
                     </li>
@@ -270,23 +265,7 @@
             display_c()
         }
     </script>
-
-    <script src="{{ asset('js/replaceme.min.js') }}"></script>
-    <script>
-        var replace = new ReplaceMe(document.querySelector('.news-rotator'), {
-            animation: 'animated fadeInDown', // Animation class or classes
-            speed: 3000, // Delay between each phrase in miliseconds
-            separator: ';', // Phrases separator
-            hoverStop: false, // Stop rotator on phrase hover
-            clickChange: false, // Change phrase on click
-            loopCount: 'infinite', // Loop Count - 'infinite' or number
-            autoRun: true, // Run rotator automatically
-            onInit: false, // Function
-            onChange: false, // Function
-            onComplete: false // Function
-        });
-    </script>
-
+    @yield('extra_js')
 
 </body>
 

@@ -21,6 +21,10 @@ Route::get('/berita', function () {
     return view('frontend.berita');
 })->name('berita');
 
+Route::get('/galeri', function () {
+    return view('frontend.galeri');
+})->name('galeri');
+
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...

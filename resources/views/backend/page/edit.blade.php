@@ -24,37 +24,27 @@
 
 
 @section('content')
-    <h2 class="pb-2 border-bottom border-dark">Tambah Berita</h2>
+    <h2 class="pb-2 border-bottom border-dark">Tambah Halaman</h2>
 
     <div class="row mt-3">
         <!-- Display success messages -->
         @if (session()->has('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
-        <form action="{{ route('dashboard.berita.update', $post->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.halaman.update', $page->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mt-2">
                 <div class="mb-3">
-                    <label for="title" class="form-label">Judul Berita</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">
+                    <label for="title" class="form-label">Judul Halaman</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ $page->title }}">
                 </div>
                 <div class="mb-3">
-                    <select name="category_id[]" class="form-select" id="kategori" data-placeholder="Pilih Kategori"
-                        multiple>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if ($post->categories->contains($category->id)) selected @endif>
-                                {{ $category->name }}</option>
-                        @endforeach
-
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">Isi Berita</label>
-                    <textarea class="form-control" id="content" rows="3" name="content">{{ $post->content }}</textarea>
+                    <label for="content" class="form-label">Isi halaman</label>
+                    <textarea class="form-control" id="content" rows="3" name="content">{{ $page->content }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
-                <a class="btn btn-danger" href="{{ route('dashboard.berita.index') }}" role="button"><i
+                <a class="btn btn-danger" href="{{ route('dashboard.halaman.index') }}" role="button"><i
                         class="fa-solid fa-ban"></i> Cancel</a>
             </div>
         </form>

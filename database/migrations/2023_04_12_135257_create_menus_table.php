@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('url');
             $table->string('title');
             $table->unsignedTinyInteger('order');
+            $table->boolean('has_child')->default(false);
             $table->unsignedTinyInteger('parent_id');
             $table->timestamps();
         });

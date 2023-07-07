@@ -1,6 +1,6 @@
 @extends('layouts.backend.layout')
 
-@section('additional_css')
+@section('extra_css')
     {{-- Summernote --}}
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     {{-- Select2 --}}
@@ -39,10 +39,10 @@
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="mb-3">
-                    <select name="category_id[]" class="form-select" id="kategori" data-placeholder="Pilih Kategori"
-                        multiple required>
+                    <select name="category_id[]" class="form-select" id="kategori" multiple required>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"@if ($loop->first) selected @endif>
+                                {{ $category->name }}</option>
                         @endforeach
 
                     </select>
@@ -59,7 +59,7 @@
     </div>
 @endsection
 
-@section('additional_js')
+@section('extra_js')
     {{-- JQuery --}}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -88,8 +88,9 @@
         $('#kategori').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-            placeholder: $(this).data('placeholder'),
             closeOnSelect: false,
+            tags: true,
+            allowClear: true,
         });
     </script>
 @endsection

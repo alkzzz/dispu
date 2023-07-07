@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('index');
 
-Route::get('{slug}', 'PagesController@getPage');
-
 Route::get('/berita', function () {
     return view('frontend.berita');
 })->name('berita');
@@ -40,7 +38,13 @@ Route::middleware(['auth'])->group(function () {
     #Kategori
     Route::get('/dashboard/kategori', [App\Http\Controllers\CategoryController::class, 'index'])->name('dashboard.kategori');
     #HalamanStatis
-    Route::get('/dashboard/halaman', [App\Http\Controllers\PageController::class, 'index'])->name('dashboard.halaman');
+    Route::get('/dashboard/halaman', [App\Http\Controllers\PageController::class, 'index'])->name('dashboard.halaman.index');
+    Route::get('/dashboard/halaman/show/{id}', [App\Http\Controllers\PageController::class, 'show'])->name('dashboard.halaman.show');
+    Route::get('/dashboard/halaman/create', [App\Http\Controllers\PageController::class, 'create'])->name('dashboard.halaman.create');
+    Route::post('/dashboard/halaman/store', [App\Http\Controllers\PageController::class, 'store'])->name('dashboard.halaman.store');
+    Route::get('/dashboard/halaman/edit/{id}', [App\Http\Controllers\PageController::class, 'edit'])->name('dashboard.halaman.edit');
+    Route::put('/dashboard/halaman/update/{id}', [App\Http\Controllers\PageController::class, 'update'])->name('dashboard.halaman.update');
+    Route::delete('/dashboard/halaman/delete/{id}', [App\Http\Controllers\PageController::class, 'delete'])->name('dashboard.halaman.delete');
     #Menu
     Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
     #Berita
@@ -52,4 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/dashboard/berita/update/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('dashboard.berita.update');
     Route::delete('/dashboard/berita/delete/{id}', [App\Http\Controllers\PostController::class, 'delete'])->name('dashboard.berita.delete');
 });
+
+Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage']);
 

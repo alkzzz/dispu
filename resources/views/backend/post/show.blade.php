@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="col">
-            <h5 class="text-decoration-underline">Tanggal Posting</h5>
+            <h5 class="text-decoration-underline">Tanggal Dibuat</h5>
             <p>{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
                 ({{ $post->created_at->diffForHumans() }})</p>
         </div>

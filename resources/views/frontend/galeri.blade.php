@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2 class="border-bottom border-2 black" style="margin-bottom: 2rem">Galeri Kegiatan Dinas Pekerjaan Umum dan
+        <h2 class="p-2 border-bottom border-2 black" style="margin-bottom: 2rem">Galeri Kegiatan Dinas Pekerjaan Umum dan
             Penataan Ruang
             Kota Banjarbaru</h2>
         @for ($i = 0; $i < 2; $i++)

@@ -11,12 +11,12 @@ class Page extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['title', 'content'];
 
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 

@@ -24,37 +24,26 @@
 
 
 @section('content')
-    <h2 class="pb-2 border-bottom border-dark">Tambah Berita</h2>
+    <h2 class="pb-2 border-bottom border-dark">Tambah Halaman</h2>
 
     <div class="row mt-3">
         <!-- Display success messages -->
         @if (session()->has('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
-        <form action="{{ route('dashboard.berita.update', $post->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.halaman.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="mt-2">
                 <div class="mb-3">
-                    <label for="title" class="form-label">Judul Berita</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">
+                    <label for="title" class="form-label">Judul Halaman</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="mb-3">
-                    <select name="category_id[]" class="form-select" id="kategori" data-placeholder="Pilih Kategori"
-                        multiple>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if ($post->categories->contains($category->id)) selected @endif>
-                                {{ $category->name }}</option>
-                        @endforeach
-
-                    </select>
+                    <label for="content" class="form-label">Isi Halaman</label>
+                    <textarea class="form-control" id="content" rows="3" name="content"></textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">Isi Berita</label>
-                    <textarea class="form-control" id="content" rows="3" name="content">{{ $post->content }}</textarea>
-                </div>
-                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
-                <a class="btn btn-danger" href="{{ route('dashboard.berita.index') }}" role="button"><i
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                <a class="btn btn-danger" href="{{ route('dashboard.halaman.index') }}" role="button"><i
                         class="fa-solid fa-ban"></i> Cancel</a>
             </div>
         </form>
@@ -90,8 +79,9 @@
         $('#kategori').select2({
             theme: "bootstrap-5",
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-            placeholder: $(this).data('placeholder'),
             closeOnSelect: false,
+            tags: true,
+            allowClear: true,
         });
     </script>
 @endsection

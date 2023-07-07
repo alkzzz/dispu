@@ -39,7 +39,7 @@
             vertical-align: middle;
         }
     </style>
-    @yield('additional_css')
+    @yield('extra_css')
 </head>
 
 <body class="sb-nav-fixed">
@@ -59,7 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
 
-    @yield('additional_js')
+    @yield('extra_js')
 </body>
 
 </html>

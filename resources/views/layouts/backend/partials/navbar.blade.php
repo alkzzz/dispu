@@ -31,7 +31,7 @@
                             Lihat Website
                         </a>
                         <div class="sb-sidenav-menu-heading">Manajemen Konten</div>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.halaman.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-regular fa-file-lines"></i></div>
                             Halaman Statis
                         </a>

@@ -115,8 +115,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Tentang</a></li>
+                            <li><a class="dropdown-item" href="#">Sambutan Kepala Dinas</a></li>
                             <li><a class="dropdown-item" href="#">Visi Misi</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -144,9 +144,9 @@
                             Info
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#">Info 1</a></li>
+                            <li><a class="dropdown-item" href="#">Info 2</a></li>
+                            <li><a class="dropdown-item" href="#">Info 3</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -155,9 +155,9 @@
                             Layanan
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#">Layanan 1</a></li>
+                            <li><a class="dropdown-item" href="#">Layanan 2</a></li>
+                            <li><a class="dropdown-item" href="#">Layanan 3</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -261,7 +261,7 @@
 
         function display_ct() {
             var dayjsParser = document.querySelector("#tanggal")
-            dayjsParser.innerHTML = dayjs().tz('Asia/Makassar').format('DD MMMM YYYY | HH:mm:ss') + ' WITA'
+            dayjsParser.innerHTML = dayjs().tz('Asia/Makassar').format('dddd, DD MMMM YYYY | HH:mm:ss') + ' WITA'
             display_c()
         }
     </script>

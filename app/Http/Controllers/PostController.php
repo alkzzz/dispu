@@ -10,7 +10,7 @@ use App\Models\Category;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::all();
+        $posts = Post::with('categories')->latest()->get();
         return view('backend.post.index', compact('posts'));
     }
 
@@ -20,7 +20,7 @@ class PostController extends Controller
     }
 
     public function create() {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
         return view('backend.post.create', compact('categories'));
     }
 

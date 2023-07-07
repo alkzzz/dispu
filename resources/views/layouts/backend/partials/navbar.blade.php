@@ -31,17 +31,25 @@
                             Lihat Website
                         </a>
                         <div class="sb-sidenav-menu-heading">Manajemen Konten</div>
+                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-regular fa-file-lines"></i></div>
+                            Halaman Statis
+                        </a>
                         <a class="nav-link" href="{{ route('dashboard.kategori') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                             Kategori
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-regular fa-file-lines"></i></div>
-                            Halaman Statis
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
+                            Custom Links
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                             Berita
+                        </a>
+                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-images"></i></i></div>
+                            Galeri
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-film"></i></div>
@@ -52,11 +60,11 @@
                             Media Sosial
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                             Link Terkait
                         </a>
                         <div class="sb-sidenav-menu-heading">Manajemen Web</div>
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('dashboard.menu') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-network-wired"></i></div>
                             Menu
                         </a>

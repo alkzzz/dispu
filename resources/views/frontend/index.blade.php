@@ -57,7 +57,7 @@
                                     provident, voluptatum consequatur optio ratione iste, iusto pariatur, illo itaque aut
                                     non
                                     molestias voluptas neque quod cumque.</p>
-                                <a class="btn btn-primary btn-lg" href="#" role="button">Selengkapnya <i
+                                <a class="btn btn-primary btn-lg" href="{{ url('tentang') }}" role="button">Selengkapnya <i
                                         class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
             <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem">
+                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
                         <img class="card-img-top" src="https://picsum.photos/200?random=1" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
@@ -178,7 +178,7 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem;">
+                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem;">
                         <img class="card-img-top" src="https://picsum.photos/200?random=2" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 24rem;">
+                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem;">
                         <img class="card-img-top" src="https://picsum.photos/200?random=3" alt="Card image cap"
                             style="max-height: 220px">
                         <div class="card-body">
@@ -217,11 +217,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center py-2 mt-3">
-                    <a name="" id="" class="btn btn-lg btn-primary" href="#" role="button">Lihat
-                        Semua Berita <i class="fa-solid fa-arrow-right-long"></i></a>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <a name="" id="" class="btn btn-lg btn-primary" href="#" role="button">Lihat
+                    Semua Berita <i class="fa-solid fa-arrow-right-long"></i></a>
             </div>
         </div>
     </div>

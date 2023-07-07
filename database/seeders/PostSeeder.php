@@ -14,6 +14,6 @@ class PostSeeder extends Seeder
     {
         \DB::table('posts')->truncate();
 
-        \App\Models\Post::factory()->count(10)->create();
+        \App\Models\Post::factory()->count(20)->create();
     }
 }

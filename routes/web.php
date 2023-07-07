@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('index');
 
+Route::get('{slug}', 'PagesController@getPage');
+
 Route::get('/berita', function () {
     return view('frontend.berita');
 })->name('berita');
@@ -24,6 +26,8 @@ Route::get('/berita', function () {
 Route::get('/galeri', function () {
     return view('frontend.galeri');
 })->name('galeri');
+
+Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('menu');
 
 Auth::routes([
     'register' => false, // Registration Routes...
@@ -35,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     #Kategori
     Route::get('/dashboard/kategori', [App\Http\Controllers\CategoryController::class, 'index'])->name('dashboard.kategori');
+    #HalamanStatis
+    Route::get('/dashboard/halaman', [App\Http\Controllers\PageController::class, 'index'])->name('dashboard.halaman');
+    #Menu
+    Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
     #Berita
     Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');
     Route::get('/dashboard/berita/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('dashboard.berita.show');

@@ -14,6 +14,6 @@ class CategoryPostSeeder extends Seeder
     {
         \DB::table('category_post')->truncate();
 
-        \App\Models\CategoryPost::factory()->count(20)->create();
+        \App\Models\CategoryPost::factory()->count(30)->create();
     }
 }

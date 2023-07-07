@@ -31,7 +31,7 @@
     </form>
 
     <!-- Display category list -->
-    <table class="table table-secondary table-striped table-hover mt-4">
+    <table class="table table-hover mt-4">
         <thead>
             <tr>
                 <th>#</th>

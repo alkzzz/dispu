@@ -3,13 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Category;
-use App\Models\Post;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Menu>
  */
-class CategoryPostFactory extends Factory
+class MenuFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +17,10 @@ class CategoryPostFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => rand(1, 5),
-            'post_id' => rand(1, 20),
+            'url' => fake()->url(),
+            'title' => ucfirst(fake()->domainWord()),
+            'order' => rand(1,10),
+            'parent_id' => rand(1,10)
         ];
     }
 }

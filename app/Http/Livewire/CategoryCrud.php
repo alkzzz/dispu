@@ -72,7 +72,7 @@ class CategoryCrud extends Component
      */
     public function render()
     {
-        $this->categories = Category::all();
+        $this->categories = Category::orderBy('name')->get();
         return view('livewire.category-crud', ['categories' => $this->categories]);
     }
 

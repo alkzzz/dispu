@@ -8,7 +8,7 @@
     <h2 class="pb-2 border-bottom border-dark">Berita</h2>
 
     <div class="row mt-3">
-        <!-- Display success messages -->
+        <!-- Display messages -->
         @if (session()->has('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
@@ -19,20 +19,33 @@
         </div>
 
         <div class="mt-4">
-            <table id="postTable" class="table table-secondary table-striped table-hover">
+            <table id="postTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th class="col-9">Judul Berita</th>
-                        <th class="col-3">Aksi</th>
+                        <th class="col">Judul Berita</th>
+                        <th class="col">Tanggal</th>
+                        <th class="col">Kategori</th>
+                        <th class="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($posts as $post)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td class="col-9">{{ $post->title }}</td>
-                            <td class="col-3">
+                            <td class="col">{{ $post->title }}</td>
+                            <td class="col">{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
+                                ({{ $post->created_at->diffForHumans() }})
+                            </td>
+                            <td class="col">
+                                <ul style="list-style-type:none;padding:0;margin:0">
+                                    @php $color = ['primary', 'warning', 'danger', 'info', 'success'] @endphp
+                                    @foreach ($post->categories as $category)
+                                        <li class="d-block mb-1 badge text-bg-{{ $color[$loop->index] }}"
+                                            style="font-size: 0.8rem">
+                                            {{ $category->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td class="col">
                                 <a class="btn btn-info btn-sm" href="{{ route('dashboard.berita.show', $post->id) }}"
                                     role="button"><i class="fa-solid fa-eye"></i>
                                     Show</a>

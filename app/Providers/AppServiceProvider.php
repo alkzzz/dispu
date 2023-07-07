@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Spatie\Navigation\Navigation;
+use Spatie\Navigation\Section;
+use App\Models\Menu;
 
 class AppServiceProvider extends ServiceProvider
 {

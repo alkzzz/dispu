@@ -32,8 +32,8 @@
                     corrupti, quod facilis harum eum. Commodi saepe consequatur molestiae fugit doloremque asperiores
                     excepturi libero sapiente aliquam provident. Deserunt, officia!
                 </p>
-                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}"
-                    role="button">Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
+                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}" role="button">Read
+                    more..</a>
 
             </div>
             <div class="col-4">
@@ -62,9 +62,9 @@
                     corrupti, quod facilis harum eum. Commodi saepe consequatur molestiae fugit doloremque asperiores
                     excepturi libero sapiente aliquam provident. Deserunt, officia!
                 </p>
-                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}"
-                    role="button">Selengkapnya
-                    <i class="fa-solid fa-arrow-right-long"></i></a>
+                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}" role="button">Read
+                    more..
+                </a>
             </div>
         </div>
         <hr class="mb-4">
@@ -80,9 +80,9 @@
                     corrupti, quod facilis harum eum. Commodi saepe consequatur molestiae fugit doloremque asperiores
                     excepturi libero sapiente aliquam provident. Deserunt, officia!
                 </p>
-                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}"
-                    role="button">Selengkapnya
-                    <i class="fa-solid fa-arrow-right-long"></i></a>
+                <a name="" id="" class="btn btn-primary" href="{{ url('galeri') }}" role="button">Read
+                    more..
+                </a>
 
             </div>
             <div class="col-4">

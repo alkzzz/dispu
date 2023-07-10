@@ -76,18 +76,11 @@
                 <p id="tanggal" class="text-light mb-0"></p>
             </div>
             <div>
-                <a href="https://www.facebook.com" class="mx-3" style="color:transparent">
-                    <i class="fa-brands fa-facebook-f fa-lg text-light"></i>
-                </a>
-                <a href="https://www.twitter.com" class="mx-3" style="color:transparent">
-                    <i class="fa-brands fa-twitter fa-lg text-light"></i>
-                </a>
-                <a href="https://www.youtube.com" class="mx-3" style="color:transparent">
-                    <i class="fa-brands fa-youtube fa-lg text-light"></i>
-                </a>
-                <a href="https://www.instagram.com" class="mx-3" style="color:transparent">
-                    <i class="fa-brands fa-instagram fa-lg text-light"></i>
-                </a>
+                @foreach ($socmeds as $socmed)
+                    <a href="{{ $socmed->link }}" target="_blank" class="mx-3" style="color:transparent">
+                        <i class="fa-brands fa-{{ strtolower($socmed->name) }} fa-lg text-light"></i>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>

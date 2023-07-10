@@ -23,6 +23,7 @@
                 <thead>
                     <tr>
                         <th class="col">Judul Berita</th>
+                        <th class="col">Gambar</th>
                         <th class="col">Tanggal</th>
                         <th class="col">Kategori</th>
                         <th class="col">Aksi</th>
@@ -32,6 +33,11 @@
                     @forelse ($posts as $post)
                         <tr>
                             <td class="col">{{ $post->title }}</td>
+                            <td class="col">
+                                <img style="width: 80px;height:80px"
+                                    src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                    class="img-thumbnail" alt="thumbnail">
+                            </td>
                             <td class="col">{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
                                 ({{ $post->created_at->diffForHumans() }})
                             </td>

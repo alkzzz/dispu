@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('index');
+Route::get('/', HomePageController::class)->name('index');
 
 Route::get('/berita', function () {
     return view('frontend.berita');
@@ -55,6 +54,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/berita/edit/{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('dashboard.berita.edit');
     Route::put('/dashboard/berita/update/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('dashboard.berita.update');
     Route::delete('/dashboard/berita/delete/{id}', [App\Http\Controllers\PostController::class, 'delete'])->name('dashboard.berita.delete');
+    #Sosial Media
+    Route::get('/dashboard/sosial-media', [App\Http\Controllers\SocmedController::class, 'index'])->name('dashboard.sosial-media.index');
+    Route::post('/dashboard/sosial-media/update', [App\Http\Controllers\SocmedController::class, 'update'])->name('dashboard.sosial-media.update');
 });
 
 Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage']);

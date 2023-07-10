@@ -24,5 +24,9 @@
             <p>{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
                 ({{ $post->created_at->diffForHumans() }})</p>
         </div>
+        <div class="col-6">
+            <h5 class="text-decoration-underline">Gambar</h5>
+            <img src="{{ $post->getFirstMediaUrl('berita') }}" class="img-fluid rounded" alt="">
+        </div>
     </div>
 @endsection

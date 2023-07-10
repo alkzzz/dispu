@@ -44,16 +44,26 @@
                             <option value="{{ $category->id }}"@if ($loop->first) selected @endif>
                                 {{ $category->name }}</option>
                         @endforeach
-
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi Berita</label>
                     <textarea class="form-control" id="content" rows="3" name="content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
-                <a class="btn btn-danger" href="{{ route('dashboard.berita.index') }}" role="button"><i
-                        class="fa-solid fa-ban"></i> Cancel</a>
+                <div class="mb-3">
+                    <label for="Image" class="form-label">Upload Gambar</label>
+                    <input name="gambar" class="form-control" type="file" id="formFile" onchange="preview()">
+                    <img style="width:300px;height:300px" id="frame" src="{{ asset('img/no-image.jpg') }}"
+                        class="img-fluid mt-3" />
+                    <a name="" id="" class="btn btn-sm btn-warning align-top mt-3 ms-2" href="#frame"
+                        onclick="clearImage()"><i class="fa-solid fa-ban"></i> Hapus Gambar</a>
+                </div>
+                <hr>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                    <a class="btn btn-danger" href="{{ route('dashboard.berita.index') }}" role="button"><i
+                            class="fa-solid fa-ban"></i> Cancel</a>
+                </div>
             </div>
         </form>
     </div>
@@ -92,5 +102,16 @@
             tags: true,
             allowClear: true,
         });
+    </script>
+    <script>
+        function preview() {
+            frame.src = URL.createObjectURL(event.target.files[0]);
+            $('#btnHapusGambar').removeClass('d-none');
+        }
+
+        function clearImage() {
+            document.getElementById('formFile').value = null;
+            frame.src = "{{ asset('img/no-image.jpg') }}";
+        }
     </script>
 @endsection

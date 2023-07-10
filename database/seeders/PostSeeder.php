@@ -13,7 +13,14 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         \DB::table('posts')->truncate();
+        \DB::table('media')->truncate();
 
-        \App\Models\Post::factory()->count(20)->create();
+        $posts = \App\Models\Post::factory()->count(20)->create();
+
+        // $imageUrl = fake()->imageUrl(640,480, null, false);
+
+        // foreach($posts as $post){
+        //     $post->addMediaFromUrl($imageUrl)->toMediaCollection('berita');
+        // }
     }
 }

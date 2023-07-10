@@ -55,7 +55,7 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-film"></i></div>
                             Gambar Slider
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.sosial-media.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                             Media Sosial
                         </a>

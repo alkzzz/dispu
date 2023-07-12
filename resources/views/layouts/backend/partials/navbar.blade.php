@@ -39,7 +39,7 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                             Kategori
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.link') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
                             Custom Links
                         </a>

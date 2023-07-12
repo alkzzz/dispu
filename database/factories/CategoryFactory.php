@@ -18,6 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => ucfirst(fake()->state()),
+            'url' => fake()->url(),
         ];
     }
 }

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PageSeeder::class,
             CategorySeeder::class,
+            LinkSeeder::class,
             PostSeeder::class,
             CategoryPostSeeder::class,
             MenuSeeder::class,

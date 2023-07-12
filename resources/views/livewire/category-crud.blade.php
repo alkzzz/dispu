@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <!-- Display success messages -->
     @if (session()->has('message'))
         <div class="alert alert-success">{{ session('message') }}</div>
@@ -6,7 +6,7 @@
 
     <!-- Display category form -->
     <form class="row g-3 justify-content-start mt-3" wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <label for="name" class="visually-hidden">Nama Kategori:</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                 wire:model="name" placeholder="Nama Kategori">

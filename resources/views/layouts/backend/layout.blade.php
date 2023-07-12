@@ -59,6 +59,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
 
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     @yield('extra_js')
 </body>
 

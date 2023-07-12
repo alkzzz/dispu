@@ -1,6 +1,10 @@
 @extends('layouts.backend.layout')
 
 @section('extra_css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    {{-- Select2 BS5-theme --}}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <style>
         .accordion-button:not(.collapsed) {
             color: black;
@@ -39,122 +43,123 @@
                 </div>
                 <div class="accordion" id="selectMenuItem">
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
+                        <h2 class="accordion-header" id="headingPage">
                             <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pageCollapse" aria-expanded="true" aria-controls="pageCollapse">
+                                data-bs-target="#selectPageMenu" aria-expanded="true" aria-controls="selectPageMenu">
                                 Halaman Statis
                             </button>
                         </h2>
-                        <div id="pageCollapse" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        <div id="selectPageMenu" class="accordion-collapse collapse" aria-labelledby="headingPage"
                             data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                        checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Checked checkbox
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div class="mt-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="selectAllMenu">
-                                        <label class="form-check-label fw-semibold" for="selectAllMenu">
-                                            Select All
+                                @foreach ($pages as $page)
+                                    <div class="form-check">
+                                        <input class="form-check-input addMenu" type="checkbox" value=""
+                                            id="pageCheck">
+                                        <label class="form-check-label" for="pageCheck">
+                                            {{ $page->title }}
                                         </label>
                                     </div>
-                                    <div>
-                                        <a name="" id="" class="btn btn-primary" href="#"
-                                            role="button">Add Menu</a>
-                                    </div>
+                                @endforeach
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary disabled btnAddMenu" href="#" role="button"><i
+                                            class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
+                                    <a id="btn-submenu-page" data-bs-toggle="modal" data-bs-target="#modal-submenu"
+                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#" role="button"><i
+                                            class="fa-solid fa-plus fa-sm"></i> Add
+                                        to Submenu</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
+                        <h2 class="accordion-header" id="headingCategory">
                             <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                data-bs-target="#selectCategoryMenu" aria-expanded="false"
+                                aria-controls="selectCategoryMenu">
                                 Kategori
                             </button>
                         </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        <div id="selectCategoryMenu" class="accordion-collapse collapse" aria-labelledby="headingCategory"
                             data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                        checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Checked checkbox
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div class="mt-2">
-                                        <input class="form-check-input" type="checkbox" value="" id="selectAllMenu">
-                                        <label class="form-check-label fw-semibold" for="selectAllMenu">
-                                            Select All
+                                @foreach ($categories as $category)
+                                    <div class="form-check">
+                                        <input class="form-check-input addMenu" type="checkbox" value=""
+                                            id="categoryCheck">
+                                        <label class="form-check-label" for="categoryCheck">
+                                            {{ $category->name }}
                                         </label>
                                     </div>
-                                    <div>
-                                        <a name="" id="" class="btn btn-primary" href="#"
-                                            role="button">Add Menu</a>
-                                    </div>
+                                @endforeach
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <a name="" id="" class="btn btn-sm btn-primary btnAddMenu disabled"
+                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
+                                    <a id="btn-submenu-kategori" data-bs-toggle="modal" data-bs-target="#modal-submenu"
+                                        class="btn btn-sm btn-info btnAddSubMenu disabled" href="#" role="button"><i
+                                            class="fa-solid fa-plus fa-sm"></i> Add
+                                        to Submenu</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
+                        <h2 class="accordion-header" id="headingLinks">
                             <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                data-bs-target="#selectLinkMenu" aria-expanded="false" aria-controls="selectLinkMenu">
                                 Custom Links
                             </button>
                         </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        <div id="selectLinkMenu" class="accordion-collapse collapse" aria-labelledby="headingLinks"
                             data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                        checked>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Checked checkbox
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div class="mt-2">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="selectAllMenu">
-                                        <label class="form-check-label fw-semibold" for="selectAllMenu">
-                                            Select All
+                                @foreach ($links as $link)
+                                    <div class="form-check">
+                                        <input class="form-check-input addMenu" type="checkbox" value=""
+                                            id="linkCheck">
+                                        <label class="form-check-label" for="linkCheck">
+                                            {{ $link->name }}
                                         </label>
                                     </div>
-                                    <div>
-                                        <a name="" id="" class="btn btn-primary" href="#"
-                                            role="button">Add Menu</a>
-                                    </div>
+                                @endforeach
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary btnAddMenu disabled" href="#"
+                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
+                                    <a id="btn-submenu-link" data-bs-toggle="modal" data-bs-target="#modal-submenu"
+                                        class="btn btn-sm btn-info btnAddSubMenu disabled" href="#"
+                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add
+                                        to Submenu</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-submenu" tabindex="-1" aria-labelledby="modalSubMenu"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalSubMenu">Pilih Parent Menu</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="#" method="post">
+                                <select class="select-submenu" name="parent_menu">
+                                    <option value="AL">Alabama</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+                                    class="fa-solid fa-ban"></i> Batal</button>
+                            <button type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i>
+                                Tambahkan</button>
                         </div>
                     </div>
                 </div>
@@ -167,184 +172,172 @@
                     Atur Menu
                 </div>
                 <div class="accordion parent" id="menu">
-                    <div class="accordion-item fixed">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button bg-warning text-dark no-child" type="button" disabled>
-                                <i class="fa-solid fa-house-chimney fa-lg pe-2"></i>Home
-                            </button>
-                        </h2>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingMenu-1">
-                            <button class="accordion-button collapsed bg-warning text-dark" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#menu-1" aria-expanded="true"
-                                aria-controls="menu-1">
-                                <i class="fa-solid fa-up-down-left-right fa-lg pe-2"></i><span
-                                    id="judulmenu-1">Profil</span>
-                            </button>
-                        </h2>
-                        <div id="menu-1" class="accordion-collapse collapse" aria-labelledby="headingMenu-1"
-                            data-bs-parent="#menu">
-                            <div class="accordion-body">
-                                <div class="mb-3">
-                                    <form action="#">
-                                        <label for="inputmenu-1" class="form-label"
-                                            style="font-size: 0.9rem;font-style: italic">Label
-                                            Menu</label>
-                                        <input id="labelinput-1" type="text" class="form-control" value="Profil"
-                                            oninput="renameMenu()" required>
-                                        <button id="labelbutton-1" type="submit"
-                                            class="d-none btn btn-sm btn-success mt-2">Save</button>
-                                    </form>
-                                </div>
-                                <div class="accordion child" id="submenu">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="sub-headingOne">
-                                            <button class="accordion-button bg-warning text-dark" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#sub-menu-1"
-                                                aria-expanded="true" aria-controls="sub-menu-1">
-                                                Accordion Item #1
-                                            </button>
-                                        </h2>
-                                        <div id="sub-menu-1" class="accordion-collapse" aria-labelledby="sub-headingOne"
-                                            data-bs-parent="#sub-accordionMenu">
-                                            <div class="accordion-body">
-                                                <strong>This is the first item's accordion body.</strong> It is hidden
-                                                by
-                                                default, until the collapse plugin adds the appropriate classes that we
-                                                use
-                                                to
-                                                style each element. These classes control the overall appearance, as
-                                                well as
-                                                the
-                                                showing and hiding via CSS transitions. You can modify any of this with
-                                                custom
-                                                CSS or overriding our default variables. It's also worth noting that
-                                                just
-                                                about
-                                                any HTML can go within the <code>.accordion-body</code>, though the
-                                                transition
-                                                does limit overflow.
+                    @foreach ($menus as $menu)
+                        @if ($loop->first)
+                            <div class="accordion-item fixed" data-id="{{ $menu->id }}">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-warning text-dark no-child rounded-0"
+                                        type="button">
+                                        <i class="fa-solid fa-house-chimney fa-lg pe-2"></i>{{ $menu->title }}
+                                    </button>
+                                </h2>
+                            </div>
+                        @else
+                            <div class="accordion-item" data-id="{{ $menu->id }}">
+                                <h2 class="accordion-header">
+                                    <button
+                                        class="accordion-button collapsed bg-warning text-dark rounded-0 @if (!$menu->parent_id) no-child @endif"
+                                        type="button" data-bs-toggle="collapse"
+                                        @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
+                                        <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
+                                            id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                    </button>
+                                </h2>
+                                <div id="menu-{{ $menu->id }}" class="accordion-collapse collapse">
+                                    <div class="accordion-body py-4">
+                                        @if ($menu->parent_id)
+                                            <div class="accordion child">
+                                                <div class="accordion-item"
+                                                    data-id="{{ $menu->parent_id }}-{{ $menu->id }}">
+                                                    <h2 class="accordion-header">
+                                                        <button
+                                                            class="accordion-button collapsed bg-info text-dark no-child rounded-0"
+                                                            type="button" data-bs-toggle="collapse"
+                                                            @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
+                                                            <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
+                                                                id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                                        </button>
+                                                    </h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="sub-headingTwo">
-                                            <button class="accordion-button bg-warning text-dark collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#sub-menu-2"
-                                                aria-expanded="false" aria-controls="sub-menu-2">
-                                                Accordion Item #2
-                                            </button>
-                                        </h2>
-                                        <div id="sub-menu-2" class="accordion-collapse collapse"
-                                            aria-labelledby="sub-headingTwo" data-bs-parent="#sub-accordionExample">
-                                            <div class="accordion-body">
-                                                <strong>This is the second item's accordion body.</strong> It is hidden
-                                                by
-                                                default, until the collapse plugin adds the appropriate classes that we
-                                                use
-                                                to
-                                                style each element. These classes control the overall appearance, as
-                                                well as
-                                                the
-                                                showing and hiding via CSS transitions. You can modify any of this with
-                                                custom
-                                                CSS or overriding our default variables. It's also worth noting that
-                                                just
-                                                about
-                                                any HTML can go within the <code>.accordion-body</code>, though the
-                                                transition
-                                                does limit overflow.
+                                        @endif
+                                        <div class="accordion child">
+                                            <div class="accordion-item"
+                                                data-id="{{ $menu->parent_id }}-{{ $menu->id }}">
+                                                <h2 class="accordion-header">
+                                                    <button
+                                                        class="accordion-button collapsed bg-info text-dark no-child rounded-0"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
+                                                        <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
+                                                            id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                                    </button>
+                                                </h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button bg-warning text-dark collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                aria-controls="collapseTwo">
-                                <i class="fa-solid fa-up-down-left-right fa-lg pe-2"></i><span>Accordion Item #2</span>
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <div class="mb-3">
-                                    <label for="inputmenu-1" class="form-label"
-                                        style="font-size: 0.9rem;font-style: italic">Label
-                                        Menu</label>
-                                    <input id="inputmenu-1" type="text" class="form-control" value="Profil"
-                                        oninput="renameMenu()">
-                                </div>
-                                <div class="accordion" id="submenu"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button bg-warning text-dark collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                aria-controls="collapseThree">
-                                <i class="fa-solid fa-up-down-left-right fa-lg pe-2"></i><span>Accordion Item #3</span>
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <div class="mb-3">
-                                    <label for="inputmenu-1" class="form-label"
-                                        style="font-size: 0.9rem;font-style: italic">Label
-                                        Menu</label>
-                                    <input id="inputmenu-1" type="text" class="form-control" value="Profil"
-                                        oninput="renameMenu()">
-                                </div>
-                                <div class="accordion" id="submenu"></div>
-                            </div>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             <div class="mt-4">
-                <a name="" id="" class="btn btn-success" href="#" role="button">Urutkan Menu</a>
+                <a id="btnUrutMenu" class="btn btn-primary" href="#" role="button"><i id="iconUrut"
+                        class="fa-solid fa-arrow-down-short-wide"></i> <span id="textUrut">Urutkan Menu</span></a>
             </div>
         </div>
     @endsection
 
     @section('extra_js')
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
             integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-            var parent = [].slice.call(document.querySelectorAll('.parent'));
-            for (var i = 0; i < parent.length; i++) {
-                new Sortable(parent[i], {
-                    group: 'parent',
-                    animation: 200,
-                    fallbackOnBody: true,
-                    swapThreshold: 0.65
-                });
-            }
+            $(document).ready(function() {
+                var parents = [].slice.call(document.querySelectorAll(".parent"));
+                var parentSortableInstances = [];
 
-            var child = [].slice.call(document.querySelectorAll('.child'));
-            for (var i = 0; i < child.length; i++) {
-                new Sortable(child[i], {
-                    group: 'child',
-                    animation: 200,
-                    fallbackOnBody: true,
-                    swapThreshold: 0.65
+                for (var i = 0; i < parents.length; i++) {
+                    var parentSortableInstance = new Sortable(parents[i], {
+                        group: "parent",
+                        filter: ".fixed",
+                        onMove: function(e) {
+                            return e.related.className.indexOf("fixed") === -1;
+                        },
+                        animation: 200,
+                        fallbackOnBody: true,
+                        swapThreshold: 0.65,
+                        disabled: true,
+                        onUpdate: function() {
+                            console.log(parentSortableInstance.toArray());
+                        }
+                    });
+                    parentSortableInstances.push(parentSortableInstance);
+                }
+
+                var children = [].slice.call(document.querySelectorAll(".child"));
+                var childSortableInstances = [];
+
+                for (var i = 0; i < children.length; i++) {
+                    var childSortableInstance = new Sortable(children[i], {
+                        group: "child",
+                        animation: 200,
+                        fallbackOnBody: true,
+                        swapThreshold: 0.65,
+                        disabled: true,
+                        onUpdate: function() {
+                            console.log(childSortableInstance.toArray());
+                        }
+                    });
+                    childSortableInstances.push(childSortableInstance);
+                }
+
+                $('#btnUrutMenu').on('click', function() {
+                    $(this).toggleClass('btn-primary btn-success')
+                    if ($('#textUrut').text() == 'Urutkan Menu') {
+                        $('#textUrut').text('Simpan Urutan');
+                    } else {
+                        $('#textUrut').text('Urutkan Menu');
+                    }
+                    $('#iconUrut').toggleClass('fa-solid fa-arrow-down-short-wide fa-solid fa-floppy-disk')
+                    $('.iconMenu').toggleClass('fa-solid fa-bars fa-solid fa-up-down-left-right')
+                    if ($('#textUrut').text() == 'Simpan Urutan') {
+
+                        for (var i = 0; i < parentSortableInstances.length; i++) {
+                            parentSortableInstances[i].option("disabled", false);
+                        }
+                        for (var i = 0; i < childSortableInstances.length; i++) {
+                            childSortableInstances[i].option("disabled", false);
+                        }
+                    } else {
+                        for (var i = 0; i < parentSortableInstances.length; i++) {
+                            parentSortableInstances[i].option("disabled", true);
+                        }
+                        for (var i = 0; i < childSortableInstances.length; i++) {
+                            childSortableInstances[i].option("disabled", true);
+                        }
+                    }
                 });
-            }
+            });
         </script>
         <script>
-            function renameMenu() {
-                let button = document.getElementById("labelbutton-1")
+            $('.addMenu').on('change', function() {
+                var anyChecked = $('.addMenu:checked').length > 0;
+                if (anyChecked) {
+                    $('.btnAddMenu').removeClass('disabled');
+                    $('.btnAddSubMenu').removeClass('disabled');
+                } else {
+                    $('.btnAddMenu').addClass('disabled');
+                    $('.btnAddSubMenu').addClass('disabled');
+                }
+            });
+        </script>
+        {{-- <script>
+            function renameMenu(id) {
+                let button = document.getElementById("labelbutton-" + id)
                 button.classList.remove("d-none");
-                let text = document.getElementById("labelinput-1").value
-                document.getElementById("judulmenu-1").innerHTML = text
+                let text = document.getElementById("labelinput-" + id).value
+                document.getElementById("judulmenu-" + id).innerHTML = text
             }
+        </script> --}}
+        <script>
+            $('.select-submenu').select2({
+                theme: "bootstrap-5",
+            });
         </script>
     @endsection

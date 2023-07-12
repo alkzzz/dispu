@@ -16,8 +16,9 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2 class="p-2 border-bottom border-2 black" style="margin-bottom: 3rem">{{ $page->title }}</h2>
+        <h2 class="pb-2 border-bottom border-2 black" style="margin-bottom: 3rem">{{ $page->title }}</h2>
         <div class="row">
+            <div style="text-align: justify">{!! $page->content !!}</div>
         </div>
     </div>
 @endsection

@@ -152,7 +152,6 @@ class CategoryCrud extends Component
 
         $this->deleteMode = false;
         $this->resetForm();
-
     }
 
 }

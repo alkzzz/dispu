@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use Illuminate\Http\Request;
-use Spatie\Navigation\Navigation;
-use Spatie\Navigation\Section;
+use App\Models\Page;
+use App\Models\Category;
+use App\Models\Link;
 
 class MenuController extends Controller
 {
@@ -14,7 +14,10 @@ class MenuController extends Controller
      */
     public function index()
     {
+        $pages = Page::orderBy('title')->get();
+        $categories = Category::orderBy('name')->get();
+        $links = Link::orderBy('name')->get();
         $menus = Menu::orderBy('order')->get();
-        return view('backend.menu.index', compact('menus'));
+        return view('backend.menu.index', compact('pages', 'categories', 'links', 'menus'));
     }
 }

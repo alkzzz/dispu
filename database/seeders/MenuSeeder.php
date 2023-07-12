@@ -14,13 +14,12 @@ class MenuSeeder extends Seeder
     {
         \DB::table('menus')->truncate();
 
-        \App\Models\Menu::factory()->count(5)->create();
+        \DB::table('menus')->insert([
+            ['title' => 'Home', 'order' => 1, 'url' => route('index')],
+            ['title' => 'Berita', 'order' => 2, 'url' => route('berita')],
+            ['title' => 'Galeri', 'order' => 3, 'url' => route('galeri')],
+        ]);
 
-        // \App\Models\Model::factory()->create([
-        //     'name' => 'Super Admin',
-        //     'username' => 'superadmin',
-        //     'email' => 'super@admin.com',
-        //     'password' => bcrypt('123456')
-        // ]);
+        \App\Models\Menu::factory()->count(5)->create();
     }
 }

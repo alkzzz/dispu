@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
             $table->string('title');
             $table->unsignedTinyInteger('order');
+            $table->string('url');
+            $table->tinyInteger('parent_id')->default(0);
             $table->boolean('has_child')->default(false);
-            $table->unsignedTinyInteger('parent_id');
+            $table->json('child')->nullable();
             $table->timestamps();
         });
     }

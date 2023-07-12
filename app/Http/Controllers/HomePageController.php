@@ -11,7 +11,6 @@ class HomePageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $socmeds = \DB::table('socmeds')->orderBy('name')->get();
-        return view('frontend.index', compact('socmeds'));
+        return view('frontend.index');
     }
 }

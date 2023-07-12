@@ -26,6 +26,7 @@
         body {
             background: white;
             font-family: 'Inter', sherif;
+            font-size: 16px !important;
         }
 
         .navbar-brand {
@@ -76,6 +77,11 @@
                 <p id="tanggal" class="text-light mb-0"></p>
             </div>
             <div>
+                @php
+                    $socmeds = \DB::table('socmeds')
+                        ->orderBy('name')
+                        ->get();
+                @endphp
                 @foreach ($socmeds as $socmed)
                     <a href="{{ $socmed->link }}" target="_blank" class="mx-3" style="color:transparent">
                         <i class="fa-brands fa-{{ strtolower($socmed->name) }} fa-lg text-light"></i>

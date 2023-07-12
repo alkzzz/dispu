@@ -19,6 +19,7 @@ class PageFactory extends Factory
         return [
             'title' => ucwords(fake()->streetName()),
             'content' => ucwords(fake()->paragraphs(15, true)),
+            'url' => fake()->url(),
         ];
     }
 }

@@ -41,24 +41,27 @@
                                     Pekerjaan Umum dan Penataan
                                     Ruang
                                     Kota Banjarbaru</h2>
-                                <p class="lead" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. A, ea similique,
-                                    veritatis pariatur repellat, vitae expedita nam ut repellendus maxime provident
-                                    cupiditate
-                                    animi voluptate. Qui accusamus fugiat rem. Vero, illo.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus architecto omnis
-                                    alias
-                                    eos fuga velit nemo neque tempore quibusdam, earum totam fugit atque nulla illo, vitae
-                                    laboriosam, officia dolorem eveniet?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eveniet ex debitis
-                                    quis nulla esse quibusdam, reiciendis quod quas nesciunt doloribus totam dicta tempore
-                                    impedit aliquam, expedita sit repellat nemo.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit beatae ipsum iure nobis
-                                    provident, voluptatum consequatur optio ratione iste, iusto pariatur, illo itaque aut
-                                    non
-                                    molestias voluptas neque quod cumque.</p>
-                                <a class="btn btn-primary btn-lg" href="{{ url('tentang') }}" role="button">Selengkapnya <i
-                                        class="fa-solid fa-arrow-right-long"></i></a>
+                                <p class="lead" style="text-align: justify">Dalam upaya meningkatkan pelayanan publik
+                                    terkait penyediaan data dan informasi di sektor Pekerjaan Umum dan Perumahan di Kota
+                                    Banjarbaru, website ini berperan sebagai pusat komunikasi dan informasi yang penting.
+                                    Melalui website ini, penduduk Banjarbaru dapat dengan mudah mengakses berbagai informasi
+                                    yang terkait dengan Pekerjaan Umum dan Perumahan, yang merupakan fokus perhatian
+                                    pemerintah.
+
+                                    Kehadiran website ini diharapkan dapat menyesuaikan diri dengan berbagai perubahan dan
+                                    kebutuhan masyarakat dalam bidang Pekerjaan Umum dan Perumahan. Kami berkomitmen untuk
+                                    secara konsisten menyediakan data dan informasi terkait program dan kebijakan Pemerintah
+                                    Kota Banjarbaru di bidang Pekerjaan Umum dan Perumahan, yang memiliki dampak yang luas.
+                                    <br>
+                                    <br>
+                                    Salam hormat,
+                                    <br>
+                                    Kepala Dinas PUPR Kota Banjarbaru,
+                                    <br>
+                                    Eka Yuliesda Akbari, ST, MT
+                                </p>
+                                <a class="btn btn-primary btn-lg" href="{{ url('sambutan-kepala-dinas') }}"
+                                    role="button">Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
                         <div class="col-md-6 order-1 d-flex justify-content-center px-0">

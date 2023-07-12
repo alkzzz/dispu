@@ -19,8 +19,8 @@ class MenuFactory extends Factory
         return [
             'url' => fake()->url(),
             'title' => ucfirst(fake()->domainWord()),
-            'order' => rand(1,10),
-            'parent_id' => rand(1,10)
+            'order' => fake()->unique()->numberBetween(4,20),
+            'parent_id' => rand(0,13)
         ];
     }
 }

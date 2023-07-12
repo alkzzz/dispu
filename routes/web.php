@@ -33,9 +33,11 @@ Auth::routes([
   ]);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     #Kategori
     Route::get('/dashboard/kategori', [App\Http\Controllers\CategoryController::class, 'index'])->name('dashboard.kategori');
+    #Custom Link
+    Route::get('/dashboard/link', [App\Http\Controllers\LinkController::class, 'index'])->name('dashboard.link');
     #HalamanStatis
     Route::get('/dashboard/halaman', [App\Http\Controllers\PageController::class, 'index'])->name('dashboard.halaman.index');
     Route::get('/dashboard/halaman/show/{id}', [App\Http\Controllers\PageController::class, 'show'])->name('dashboard.halaman.show');

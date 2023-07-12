@@ -24,16 +24,26 @@
         #menu .no-child.accordion-button::after {
             background-image: unset !important;
         }
+
+        .delete-menu-icon {
+            position: absolute;
+            right: 50px;
+        }
+
+        .no-child .delete-menu-icon {
+            right: 20px;
+        }
     </style>
 @endsection
 
 @section('content')
     <h2 class="pb-2 border-bottom border-dark">Menu</h2>
-
     <div class="row mt-3">
         <!-- Display messages -->
         @if (session()->has('message'))
-            <div class="alert alert-primary">{{ session('message') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
 
         <div class="col-md-4 col-12">
@@ -57,7 +67,8 @@
                                         <input class="form-check-input addMenu" type="checkbox" value=""
                                             id="pageCheck">
                                         <label class="form-check-label" for="pageCheck">
-                                            {{ $page->title }}
+                                            <a href="{{ $page->url }}" target="_blank"
+                                                rel="noopener noreferrer">{{ $page->title }}</a>
                                         </label>
                                     </div>
                                 @endforeach
@@ -89,7 +100,8 @@
                                         <input class="form-check-input addMenu" type="checkbox" value=""
                                             id="categoryCheck">
                                         <label class="form-check-label" for="categoryCheck">
-                                            {{ $category->name }}
+                                            <a href="{{ $category->url }}" target="_blank"
+                                                rel="noopener noreferrer">{{ $category->name }}</a>
                                         </label>
                                     </div>
                                 @endforeach
@@ -107,8 +119,9 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingLinks">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#selectLinkMenu" aria-expanded="false" aria-controls="selectLinkMenu">
+                            <button class="accordion-button collapsed fw-semibold" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#selectLinkMenu" aria-expanded="false"
+                                aria-controls="selectLinkMenu">
                                 Custom Links
                             </button>
                         </h2>
@@ -120,7 +133,8 @@
                                         <input class="form-check-input addMenu" type="checkbox" value=""
                                             id="linkCheck">
                                         <label class="form-check-label" for="linkCheck">
-                                            {{ $link->name }}
+                                            <a href="{{ $link->url }}" target="_blank"
+                                                rel="noopener noreferrer">{{ $link->name }}</a>
                                         </label>
                                     </div>
                                 @endforeach
@@ -169,7 +183,7 @@
         <div class="col-md-8 col-12">
             <div class="card">
                 <div class="card-header bg-dark text-white fs-5">
-                    Atur Menu
+                    Pengaturan Menu
                 </div>
                 <div class="accordion parent" id="menu">
                     @foreach ($menus as $menu)
@@ -188,9 +202,13 @@
                                     <button
                                         class="accordion-button collapsed bg-warning text-dark rounded-0 @if (!$menu->parent_id) no-child @endif"
                                         type="button" data-bs-toggle="collapse"
-                                        @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
-                                        <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
-                                            id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                        @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="false" @endif>
+                                        <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i>
+                                        <span id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                        @if (strcmp($menu->title, 'Berita') and strcmp($menu->title, 'Galeri'))
+                                            <i data-id={{ $menu->id }}
+                                                class="fa-regular fa-circle-xmark fa-xl delete-menu-icon"></i>
+                                        @endif
                                     </button>
                                 </h2>
                                 <div id="menu-{{ $menu->id }}" class="accordion-collapse collapse">
@@ -202,29 +220,23 @@
                                                     <h2 class="accordion-header">
                                                         <button
                                                             class="accordion-button collapsed bg-info text-dark no-child rounded-0"
-                                                            type="button" data-bs-toggle="collapse"
+                                                            type="button"
                                                             @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
                                                             <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
                                                                 id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
+                                                            <i data-id={{ $menu->id }}
+                                                                class="fa-regular fa-circle-xmark fa-xl delete-menu-icon"></i>
+                                                            <form id="deleteMenu-{{ $menu->id }}"
+                                                                action="{{ route('dashboard.menu.delete', $menu->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                            </form>
                                                         </button>
                                                     </h2>
                                                 </div>
                                             </div>
                                         @endif
-                                        <div class="accordion child">
-                                            <div class="accordion-item"
-                                                data-id="{{ $menu->parent_id }}-{{ $menu->id }}">
-                                                <h2 class="accordion-header">
-                                                    <button
-                                                        class="accordion-button collapsed bg-info text-dark no-child rounded-0"
-                                                        type="button" data-bs-toggle="collapse"
-                                                        @if ($menu->parent_id) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="true" @endif>
-                                                        <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i><span
-                                                            id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -234,15 +246,14 @@
             </div>
             <div class="mt-4">
                 <a id="btnUrutMenu" class="btn btn-primary" href="#" role="button"><i id="iconUrut"
-                        class="fa-solid fa-arrow-down-short-wide"></i> <span id="textUrut">Urutkan Menu</span></a>
+                        class="fa-solid fa-pen-to-square"></i> <span id="textUrut">Edit Menu</span></a>
             </div>
         </div>
     @endsection
 
     @section('extra_js')
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
             integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
@@ -289,14 +300,14 @@
 
                 $('#btnUrutMenu').on('click', function() {
                     $(this).toggleClass('btn-primary btn-success')
-                    if ($('#textUrut').text() == 'Urutkan Menu') {
-                        $('#textUrut').text('Simpan Urutan');
+                    if ($('#textUrut').text() == 'Edit Menu') {
+                        $('#textUrut').text('Simpan Menu');
                     } else {
-                        $('#textUrut').text('Urutkan Menu');
+                        $('#textUrut').text('Edit Menu');
                     }
-                    $('#iconUrut').toggleClass('fa-solid fa-arrow-down-short-wide fa-solid fa-floppy-disk')
+                    $('#iconUrut').toggleClass('fa-solid fa-pen-to-square fa-solid fa-floppy-disk')
                     $('.iconMenu').toggleClass('fa-solid fa-bars fa-solid fa-up-down-left-right')
-                    if ($('#textUrut').text() == 'Simpan Urutan') {
+                    if ($('#textUrut').text() == 'Simpan Menu') {
 
                         for (var i = 0; i < parentSortableInstances.length; i++) {
                             parentSortableInstances[i].option("disabled", false);
@@ -313,7 +324,35 @@
                         }
                     }
                 });
+
+                $('.delete-menu-icon').mousedown(function(event) {
+                    var token = $("meta[name='csrf-token']").attr("content");
+                    var menu_id = $(this).data('id')
+                    var formDelete = $('#deleteMenu-' + menu_id);
+                    var delete_url = "{{ route('dashboard.menu.delete', ':id') }}";
+                    delete_url = delete_url.replace(':id', menu_id);
+                    var button = event.target.closest('.accordion-button');
+                    button.removeAttribute('data-bs-toggle');
+                    setTimeout(function(btn) {
+                        btn.setAttribute('data-bs-toggle', 'collapse');
+                    }, 500, button);
+                    Swal.fire({
+                        title: 'Hapus Menu?',
+                        text: "Apakah anda yakin akan menghapus menu ini?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '<i class="fa-solid fa-trash-can" ></i> Ya, Hapus saja',
+                        cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            formDelete.submit();
+                        }
+                    });
+                });
             });
+        </script>
         </script>
         <script>
             $('.addMenu').on('change', function() {
@@ -326,15 +365,35 @@
                     $('.btnAddSubMenu').addClass('disabled');
                 }
             });
+            // function deleteMenu(id) {
+
+            //     var token = $("meta[name='csrf-token']").attr("content");
+            //     Swal.fire({
+            //         title: 'Hapus Berita?',
+            //         text: "Apakah anda yakin akan menghapus berita ini?",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#3085d6',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: '<i class="fa-solid fa-trash-can" ></i> Ya, Hapus saja',
+            //         cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             $.ajax({
+            //                 url: "users/" + id,
+            //                 type: 'DELETE',
+            //                 data: {
+            //                     "id": id,
+            //                     "_token": token,
+            //                 },
+            //                 success: function() {
+            //                     console.log("it Works");
+            //                 }
+            //             });
+            //         }
+            //     })
+            // }
         </script>
-        {{-- <script>
-            function renameMenu(id) {
-                let button = document.getElementById("labelbutton-" + id)
-                button.classList.remove("d-none");
-                let text = document.getElementById("labelinput-" + id).value
-                document.getElementById("judulmenu-" + id).innerHTML = text
-            }
-        </script> --}}
         <script>
             $('.select-submenu').select2({
                 theme: "bootstrap-5",

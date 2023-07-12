@@ -9,9 +9,9 @@
 
     <div class="row mt-3">
         <!-- Display messages -->
-        @if (session()->has('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
-        @endif
+        <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
         <div class="col">
             <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
@@ -57,9 +57,8 @@
                                     Show</a>
                                 <a class="btn btn-warning btn-sm" href="{{ route('dashboard.berita.edit', $post->id) }}"
                                     role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <form id="post-{{ $post->id }}"
-                                    class="d-inline"action="{{ route('dashboard.berita.delete', $post->id) }}"
-                                    method="post">
+                                <form id="post-{{ $post->id }}" class="d-inline"
+                                    action="{{ route('dashboard.berita.delete', $post->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button id="confirmDelete-{{ $post->id }}" data-id={{ $post->id }}
@@ -91,7 +90,6 @@
             $('.confirmDelete').click(function(e) {
                 let id = $(this).data('id');
                 let formPost = $('#post-' + id);
-                console.log(formPost);
                 Swal.fire({
                     title: 'Hapus Berita?',
                     text: "Apakah anda yakin akan menghapus berita ini?",

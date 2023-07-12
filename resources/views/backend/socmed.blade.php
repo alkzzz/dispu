@@ -23,7 +23,9 @@
     <div class="row mt-3">
         <!-- Display messages -->
         @if (session()->has('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
         <div class="mt-4">
             <table class="table table-striped table-hover">

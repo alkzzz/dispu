@@ -16,11 +16,15 @@ class MenuFactory extends Factory
      */
     public function definition(): array
     {
+        $array = [4, 5, 6, 7, 8];
+        shuffle($array);
         return [
             'url' => fake()->url(),
             'title' => ucfirst(fake()->domainWord()),
             'order' => fake()->unique()->numberBetween(4,20),
-            'parent_id' => rand(0,13)
+            'has_child' =>0,
+            'parent_id' => 0,
+            'child' => array_slice($array, 0, 2)
         ];
     }
 }

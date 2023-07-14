@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/dashboard/halaman/delete/{id}', [App\Http\Controllers\PageController::class, 'delete'])->name('dashboard.halaman.delete');
     #Menu
     Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
+    Route::post('/dashboard/menu/store', [App\Http\Controllers\MenuController::class, 'store'])->name('dashboard.menu.store');
     Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
     #Berita
     Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');

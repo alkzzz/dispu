@@ -26,6 +26,19 @@ class MenuController extends Controller
         return view('backend.menu.index', compact('pages', 'categories', 'links', 'menus'));
     }
 
+    public function sort (Request $request): RedirectResponse {
+        $input['order'] = $request->input('order');
+        foreach ($input['order'] as $index => $id) {
+            $menu = Menu::where('id', '!=', 1)->find($id);
+            if ($menu) {
+                $menu->order = $index + 2;
+                $menu->save();
+            }
+        }
+        session()->flash('message', 'Menu telah berhasil diurutkan.');
+        return redirect()->route('dashboard.menu');
+    }
+
     public function store (Request $request): RedirectResponse {
         $input = $request->all();
         if(!empty($input['page_menu'])) {
@@ -82,6 +95,12 @@ class MenuController extends Controller
                 $parent->has_child = true;
                 $parent->child = $childArray;
                 $parent->save();
+            }
+        }
+        if (!$menu->parent_id && $menu->has_child) {
+            foreach ($menu->child as $id) {
+                $child = Menu::find($id);
+                $child->delete();
             }
         }
         $menu->delete();

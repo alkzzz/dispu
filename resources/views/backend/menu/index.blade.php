@@ -5,6 +5,7 @@
     {{-- Select2 BS5-theme --}}
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style>
         .accordion-button:not(.collapsed) {
             color: black;
@@ -214,7 +215,13 @@
                                             <span id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
                                             @if (strcmp($menu->title, 'Berita') and strcmp($menu->title, 'Galeri'))
                                                 <i data-id={{ $menu->id }}
-                                                    class="fa-solid fa-circle-xmark fa-lg delete-menu-icon d-none"></i>
+                                                    class="fa-regular fa-circle-xmark fa-lg delete-menu-icon"></i>
+                                                <form id="deleteMenu-{{ $menu->id }}"
+                                                    action="{{ route('dashboard.menu.delete', $menu->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
                                             @endif
                                         </button>
                                     </h2>
@@ -236,9 +243,9 @@
                                                                         @if (isset($child)) id="judulmenu-{{ $child->id }}">
                                                                         {{ $child->title }}
                                                                     </span>
-                                                                    <i data-id={{ $child->id }}
-                                                                        class="fa-regular fa-circle-xmark fa-xl delete-menu-icon d-none"></i>
-                                                                        <form id="deleteMenu-{{ $child->id }}"
+                                                                    <i data-id={{ $child->id }} data-type="submenu"
+                                                                        class="fa-regular fa-circle-xmark fa-xl delete-menu-icon"></i>
+                                                                        <form id="deleteSubMenu-{{ $child->id }}"
                                                                             action="{{ route('dashboard.menu.delete', $child->id) }}"
                                                                             method="post">
                                                                             @csrf
@@ -259,8 +266,8 @@
                 </div>
             </div>
             <div class="mt-4">
-                <a id="btnEditMenu" class="btn btn-primary" href="#" role="button"><i id="iconUrut"
-                        class="fa-solid fa-pen-to-square"></i> <span id="textUrut">Edit Menu</span></a>
+                <a id="btnUrutMenu" class="btn btn-primary" href="#" role="button"><i id="iconUrut"
+                        class="fa-solid fa-pen-to-square"></i> <span id="textUrut">Urutkan Menu</span></a>
             </div>
         </div>
     @endsection
@@ -289,7 +296,7 @@
                         swapThreshold: 0.65,
                         disabled: true,
                         onUpdate: function() {
-                            console.log(parentSortableInstance.toArray());
+                            // console.log(parentSortableInstance.toArray());
                         }
                     });
                     parentSortableInstances.push(parentSortableInstance);
@@ -306,19 +313,32 @@
                         swapThreshold: 0.65,
                         disabled: true,
                         onUpdate: function() {
-                            console.log(childSortableInstance.toArray());
+                            // console.log(childSortableInstance.toArray());
                         }
                     });
                     childSortableInstances.push(childSortableInstance);
                 }
 
-                $('#btnEditMenu').on('click', function() {
+                $('#btnUrutMenu').on('click', function() {
                     $(this).toggleClass('btn-primary btn-success')
-                    $('.delete-menu-icon').toggleClass('d-none')
-                    if ($('#textUrut').text() == 'Edit Menu') {
+                    if ($('#textUrut').text() == 'Urutkan Menu') {
                         $('#textUrut').text('Simpan Menu');
                     } else {
-                        $('#textUrut').text('Edit Menu');
+                        $('#textUrut').text('Urutkan Menu');
+                        $.ajax({
+                            type: 'GET',
+                            url: "{{ route('dashboard.menu.sort') }}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                'order': parentSortableInstances[0].toArray(),
+                            },
+                            success: function(data) {
+                                // console.log(data);
+                            }
+                        });
+
                     }
                     $('#iconUrut').toggleClass('fa-solid fa-pen-to-square fa-solid fa-floppy-disk')
                     $('.iconMenu').toggleClass('fa-solid fa-bars fa-solid fa-up-down-left-right')
@@ -362,7 +382,6 @@
                     .attr("value", "page")
                     .appendTo("#formAddMenuPage");
                 parent_id = $('#parentSelect').find(":selected").val();
-                console.log(parent_id);
                 $("<input />").attr("type", "hidden")
                     .attr("name", "parent_id")
                     .attr("value", parent_id)
@@ -373,7 +392,9 @@
             $(document).delegate('.delete-menu-icon', 'mousedown', function(event) {
                 var token = $("meta[name='csrf-token']").attr("content");
                 var menu_id = $(this).data('id')
-                var formDelete = $('#deleteMenu-' + menu_id);
+                var subMenu = $(this).data('type') === 'submenu';
+                var formDeleteMenu = $('#deleteMenu-' + menu_id);
+                var formDeleteSubMenu = $('#deleteSubMenu-' + menu_id);
                 var delete_url = "{{ route('dashboard.menu.delete', ':id') }}";
                 delete_url = delete_url.replace(':id', menu_id);
                 var button = event.target.closest('.accordion-button');
@@ -392,7 +413,11 @@
                     cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        formDelete.submit();
+                        if (subMenu) {
+                            formDeleteSubMenu.submit();
+                        } else {
+                            formDeleteMenu.submit();
+                        }
                     }
                 });
             });

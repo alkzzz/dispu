@@ -22,9 +22,9 @@ class MenuFactory extends Factory
             'url' => fake()->url(),
             'title' => ucfirst(fake()->domainWord()),
             'order' => fake()->unique()->numberBetween(4,20),
-            'has_child' =>0,
+            'has_child' => 1,
             'parent_id' => 0,
-            'child' => array_slice($array, 0, 2)
+            'child' => array_slice($array, 0, 3)
         ];
     }
 }

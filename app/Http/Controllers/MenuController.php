@@ -27,13 +27,20 @@ class MenuController extends Controller
     }
 
     public function sort (Request $request): RedirectResponse {
-        $input['order'] = $request->input('order');
-        foreach ($input['order'] as $index => $id) {
-            $menu = Menu::where('id', '!=', 1)->find($id);
-            if ($menu) {
-                $menu->order = $index + 2;
-                $menu->save();
+        $input = $request->all();
+        if($request->has('order')) {
+            foreach ($input['order'] as $index => $id) {
+                $menu = Menu::where('id', '!=', 1)->find($id);
+                if ($menu) {
+                    $menu->order = $index + 2;
+                    $menu->save();
+                }
             }
+        }
+        if($request->has('child_order')) {
+            $parent = Menu::find($input['parent_id']);
+            $parent->child = $input['child_order'];
+            $parent->save();
         }
         session()->flash('message', 'Menu telah berhasil diurutkan.');
         return redirect()->route('dashboard.menu');
@@ -74,7 +81,6 @@ class MenuController extends Controller
                 return redirect()->route('dashboard.menu');
             }
         }
-
         session()->flash('message', 'Menu baru telah ditambahkan.');
         return redirect()->route('dashboard.menu');
     }

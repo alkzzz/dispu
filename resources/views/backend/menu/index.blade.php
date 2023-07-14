@@ -225,13 +225,13 @@
                                             @endif
                                         </button>
                                     </h2>
-                                    <div id="menu-{{ $menu->id }}" class="accordion-collapse collapse">
+                                    <div id="menu-{{ $menu->id }}" data-id="{{ $menu->id }}"
+                                        class="accordion-collapse collapse">
                                         <div class="accordion-body py-4">
                                             @if ($menu->has_child)
-                                                @foreach ($menu->child as $child)
-                                                    <div class="accordion child">
-                                                        <div class="accordion-item"
-                                                            data-id="{{ $menu->parent_id }}-{{ $child }}">
+                                                <div class="accordion child">
+                                                    @foreach ($menu->child as $child)
+                                                        <div class="accordion-item" data-id="{{ $child }}">
                                                             <h2 class="accordion-header">
                                                                 <button
                                                                     class="accordion-button collapsed bg-info text-dark no-child rounded-0"
@@ -254,8 +254,8 @@
                                                                         </button>
                                                             </h2>
                                                         </div>
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
@@ -304,6 +304,7 @@
 
                 var children = [].slice.call(document.querySelectorAll(".child"));
                 var childSortableInstances = [];
+                var parent_child_order = [];
 
                 for (var i = 0; i < children.length; i++) {
                     var childSortableInstance = new Sortable(children[i], {
@@ -312,14 +313,30 @@
                         fallbackOnBody: true,
                         swapThreshold: 0.65,
                         disabled: true,
-                        onUpdate: function() {
-                            // console.log(childSortableInstance.toArray());
+                        onUpdate: function(event) {
+                            parent_id = event.to.parentNode.parentNode.getAttribute("data-id");
+                            child_order = this.toArray();
+                            $.ajax({
+                                type: 'GET',
+                                url: "{{ route('dashboard.menu.sort') }}",
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: {
+                                    'parent_id': parent_id,
+                                    'child_order': child_order,
+                                },
+                                success: function(data) {
+                                    // console.log(data);
+                                }
+                            });
                         }
                     });
                     childSortableInstances.push(childSortableInstance);
                 }
 
                 $('#btnUrutMenu').on('click', function() {
+                    console.log(childSortableInstances)
                     $(this).toggleClass('btn-primary btn-success')
                     if ($('#textUrut').text() == 'Urutkan Menu') {
                         $('#textUrut').text('Simpan Menu');

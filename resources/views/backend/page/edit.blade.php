@@ -39,6 +39,11 @@
                     <label for="title" class="form-label">Judul Halaman</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ $page->title }}">
                 </div>
+                @error('title')
+                    <div class="alert alert-danger alert-dismissible fade show mt-3">{{ $message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @enderror
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi halaman</label>
                     <textarea class="form-control" id="content" rows="3" name="content">{{ $page->content }}</textarea>

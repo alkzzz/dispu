@@ -12,7 +12,7 @@ class Category extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['title', 'url'];
 
     public function posts(): BelongsToMany
     {
@@ -22,7 +22,7 @@ class Category extends Model
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 

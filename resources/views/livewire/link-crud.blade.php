@@ -9,10 +9,10 @@
     <form class="row g-3 justify-content-start mt-3" wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}">
         <div class="row">
             <div class="col-12 col-md-6">
-                <label for="name" class="visually-hidden">Judul Link:</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" wire:model="name" placeholder="Judul Link">
-                @error('name')
+                <label for="title" class="visually-hidden">Judul Link:</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" wire:model="title" placeholder="Judul Link">
+                @error('title')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
@@ -58,7 +58,7 @@
             @forelse ($links as $link)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $link->name }}</td>
+                    <td>{{ $link->title }}</td>
                     <td>
                         <a class="btn btn-sm btn-info" href="{{ $link->url }}" role="button"><i
                                 class="fa-regular fa-circle-check"></i> Cek Link</a>

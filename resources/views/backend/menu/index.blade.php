@@ -73,6 +73,7 @@
                                                 <a href="{{ $page->url }}" target="_blank"
                                                     rel="noopener noreferrer">{{ $page->title }}</a>
                                             </label>
+                                            <input type="hidden" name="menu" value="1">
                                         </div>
                                     @endforeach
                                 </form>
@@ -80,7 +81,7 @@
                                 <div class="d-flex justify-content-between">
                                     <a id="btnAddMenuPage" class="btn btn-sm btn-primary disabled btnAddMenu" href="#"
                                         role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
-                                    <a data-bs-toggle="modal" data-bs-target="#modal-submenu"
+                                    <a data-bs-toggle="modal" data-bs-target="#modal-submenu" data-type="page"
                                         class="btn btn-sm btn-info disabled btnAddSubMenu" href="#" role="button"><i
                                             class="fa-solid fa-plus fa-sm"></i> Add
                                         to Submenu</a>
@@ -99,23 +100,28 @@
                         <div id="selectCategoryMenu" class="accordion-collapse collapse" aria-labelledby="headingCategory"
                             data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                @foreach ($categories as $category)
-                                    <div class="form-check">
-                                        <input class="form-check-input addMenu" type="checkbox" value=""
-                                            id="categoryCheck">
-                                        <label class="form-check-label" for="categoryCheck">
-                                            <a href="{{ $category->url }}" target="_blank"
-                                                rel="noopener noreferrer">{{ $category->name }}</a>
-                                        </label>
-                                    </div>
-                                @endforeach
+                                <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}" method="post">
+                                    @csrf
+                                    @foreach ($categories as $category)
+                                        <div class="form-check">
+                                            <input class="form-check-input addMenu" type="checkbox" name="category_menu[]"
+                                                value="{{ $category->id }}" id="categoryCheck">
+                                            <label class="form-check-label" for="categoryCheck">
+                                                <a href="{{ $category->url }}" target="_blank"
+                                                    rel="noopener noreferrer">{{ $category->title }}</a>
+                                            </label>
+                                            <input type="hidden" name="menu" value="1">
+                                        </div>
+                                    @endforeach
+                                </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <a name="" id="" class="btn btn-sm btn-primary btnAddMenu disabled"
-                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
-                                    <a id="btn-submenu-kategori" data-bs-toggle="modal" data-bs-target="#modal-submenu"
-                                        class="btn btn-sm btn-info btnAddSubMenu disabled" href="#" role="button"><i
-                                            class="fa-solid fa-plus fa-sm"></i> Add
+                                    <a id="btnAddMenuCategory" class="btn btn-sm btn-primary disabled btnAddMenu"
+                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to
+                                        Menu</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#modal-submenu" data-type="category"
+                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#"
+                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add
                                         to Submenu</a>
                                 </div>
                             </div>
@@ -132,22 +138,27 @@
                         <div id="selectLinkMenu" class="accordion-collapse collapse" aria-labelledby="headingLinks"
                             data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                @foreach ($links as $link)
-                                    <div class="form-check">
-                                        <input class="form-check-input addMenu" type="checkbox" value=""
-                                            id="linkCheck">
-                                        <label class="form-check-label" for="linkCheck">
-                                            <a href="{{ $link->url }}" target="_blank"
-                                                rel="noopener noreferrer">{{ $link->name }}</a>
-                                        </label>
-                                    </div>
-                                @endforeach
+                                <form id="formAddMenuLink" action="{{ route('dashboard.menu.store') }}" method="post">
+                                    @csrf
+                                    @foreach ($links as $link)
+                                        <div class="form-check">
+                                            <input class="form-check-input addMenu" type="checkbox" name="link_menu[]"
+                                                value="{{ $link->id }}" id="linkCheck">
+                                            <label class="form-check-label" for="linkCheck">
+                                                <a href="{{ $link->url }}" target="_blank"
+                                                    rel="noopener noreferrer">{{ $link->title }}</a>
+                                            </label>
+                                            <input type="hidden" name="menu" value="1">
+                                        </div>
+                                    @endforeach
+                                </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <a class="btn btn-sm btn-primary btnAddMenu disabled" href="#"
-                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
-                                    <a id="btn-submenu-link" data-bs-toggle="modal" data-bs-target="#modal-submenu"
-                                        class="btn btn-sm btn-info btnAddSubMenu disabled" href="#"
+                                    <a id="btnAddMenuLink" class="btn btn-sm btn-primary disabled btnAddMenu"
+                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to
+                                        Menu</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#modal-submenu" data-type="link"
+                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#"
                                         role="button"><i class="fa-solid fa-plus fa-sm"></i> Add
                                         to Submenu</a>
                                 </div>
@@ -178,10 +189,13 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
                                     class="fa-solid fa-ban"></i> Batal</button>
-                            <button id="btnAddSubMenuPage" type="button" class="btn btn-success"><i
+                            <button id="btnAddSubMenu" type="button" class="btn btn-success"><i
                                     class="fa-solid fa-plus"></i>
                                 Tambahkan</button>
                         </div>
+                        <form id="formAddSubMenu" action="{{ route('dashboard.menu.store') }}" method="post">
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>
@@ -317,7 +331,7 @@
                             parent_id = event.to.parentNode.parentNode.getAttribute("data-id");
                             child_order = this.toArray();
                             $.ajax({
-                                type: 'GET',
+                                type: 'POST',
                                 url: "{{ route('dashboard.menu.sort') }}",
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -336,14 +350,13 @@
                 }
 
                 $('#btnUrutMenu').on('click', function() {
-                    console.log(childSortableInstances)
                     $(this).toggleClass('btn-primary btn-success')
                     if ($('#textUrut').text() == 'Urutkan Menu') {
                         $('#textUrut').text('Simpan Menu');
                     } else {
                         $('#textUrut').text('Urutkan Menu');
                         $.ajax({
-                            type: 'GET',
+                            type: 'POST',
                             url: "{{ route('dashboard.menu.sort') }}",
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -393,17 +406,39 @@
             $('#btnAddMenuPage').on('click', function() {
                 $('#formAddMenuPage').submit();
             });
-            $('#btnAddSubMenuPage').on('click', function(e) {
-                $("<input />").attr("type", "hidden")
-                    .attr("name", "submenu")
-                    .attr("value", "page")
-                    .appendTo("#formAddMenuPage");
-                parent_id = $('#parentSelect').find(":selected").val();
-                $("<input />").attr("type", "hidden")
-                    .attr("name", "parent_id")
-                    .attr("value", parent_id)
-                    .appendTo("#formAddMenuPage");
-                $('#formAddMenuPage').submit();
+            $('#btnAddMenuCategory').on('click', function() {
+                $('#formAddMenuCategory').submit();
+            });
+            $('#btnAddMenuLink').on('click', function() {
+                $('#formAddMenuLink').submit();
+            });
+
+            $('#modal-submenu').on('show.bs.modal', function(event) {
+                var submenu = true;
+                var selected = [];
+                $('.addMenu:checked').each(function() {
+                    selected.push($(this).val());
+                })
+                var type = $(event.relatedTarget).data('type');
+                $('#btnAddSubMenu').on('click', function() {
+                    var parent_id = $('#parentSelect').find(":selected").val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('dashboard.menu.store') }}",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            'submenu': true,
+                            'selected': selected,
+                            'type': type,
+                            'parent_id': parent_id,
+                        },
+                        success: function(data) {
+                            window.location.reload()
+                        }
+                    });
+                });
             });
 
             $(document).delegate('.delete-menu-icon', 'mousedown', function(event) {

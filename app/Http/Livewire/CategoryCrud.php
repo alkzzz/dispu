@@ -10,7 +10,7 @@ class CategoryCrud extends Component
 {
     use LivewireAlert;
 
-    public $categories, $name, $category_id;
+    public $categories, $title, $category_id;
     public $updateMode = false;
     public $deleteMode = false;
 
@@ -26,7 +26,7 @@ class CategoryCrud extends Component
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:categories,name' . ($this->category_id ? ",{$this->category_id}" : ''),
+            'title' => 'required|string|max:255|unique:categories,title' . ($this->category_id ? ",{$this->category_id}" : ''),
         ];
     }
 
@@ -38,7 +38,7 @@ class CategoryCrud extends Component
     protected function validationAttributes()
     {
         return [
-            'name' => 'Nama kategori',
+            'title' => 'Judul kategori',
         ];
     }
 
@@ -59,7 +59,7 @@ class CategoryCrud extends Component
      */
     public function resetForm()
     {
-        $this->name = '';
+        $this->title = '';
         $this->category_id = null;
         $this->updateMode = false;
         $this->deleteMode = false;
@@ -72,7 +72,7 @@ class CategoryCrud extends Component
      */
     public function render()
     {
-        $this->categories = Category::orderBy('name')->get();
+        $this->categories = Category::orderBy('title')->get();
         return view('livewire.category-crud', ['categories' => $this->categories]);
     }
 
@@ -84,7 +84,10 @@ class CategoryCrud extends Component
     public function store()
     {
         $this->validate();
-        Category::create(['name' => $this->name]);
+        Category::create([
+            'title' => $this->title,
+            'url' => route('frontend.getCategory', \Str::slug('title'))
+        ]);
         $this->resetForm();
         session()->flash('message', 'Kategori baru telah ditambahkan.');
     }
@@ -99,7 +102,7 @@ class CategoryCrud extends Component
     {
         $category = Category::findOrFail($id);
         $this->category_id = $category->id;
-        $this->name = $category->name;
+        $this->title = $category->title;
         $this->updateMode = true;
     }
 
@@ -112,7 +115,7 @@ class CategoryCrud extends Component
     {
         $this->validate();
         $category = Category::findOrFail($this->category_id);
-        $category->update(['name' => $this->name]);
+        $category->update(['title' => $this->title]);
         $this->resetForm();
         session()->flash('message', 'Kategori telah diupdate.');
     }

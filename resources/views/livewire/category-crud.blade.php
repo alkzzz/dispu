@@ -9,9 +9,9 @@
     <!-- Display category form -->
     <form class="row g-3 justify-content-start mt-3" wire:submit.prevent="{{ $updateMode ? 'update' : 'store' }}">
         <div class="col-12 col-md-6">
-            <label for="name" class="visually-hidden">Nama Kategori:</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                wire:model="name" placeholder="Nama Kategori">
+            <label for="title" class="visually-hidden">Judul Kategori:</label>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                name="title" wire:model="title" placeholder="Judul Kategori">
             @error('name')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -37,7 +37,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nama Kategori</th>
+                <th>Judul Kategori</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -45,7 +45,7 @@
             @forelse ($categories as $category)
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->title }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" wire:click="edit({{ $category->id }})"><i
                                 class="fa-solid fa-pen-to-square"></i> Edit</button>

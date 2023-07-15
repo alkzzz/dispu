@@ -24,6 +24,7 @@ Route::get('/galeri', function () {
     return view('frontend.galeri');
 })->name('galeri');
 
+
 Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('menu');
 
 Auth::routes([
@@ -49,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
     #Menu
     Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
     Route::post('/dashboard/menu/store', [App\Http\Controllers\MenuController::class, 'store'])->name('dashboard.menu.store');
-    Route::get('/dashboard/menu/sort', [App\Http\Controllers\MenuController::class, 'sort'])->name('dashboard.menu.sort');
+    Route::post('/dashboard/menu/sort', [App\Http\Controllers\MenuController::class, 'sort'])->name('dashboard.menu.sort');
     Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
     #Berita
     Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');
@@ -64,5 +65,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/sosial-media/update', [App\Http\Controllers\SocmedController::class, 'update'])->name('dashboard.sosial-media.update');
 });
 
-Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage']);
+Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');
+Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage'])->name('frontend.getPage');
 

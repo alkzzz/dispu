@@ -17,7 +17,7 @@ class LinkSeeder extends Seeder
 
         for ($i=0; $i < 5; $i++) {
             Link::create([
-                'name' => fake()->city(),
+                'title' => fake()->city(),
                 'url' => fake()->url(),
             ]);
         }

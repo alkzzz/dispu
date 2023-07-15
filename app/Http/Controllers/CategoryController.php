@@ -14,4 +14,16 @@ class CategoryController extends Controller
         $category_ids = Category::pluck('id');
         return view('backend.category', compact('category_ids'));
     }
+
+    public function getCategory($slug) {
+        return $slug;
+        // $category = Category::where('slug', $slug)->first();
+        // if ($category != null)
+        // {
+        //     return view('frontend.category', compact('category'));
+        // }
+        // else {
+        //     abort(404);
+        // }
+    }
 }

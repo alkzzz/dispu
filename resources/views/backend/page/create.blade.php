@@ -29,14 +29,21 @@
     <div class="row mt-3">
         <!-- Display success messages -->
         @if (session()->has('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
+            <h1>heh</h1>
+            <div class="alert alert-danger">{{ session('message') }}</div>
         @endif
         <form action="{{ route('dashboard.halaman.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mt-2">
                 <div class="mb-3">
                     <label for="title" class="form-label">Judul Halaman</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
+                        required>
+                    @error('title')
+                        <div class="alert alert-danger alert-dismissible fade show mt-3">{{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi Halaman</label>

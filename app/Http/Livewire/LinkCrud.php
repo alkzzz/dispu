@@ -10,7 +10,7 @@ class LinkCrud extends Component
 {
     use LivewireAlert;
 
-    public $links, $name, $url,  $link_id;
+    public $links, $title, $url,  $link_id;
     public $updateMode = false;
     public $deleteMode = false;
 
@@ -21,7 +21,7 @@ class LinkCrud extends Component
     protected function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:links,name' . ($this->link_id ? ",{$this->link_id}" : ''),
+            'title' => 'required|string|max:255|unique:links,title' . ($this->link_id ? ",{$this->link_id}" : ''),
             'url' => 'required|url',
         ];
     }
@@ -29,7 +29,7 @@ class LinkCrud extends Component
     protected function validationAttributes()
     {
         return [
-            'name' => 'Judul Link',
+            'title' => 'Judul Link',
             'url' => 'Alamat (URL)',
         ];
     }
@@ -41,7 +41,7 @@ class LinkCrud extends Component
 
     public function resetForm()
     {
-        $this->name = '';
+        $this->title = '';
         $this->url = '';
         $this->link_id = null;
         $this->updateMode = false;
@@ -50,7 +50,7 @@ class LinkCrud extends Component
 
     public function render()
     {
-        $this->links = Link::orderBy('name')->get();
+        $this->links = Link::orderBy('title')->get();
         return view('livewire.link-crud', ['links' => $this->links]);
     }
 
@@ -58,7 +58,7 @@ class LinkCrud extends Component
     {
         $this->validate();
         Link::create([
-            'name' => $this->name,
+            'title' => $this->title,
             'url' => $this->url
         ]);
         $this->resetForm();
@@ -69,7 +69,7 @@ class LinkCrud extends Component
     {
         $link = Link::findOrFail($id);
         $this->link_id = $link->id;
-        $this->name = $link->name;
+        $this->title = $link->title;
         $this->url = $link->url;
         $this->updateMode = true;
     }
@@ -79,7 +79,7 @@ class LinkCrud extends Component
         $this->validate();
         $link = Link::findOrFail($this->link_id);
         $link->update([
-            'name' => $this->name,
+            'title' => $this->title,
             'url' => $this->url
         ]);
         $this->resetForm();

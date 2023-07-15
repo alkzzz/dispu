@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Page;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -36,9 +37,16 @@ class PageController extends Controller
 
     public function store(Request $request): RedirectResponse {
         $input = $request->all();
-        $page = new page();
+        $request->validate([
+            'title' => [
+                'required',
+                Rule::unique('pages'),
+            ]
+        ]);
+        $page = new Page();
         $page->title = $input['title'];
         $page->content = $input['content'];
+        $page->url = route('frontend.getPage', \Str::slug($input['title']));
         $page->save();
         session()->flash('message', 'Halaman baru telah ditambahkan.');
         return redirect()->route('dashboard.halaman.index');
@@ -52,6 +60,12 @@ class PageController extends Controller
     public function update(Request $request, $id): RedirectResponse {
         $input = $request->all();
         $page = Page::find($id);
+        $request->validate([
+            'title' => [
+                'required',
+                Rule::unique('pages')->ignore($page->id),
+            ]
+        ]);
         $page->title = $input['title'];
         $page->content = $input['content'];
         $page->save();

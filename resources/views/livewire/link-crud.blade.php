@@ -21,7 +21,7 @@
             <div class="col-12 col-md-6">
                 <label for="url" class="visually-hidden">Alamat URL:</label>
                 <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
-                    url="url" wire:model="url" placeholder="Alamat URL url">
+                    url="url" wire:model="url" placeholder="Alamat Website Link">
                 @error('url')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror

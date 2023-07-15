@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Category;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Models\Menu;
 
 class CategoryCrud extends Component
 {
@@ -84,6 +85,9 @@ class CategoryCrud extends Component
     public function store()
     {
         $this->validate();
+
+        $this->addError('title.unique', 'message');
+
         Category::create([
             'title' => $this->title,
             'url' => route('frontend.getCategory', \Str::slug('title'))
@@ -116,7 +120,16 @@ class CategoryCrud extends Component
         $this->validate();
         $category = Category::findOrFail($this->category_id);
         $category->update(['title' => $this->title]);
+
+        $menu_category = Menu::where('type', 'category')->where('type_id', $this->category_id)->first();
+        if(isset($menu_category)) {
+            $menu_category->title = $category->title;
+            $menu_category->url = $category->url;
+            $menu_category->save();
+        }
+
         $this->resetForm();
+
         session()->flash('message', 'Kategori telah diupdate.');
     }
 

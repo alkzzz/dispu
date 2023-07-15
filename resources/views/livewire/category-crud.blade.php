@@ -12,7 +12,7 @@
             <label for="title" class="visually-hidden">Judul Kategori:</label>
             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
                 name="title" wire:model="title" placeholder="Judul Kategori">
-            @error('name')
+            @error('title')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>

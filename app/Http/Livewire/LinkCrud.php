@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Link;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Models\Menu;
 
 class LinkCrud extends Component
 {
@@ -82,6 +83,15 @@ class LinkCrud extends Component
             'title' => $this->title,
             'url' => $this->url
         ]);
+
+        $menu_link = Menu::where('type', 'link')->where('type_id', $this->link_id)->first();
+        if(isset($menu_link)) {
+            $menu_link->title = $link->title;
+            $menu_link->url = $link->url;
+            $menu_link->save();
+        }
+
+
         $this->resetForm();
         session()->flash('message', 'Custom Link telah diupdate.');
     }

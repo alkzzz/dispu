@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Page;
+use App\Models\Menu;
 use Illuminate\Validation\Rule;
 
 class PageController extends Controller
@@ -69,6 +70,13 @@ class PageController extends Controller
         $page->title = $input['title'];
         $page->content = $input['content'];
         $page->save();
+
+        $menu_page = Menu::where('type', 'page')->where('type_id', $id)->first();
+        if(isset($menu_page)) {
+            $menu_page->title = $page->title;
+            $menu_page->url = $page->url;
+            $menu_page->save();
+        }
         session()->flash('message', 'Halaman telah diupdate.');
         return redirect()->route('dashboard.halaman.index');
     }

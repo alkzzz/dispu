@@ -42,7 +42,7 @@
                     <select name="category_id[]" class="form-select" id="kategori" multiple required>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"@if ($loop->first) selected @endif>
-                                {{ $category->name }}</option>
+                                {{ $category->title }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -55,8 +55,8 @@
                     <input name="gambar" class="form-control" type="file" id="formFile" onchange="preview()">
                     <img style="width:300px;height:300px" id="frame" src="{{ asset('img/no-image.jpg') }}"
                         class="img-fluid mt-3" />
-                    <a name="" id="" class="btn btn-sm btn-warning align-top mt-3 ms-2" href="#frame"
-                        onclick="clearImage()"><i class="fa-solid fa-ban"></i> Hapus Gambar</a>
+                    <a class="btn btn-sm btn-warning align-top mt-3 ms-2" href="#frame" onclick="clearImage()"><i
+                            class="fa-solid fa-ban"></i> Hapus Gambar</a>
                 </div>
                 <hr>
                 <div class="mt-3">

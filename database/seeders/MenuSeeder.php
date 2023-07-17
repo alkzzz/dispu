@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+include database_path('seeders/demo/MenuDemoArray.php');
+
 use Illuminate\Database\Seeder;
 
 class MenuSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      */
@@ -14,12 +16,10 @@ class MenuSeeder extends Seeder
     {
         \DB::table('menus')->truncate();
 
-        \DB::table('menus')->insert([
-            ['title' => 'Home', 'order' => 1, 'url' => route('index')],
-            ['title' => 'Berita', 'order' => 2, 'url' => route('berita')],
-            ['title' => 'Galeri', 'order' => 3, 'url' => route('galeri')],
-        ]);
+        $data = include database_path('seeders/demo/MenuDemoArray.php');
 
-        \App\Models\Menu::factory()->count(5)->create();
+        \DB::table('menus')->insert($data);
+
+        // \App\Models\Menu::factory()->count(5)->create();
     }
 }

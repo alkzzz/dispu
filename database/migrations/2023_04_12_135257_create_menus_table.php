@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('type')->nullable();
             $table->tinyInteger('type_id')->default(0);
-            $table->unsignedTinyInteger('order')->default(99);
+            $table->tinyInteger('order')->default(99);
             $table->string('url');
             $table->tinyInteger('parent_id')->default(0);
             $table->boolean('has_child')->default(false);

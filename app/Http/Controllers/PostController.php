@@ -20,7 +20,7 @@ class PostController extends Controller
     }
 
     public function create() {
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::orderBy('title')->get();
         return view('backend.post.create', compact('categories'));
     }
 

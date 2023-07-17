@@ -31,7 +31,7 @@ Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
-  ]);
+]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
@@ -67,4 +67,3 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');
 Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage'])->name('frontend.getPage');
-

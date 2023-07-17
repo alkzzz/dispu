@@ -26,9 +26,10 @@ class MenuController extends Controller
         return view('backend.menu.index', compact('pages', 'categories', 'links', 'menus'));
     }
 
-    public function sort (Request $request): RedirectResponse {
+    public function sort(Request $request): RedirectResponse
+    {
         $input = $request->all();
-        if($request->has('order')) {
+        if ($request->has('order')) {
             foreach ($input['order'] as $index => $id) {
                 $menu = Menu::where('id', '!=', 1)->find($id);
                 if ($menu) {
@@ -37,7 +38,7 @@ class MenuController extends Controller
                 }
             }
         }
-        if($request->has('child_order')) {
+        if ($request->has('child_order')) {
             $parent = Menu::find($input['parent_id']);
             $parent->child = $input['child_order'];
             $parent->save();
@@ -46,10 +47,11 @@ class MenuController extends Controller
         return redirect()->route('dashboard.menu');
     }
 
-    public function store (Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $input = $request->all();
-        if($request->has('menu')) {
-            if(!empty($input['page_menu'])) {
+        if ($request->has('menu')) {
+            if (!empty($input['page_menu'])) {
                 $pages = Page::whereIn('id', $input['page_menu'])->get();
                 foreach ($pages as $page) {
                     Menu::create([
@@ -59,8 +61,7 @@ class MenuController extends Controller
                         'url' => $page->url
                     ]);
                 }
-            }
-            elseif(!empty($input['category_menu'])) {
+            } elseif (!empty($input['category_menu'])) {
                 $categories = Category::whereIn('id', $input['category_menu'])->get();
                 foreach ($categories as $category) {
                     Menu::create([
@@ -70,8 +71,7 @@ class MenuController extends Controller
                         'url' => $category->url
                     ]);
                 }
-            }
-            elseif(!empty($input['link_menu'])) {
+            } elseif (!empty($input['link_menu'])) {
                 $links = Link::whereIn('id', $input['link_menu'])->get();
                 foreach ($links as $link) {
                     Menu::create([
@@ -81,12 +81,11 @@ class MenuController extends Controller
                         'url' => $link->url
                     ]);
                 }
-
             }
         } elseif ($request->has('submenu')) {
-            if($input['type'] == 'page') {
+            if ($input['type'] == 'page') {
                 $parent = Menu::find($input['parent_id']);
-                $childArray = $input['selected'] ?? [];
+                $childArray = $parent->child ?? [];
                 $pages = Page::whereIn('id', $input['selected'])->get();
                 foreach ($pages as $page) {
                     $child = new Menu;
@@ -101,8 +100,7 @@ class MenuController extends Controller
                 $parent->has_child = true;
                 $parent->child = $childArray;
                 $parent->save();
-            }
-            else if($input['type'] == 'category') {
+            } else if ($input['type'] == 'category') {
                 $parent = Menu::find($input['parent_id']);
                 $childArray = $input['selected'] ?? [];
                 $categories = Category::whereIn('id', $input['selected'])->get();
@@ -119,8 +117,7 @@ class MenuController extends Controller
                 $parent->has_child = true;
                 $parent->child = $childArray;
                 $parent->save();
-            }
-            else if($input['type'] == 'link') {
+            } else if ($input['type'] == 'link') {
                 $parent = Menu::find($input['parent_id']);
                 $childArray = $input['selected'] ?? [];
                 $categories = Link::whereIn('id', $input['selected'])->get();
@@ -143,16 +140,17 @@ class MenuController extends Controller
         return redirect()->route('dashboard.menu');
     }
 
-    public function delete($id): RedirectResponse {
+    public function delete($id): RedirectResponse
+    {
         $menu = Menu::find($id);
-        if($menu->parent_id) {
+        if ($menu->parent_id) {
             $parent = Menu::find($menu->parent_id);
             $childArray = $parent->child;
             $index = array_search($menu->id, $childArray);
             if ($index !== false) {
                 unset($childArray[$index]);
             }
-            if(empty($childArray)) {
+            if (empty($childArray)) {
                 $parent->has_child = false;
                 $parent->save();
             } else {

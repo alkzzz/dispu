@@ -2,6 +2,14 @@
 
 @section('title', $page->title)
 
+@section('header-title')
+    <div class="container-fluid">
+        <div class="row text-center text-white" style="background-color: #030f6b;height:100px">
+            <h1 style="margin: auto">{{ strtoupper($page->title) }}</h1>
+        </div>
+    </div>
+@endsection
+
 @section('breadcrumb')
     <div class="py-1" style="background-color:#eeb432;font-size:1.1rem">
         <nav aria-label="breadcrumb" class="container mt-3">
@@ -15,7 +23,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-4 mb-5">
         <h2 class="pb-2 border-bottom border-2 black" style="margin-bottom: 3rem">{{ $page->title }}</h2>
         <div class="row">
             <div style="text-align: justify">{!! $page->content !!}</div>

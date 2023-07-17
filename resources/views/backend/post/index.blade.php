@@ -9,9 +9,11 @@
 
     <div class="row mt-3">
         <!-- Display messages -->
-        <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        @if (session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <div class="col">
             <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
@@ -47,7 +49,7 @@
                                     @foreach ($post->categories as $category)
                                         <li class="d-block mb-1 badge text-bg-{{ $color[$loop->index] }}"
                                             style="font-size: 0.8rem">
-                                            {{ $category->name }}</li>
+                                            {{ $category->title }}</li>
                                     @endforeach
                                 </ul>
                             </td>

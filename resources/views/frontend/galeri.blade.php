@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="{{ asset('lightbox/css/lightbox.min.css') }}">
 @endsection
 
+@section('header-title')
+    <div class="container-fluid">
+        <div class="row text-center text-white" style="background-color: #030f6b;height:100px">
+            <h1 style="margin: auto">{{ strtoupper('Galeri') }}</h1>
+        </div>
+    </div>
+@endsection
+
 @section('breadcrumb')
     <div class="py-1" style="background-color:#eeb432;font-size:1.1rem">
         <nav aria-label="breadcrumb" class="container mt-3">

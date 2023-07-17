@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Spatie\Navigation\Navigation;
-use Spatie\Navigation\Section;
+use Illuminate\Support\Facades\View;
 use App\Models\Menu;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $frontmenus = Menu::orderBy('order')->get()->skip(1);
+        View::share('frontmenus', $frontmenus);
     }
 }

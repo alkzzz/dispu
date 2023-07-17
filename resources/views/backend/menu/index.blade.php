@@ -65,17 +65,21 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuPage" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @foreach ($pages as $page)
-                                        <div class="form-check">
-                                            <input class="form-check-input addMenu" name="page_menu[]" type="checkbox"
-                                                value="{{ $page->id }}" id="pageCheck">
-                                            <label class="form-check-label" for="pageCheck">
-                                                <a href="{{ $page->url }}" target="_blank"
-                                                    rel="noopener noreferrer">{{ $page->title }}</a>
-                                            </label>
-                                            <input type="hidden" name="menu" value="1">
-                                        </div>
-                                    @endforeach
+                                    @if(!$pages)
+                                        @foreach ($pages as $page)
+                                            <div class="form-check">
+                                                <input class="form-check-input addMenu" name="page_menu[]" type="checkbox"
+                                                    value="{{ $page->id }}" id="pageCheck">
+                                                <label class="form-check-label" for="pageCheck">
+                                                    <a href="{{ $page->url }}" target="_blank"
+                                                        rel="noopener noreferrer">{{ $page->title }}</a>
+                                                </label>
+                                                <input type="hidden" name="menu" value="1">
+                                            </div>
+                                        @endforeach
+                                    @else
+                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada halaman yang dibuat atau semua halaman sudah dimasukkan ke menu</p>
+                                    @endif
                                 </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">
@@ -102,6 +106,7 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
+                                    @if(!$categories)
                                     @foreach ($categories as $category)
                                         <div class="form-check">
                                             <input class="form-check-input addMenu" type="checkbox" name="category_menu[]"
@@ -113,6 +118,9 @@
                                             <input type="hidden" name="menu" value="1">
                                         </div>
                                     @endforeach
+                                    @else
+                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada kategori yang dibuat atau semua kategori sudah dimasukkan ke menu</p>
+                                    @endif
                                 </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">
@@ -140,6 +148,7 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuLink" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
+                                    @if(!$links)
                                     @foreach ($links as $link)
                                         <div class="form-check">
                                             <input class="form-check-input addMenu" type="checkbox" name="link_menu[]"
@@ -151,6 +160,9 @@
                                             <input type="hidden" name="menu" value="1">
                                         </div>
                                     @endforeach
+                                    @else
+                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada link yang dibuat atau semua link sudah dimasukkan ke menu</p>
+                                    @endif
                                 </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">

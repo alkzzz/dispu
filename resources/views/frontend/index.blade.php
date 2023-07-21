@@ -14,6 +14,18 @@
             left: 0;
             width: 100%;
         }
+
+        .caption-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Adjust the opacity (0.6) as needed */
+            color: #fff;
+            /* Set the text color to white or any other suitable color */
+            padding: 10px;
+        }
     </style>
 @endsection
 
@@ -263,69 +275,91 @@
     <div class="container-fluid mt-4 py-4" style="background: #FFF5CC">
         <div class="container mb-3">
             <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
+
+            <!-- First Row of Cards -->
             <div class="row mt-4">
-                <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
                         <img src="https://picsum.photos/300?random=1" class="card-img" alt="...">
-                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                        <div class="caption-overlay">
                             <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
                                 Pembangunan Gedung
                                 <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan
-                                    Banjarbaru
-                                    Utara</span>
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
                         <img src="https://picsum.photos/300?random=2" class="img-fluid rounded" alt="">
-                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                        <div class="caption-overlay">
                             <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
                                 Pembangunan Gedung
                                 <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan
-                                    Banjarbaru
-                                    Utara</span>
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
                         <img src="https://picsum.photos/300?random=3" class="img-fluid rounded" alt="">
-                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                        <div class="caption-overlay">
                             <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
                                 Pembangunan Gedung
                                 <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan
-                                    Banjarbaru
-                                    Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md mb-2 d-flex justify-content-center">
-                    <div class="card" style="width: 24rem;">
-                        <img src="https://picsum.photos/300" class="img-fluid rounded" alt="">
-                        <div class="card-img-overlay d-flex flex-column align-items-start">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan
-                                    Banjarbaru
-                                    Utara</span>
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Second Row of Cards -->
+            <div class="row mt-5">
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
+                        <img src="https://picsum.photos/300?random=4" class="img-fluid rounded" alt="">
+                        <div class="caption-overlay">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
+                        <img src="https://picsum.photos/300?random=5" class="img-fluid rounded" alt="">
+                        <div class="caption-overlay">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="card position-relative" style="width: 24rem;">
+                        <img src="https://picsum.photos/300?random=6" class="img-fluid rounded" alt="">
+                        <div class="caption-overlay">
+                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
+                                Pembangunan Gedung
+                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
+                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12 d-flex justify-content-center py-2 mt-3">
                     <a name="" id="" class="btn btn-lg btn-primary" href="{{ url('galeri') }}"
-                        role="button">Lihat
-                        Semua Galeri <i class="fa-solid fa-arrow-right-long"></i></a>
+                        role="button">Lihat Semua Galeri <i class="fa-solid fa-arrow-right-long"></i></a>
                 </div>
             </div>
         </div>

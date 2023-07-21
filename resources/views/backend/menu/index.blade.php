@@ -65,7 +65,8 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuPage" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @if(!$pages)
+
+                                    @if(!$pages->isEmpty())
                                         @foreach ($pages as $page)
                                             <div class="form-check">
                                                 <input class="form-check-input addMenu" name="page_menu[]" type="checkbox"
@@ -106,7 +107,7 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @if(!$categories)
+                                    @if(!$categories->isEmpty())
                                     @foreach ($categories as $category)
                                         <div class="form-check">
                                             <input class="form-check-input addMenu" type="checkbox" name="category_menu[]"
@@ -148,7 +149,7 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuLink" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @if(!$links)
+                                    @if(!$links->isEmpty())
                                     @foreach ($links as $link)
                                         <div class="form-check">
                                             <input class="form-check-input addMenu" type="checkbox" name="link_menu[]"

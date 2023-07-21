@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 
 class CategoryController extends Controller
 {
@@ -15,15 +16,14 @@ class CategoryController extends Controller
         return view('backend.category', compact('category_ids'));
     }
 
-    public function getCategory($slug) {
-        return $slug;
-        // $category = Category::where('slug', $slug)->first();
-        // if ($category != null)
-        // {
-        //     return view('frontend.category', compact('category'));
-        // }
-        // else {
-        //     abort(404);
-        // }
+    public function getCategory($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        if ($category != null) {
+            $posts = $category->posts()->paginate(3);
+            return view('frontend.category', compact('category', 'posts'));
+        } else {
+            abort(404);
+        }
     }
 }

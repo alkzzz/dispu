@@ -14,9 +14,7 @@ class PageSeeder extends Seeder
     {
         \DB::table('pages')->truncate();
 
-        // Page::factory()->count(4)->create();
         $data = include database_path('seeders/demo/PageDemoArray.php');
         \DB::table('pages')->insert($data);
-        // Page::create($data);
     }
 }

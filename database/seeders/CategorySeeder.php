@@ -14,6 +14,7 @@ class CategorySeeder extends Seeder
     {
         \DB::table('categories')->truncate();
 
-        \App\Models\Category::factory()->count(5)->create();
+        $data = include database_path('seeders/demo/CategoryDemoArray.php');
+        \DB::table('categories')->insert($data);
     }
 }

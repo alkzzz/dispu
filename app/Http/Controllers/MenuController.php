@@ -102,7 +102,7 @@ class MenuController extends Controller
                 $parent->save();
             } else if ($input['type'] == 'category') {
                 $parent = Menu::find($input['parent_id']);
-                $childArray = $input['selected'] ?? [];
+                $childArray = $parent->child ?? [];
                 $categories = Category::whereIn('id', $input['selected'])->get();
                 foreach ($categories as $category) {
                     $child = new Menu;
@@ -119,7 +119,7 @@ class MenuController extends Controller
                 $parent->save();
             } else if ($input['type'] == 'link') {
                 $parent = Menu::find($input['parent_id']);
-                $childArray = $input['selected'] ?? [];
+                $childArray = $parent->child ?? [];
                 $categories = Link::whereIn('id', $input['selected'])->get();
                 foreach ($categories as $link) {
                     $child = new Menu;

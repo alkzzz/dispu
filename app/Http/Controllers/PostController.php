@@ -9,22 +9,42 @@ use App\Models\Category;
 
 class PostController extends Controller
 {
-    public function index() {
+    # Frontend
+    public function frontend_index()
+    {
+        $posts = Post::with('categories')->latest()->paginate(3);
+        return view('frontend.post.index', compact('posts'));
+    }
+
+    public function getPost($slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        views($post)->record();
+
+        return view('frontend.post.show', compact('post'));
+    }
+
+    # Backend
+    public function index()
+    {
         $posts = Post::with('categories')->latest()->get();
         return view('backend.post.index', compact('posts'));
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $post = Post::find($id);
         return view('backend.post.show', compact('post'));
     }
 
-    public function create() {
+    public function create()
+    {
         $categories = Category::orderBy('title')->get();
         return view('backend.post.create', compact('categories'));
     }
 
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $input = $request->all();
         $post = new Post();
         $post->title = $input['title'];
@@ -38,14 +58,16 @@ class PostController extends Controller
         return redirect()->route('dashboard.berita.index');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $post = Post::find($id);
         $categories = Category::all();
         $post_categories = $post->categories()->get();
         return view('backend.post.edit', compact('categories', 'post'));
     }
 
-    public function update(Request $request, $id): RedirectResponse {
+    public function update(Request $request, $id): RedirectResponse
+    {
         $input = $request->all();
         $post = Post::find($id);
         $post->title = $input['title'];
@@ -60,7 +82,8 @@ class PostController extends Controller
         return redirect()->route('dashboard.berita.index');
     }
 
-    public function delete($id): RedirectResponse {
+    public function delete($id): RedirectResponse
+    {
         $post = Post::find($id);
         $post->delete();
         session()->flash('message', 'Berita telah dihapus.');

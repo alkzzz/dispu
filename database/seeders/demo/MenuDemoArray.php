@@ -1,4 +1,7 @@
 <?php
+
+use Carbon\Carbon;
+
 return [
     [
         'title' => 'Home',
@@ -9,16 +12,20 @@ return [
         'has_child' => 0,
         'parent_id' => 0,
         'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Berita',
-        'url' => route('berita'),
+        'url' => route('frontend.berita.index'),
         'order' => 2,
         'type' => null,
         'type_id' => 0,
         'has_child' => 0,
         'parent_id' => 0,
         'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Galeri',
@@ -29,6 +36,8 @@ return [
         'has_child' => 0,
         'parent_id' => 0,
         'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Profil',
@@ -38,7 +47,9 @@ return [
         'type_id' => 1,
         'has_child' => 1,
         'parent_id' => 0,
-        'child' => json_encode([5, 6, 7, 8])
+        'child' => json_encode([5, 6, 7, 8]),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Gambaran Umum',
@@ -48,7 +59,9 @@ return [
         'order' => 99,
         'has_child' => 0,
         'parent_id' => 4,
-        'child' => null
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Visi Misi',
@@ -58,7 +71,9 @@ return [
         'order' => 99,
         'has_child' => 0,
         'parent_id' => 4,
-        'child' => null
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Struktur Organisasi',
@@ -68,7 +83,9 @@ return [
         'order' => 99,
         'has_child' => 0,
         'parent_id' => 4,
-        'child' => null
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
     [
         'title' => 'Sambutan Kepala Dinas',
@@ -78,6 +95,104 @@ return [
         'order' => 99,
         'has_child' => 0,
         'parent_id' => 4,
-        'child' => null
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Organisasi',
+        'url' => '#',
+        'order' => 5,
+        'type' => 'page',
+        'type_id' => 6,
+        'has_child' => 1,
+        'parent_id' => 0,
+        'child' => json_encode([10, 11, 12, 13, 14, 15]),
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Sekretariat',
+        'url' => route('frontend.getCategory', 'bidang-sekretariat'),
+        'type' => 'category',
+        'type_id' => 1,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Bina Marga',
+        'url' => route('frontend.getCategory', 'bidang-bina-marga'),
+        'type' => 'category',
+        'type_id' => 2,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Tata Ruang',
+        'url' => route('frontend.getCategory', 'bidang-tata-ruang'),
+        'type' => 'category',
+        'type_id' => 3,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Cipta Karya',
+        'url' => route('frontend.getCategory', 'bidang-cipta-karya'),
+        'type' => 'category',
+        'type_id' => 4,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Pengembangan Konstruksi',
+        'url' => route('frontend.getCategory', 'bidang-pengembangan-konstruksi'),
+        'type' => 'category',
+        'type_id' => 5,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Bidang Sumber Daya Air',
+        'url' => route('frontend.getCategory', 'bidang-sumber-daya-air'),
+        'type' => 'category',
+        'type_id' => 6,
+        'order' => 99,
+        'has_child' => 0,
+        'parent_id' => 9,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Kontak',
+        'url' => route('kontak'),
+        'order' => 6,
+        'type' => 'page',
+        'type_id' => 7,
+        'has_child' => 0,
+        'parent_id' => 0,
+        'child' => null,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
     ],
 ];

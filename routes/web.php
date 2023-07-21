@@ -16,13 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePageController::class)->name('index');
 
-Route::get('/berita', function () {
-    return view('frontend.berita');
-})->name('berita');
+Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
 
 Route::get('/galeri', function () {
     return view('frontend.galeri');
 })->name('galeri');
+
+Route::get('/kontak', function () {
+    return view('frontend.kontak');
+})->name('kontak');
 
 
 Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('menu');
@@ -66,4 +68,5 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');
+Route::get('/berita/{slug}', [App\Http\Controllers\PostController::class, 'getPost'])->name('frontend.getPost');
 Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage'])->name('frontend.getPage');

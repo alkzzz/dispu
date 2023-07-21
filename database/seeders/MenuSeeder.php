@@ -17,9 +17,6 @@ class MenuSeeder extends Seeder
         \DB::table('menus')->truncate();
 
         $data = include database_path('seeders/demo/MenuDemoArray.php');
-
         \DB::table('menus')->insert($data);
-
-        // \App\Models\Menu::factory()->count(5)->create();
     }
 }

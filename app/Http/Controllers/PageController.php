@@ -13,30 +13,32 @@ class PageController extends Controller
     public function getPage($slug)
     {
         $page = Page::where('slug', $slug)->first();
-        if ($page != null)
-        {
+        if ($page != null) {
             return view('frontend.page', compact('page'));
-        }
-        else {
+        } else {
             abort(404);
         }
     }
 
-    public function index() {
+    public function index()
+    {
         $pages = Page::latest()->get();
         return view('backend.page.index', compact('pages'));
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $page = Page::find($id);
         return view('backend.page.show', compact('page'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('backend.page.create');
     }
 
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $input = $request->all();
         $request->validate([
             'title' => [
@@ -53,12 +55,14 @@ class PageController extends Controller
         return redirect()->route('dashboard.halaman.index');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $page = Page::find($id);
         return view('backend.page.edit', compact('page'));
     }
 
-    public function update(Request $request, $id): RedirectResponse {
+    public function update(Request $request, $id): RedirectResponse
+    {
         $input = $request->all();
         $page = Page::find($id);
         $request->validate([
@@ -72,7 +76,7 @@ class PageController extends Controller
         $page->save();
 
         $menu_page = Menu::where('type', 'page')->where('type_id', $id)->first();
-        if(isset($menu_page)) {
+        if (isset($menu_page)) {
             $menu_page->title = $page->title;
             $menu_page->url = $page->url;
             $menu_page->save();
@@ -81,7 +85,8 @@ class PageController extends Controller
         return redirect()->route('dashboard.halaman.index');
     }
 
-    public function delete($id): RedirectResponse {
+    public function delete($id): RedirectResponse
+    {
         $page = Page::find($id);
         $page->delete();
         session()->flash('message', 'Halaman telah dihapus.');

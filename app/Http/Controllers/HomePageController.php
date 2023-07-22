@@ -14,8 +14,8 @@ class HomePageController extends Controller
     {
         $home = Post::where('title', 'Home')->first();
         $sambutan = Page::where('slug', 'sambutan-kepala-dinas')->first();
-        $featured = Post::where('featured', true)->latest()->get();
-        $latest = Post::latest()->take(3)->get();
+        $featured = Post::where('hidden', false)->where('featured', true)->latest()->get();
+        $latest = Post::where('hidden', false)->latest()->take(3)->get();
 
         views($home)->record();
 

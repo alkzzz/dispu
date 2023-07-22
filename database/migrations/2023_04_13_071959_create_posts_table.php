@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('content');
             $table->boolean('featured')->default(false);
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
         });
     }

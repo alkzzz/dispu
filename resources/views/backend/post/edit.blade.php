@@ -44,7 +44,7 @@
                         multiple>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @if ($post->categories->contains($category->id)) selected @endif>
-                                {{ $category->name }}</option>
+                                {{ $category->title }}</option>
                         @endforeach
 
                     </select>
@@ -52,6 +52,12 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi Berita</label>
                     <textarea class="form-control" id="content" rows="3" name="content">{{ $post->content }}</textarea>
+                </div>
+                <div class="form-check form-switch fs-5 mb-3">
+                    <input class="form-check-input" type="checkbox" role="switch" id="featured" name="featured"
+                        value="1" @if ($post->featured) checked @endif>
+                    <label class="form-check-label" for="featured">Tampilkan di Slider Halaman Utama
+                        Website</label>
                 </div>
                 <div class="mb-3">
                     <label for="Image" class="form-label">Upload Gambar</label>

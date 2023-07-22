@@ -21,7 +21,7 @@
             <div class="col-12 col-md-6">
                 <label for="url" class="visually-hidden">Alamat URL:</label>
                 <input type="text" class="form-control @error('url') is-invalid @enderror" id="url"
-                    url="url" wire:model="url" placeholder="Alamat Website Link">
+                    url="url" wire:model="url" placeholder="Alamat Link">
                 @error('url')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -50,7 +50,8 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nama Kategori</th>
+                <th>Judul Link</th>
+                <th>Alamat Link</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -59,8 +60,9 @@
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $link->title }}</td>
+                    <td>{{ $link->url }}</td>
                     <td>
-                        <a class="btn btn-sm btn-info" href="{{ $link->url }}" role="button"><i
+                        <a class="btn btn-sm btn-info" href="{{ $link->url }}" target="_blank" role="button"><i
                                 class="fa-regular fa-circle-check"></i> Cek Link</a>
                         <button class="btn btn-warning btn-sm" wire:click="edit({{ $link->id }})"><i
                                 class="fa-solid fa-pen-to-square"></i> Edit</button>

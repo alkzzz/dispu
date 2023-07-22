@@ -40,7 +40,8 @@
                 </p>
                 <div class="text-light mb-0 py-3">
                     <div class="row d-flex justify-content-between">
-                        <p class="mb-1 fw-bold">Statistik Kunjungan</p>
+                        <p class="mb-1 fw-semibold"><i class="fa-solid fa-chart-line"></i>
+                            Statistik Kunjungan</p>
                         <div class="col">
                             <p class="mb-1">Hari ini: {{ $hari_ini }}</p>
                             <p class="mb-1">Kemarin: {{ $kemarin }}</p>
@@ -48,6 +49,7 @@
                         </div>
                         <div class="col">
                             <p class="mb-1">Bulan Ini: {{ $bulan_ini }}</p>
+                            <p class="mb-1">Tahun Ini: {{ $tahun_ini }}</p>
                             <p class="mb-0">Total: {{ $total }}</p>
                         </div>
                     </div>

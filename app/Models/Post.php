@@ -23,6 +23,7 @@ class Post extends Model implements HasMedia, Viewable
         'slug',
         'content',
         'featured',
+        'hidden'
     ];
 
     public function categories(): BelongsToMany

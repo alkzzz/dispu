@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -14,6 +14,14 @@ class PostSeeder extends Seeder
     {
         \DB::table('posts')->truncate();
         \DB::table('media')->truncate();
+
+        \DB::table('posts')->insert([
+            'title' => 'Home',
+            'slug' => 'home',
+            'content' => 'Statistik Website',
+            'hidden' => true,
+            'created_at' => new Carbon('2000-01-01'),
+        ]);
 
         $posts = \App\Models\Post::factory()->count(20)->create();
 

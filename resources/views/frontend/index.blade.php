@@ -34,27 +34,17 @@
         <div class="container-fluid pb-md-3">
             <div id="carouselControls" class="carousel slide md-mh-100" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://picsum.photos/1000/800?random=1" class="d-block w-100" alt="Gambar Slider 1">
-                        <div class="carousel-caption text-center">
-                            <h4 class="mb-2">Caption 1</h4>
-                            <a href="#" class="btn btn-primary">Read More <i class="fa-solid fa-angles-right"></i></a>
+                    @foreach ($featured as $feat)
+                        <div class="carousel-item @if ($loop->index == 0) active @endif">
+                            <img src="@if ($feat->getFirstMediaUrl('berita')) {{ $feat->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                class="d-block w-100" alt="Gambar {{ $feat->title }}">
+                            <div class="carousel-caption text-center">
+                                <h4 class="mb-2">{{ $feat->title }}</h4>
+                                <a href="{{ route('frontend.getPost', $feat->slug) }}" class="btn btn-primary">Read More <i
+                                        class="fa-solid fa-angles-right"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/800?random=2" class="d-block w-100" alt="Gambar Slider 2">
-                        <div class="carousel-caption text-center">
-                            <h4>Caption 2</h4>
-                            <a href="#" class="btn btn-primary">Read More <i class="fa-solid fa-angles-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/800?random=3" class="d-block w-100" alt="Gambar Slider 3">
-                        <div class="carousel-caption text-center">
-                            <h4>Caption 3</h4>
-                            <a href="#" class="btn btn-primary">Read More <i class="fa-solid fa-angles-right"></i></a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
                     data-bs-slide="prev">
@@ -133,8 +123,8 @@
                                     <a class="d-flex justify-content-center h-100"
                                         href="{{ url('kategori/bidang-bina-marga') }}">
                                         <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang bina marga.svg') }}" alt="Bidang Bina Marga"
-                                            style="width: 25%; margin: 0 auto;" /></a>
+                                            src="{{ asset('img/icon/icon bidang bina marga.svg') }}"
+                                            alt="Bidang Bina Marga" style="width: 25%; margin: 0 auto;" /></a>
                                     <div class="card-body text-center">
                                         <h5 class="card-title">Bidang Bina Marga</h5>
                                     </div>
@@ -201,68 +191,25 @@
         <div class="row d-flex justify-content-center">
             <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
             <div class="row mt-2">
-                <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
-                        <img class="card-img-top" src="https://picsum.photos/200?random=1" alt="Card image cap"
-                            style="max-height: 220px">
-                        <div class="card-body">
-                            <h5 class="card-title">Judul Berita 1</h5>
-                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Deleniti,
-                                dolores
-                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
-                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
-                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
-                            <a href="#" class="btn btn-primary">Read More <i
-                                    class="fa-solid fa-angles-right"></i></a>
-                        </div>
-                        <div class="card-footer bg-white text-muted">
-                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
+                @foreach ($latest as $late)
+                    <div class="col d-flex justify-content-center">
+                        <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
+                            <img class="card-img-top"
+                                src="@if ($late->getFirstMediaUrl('berita')) {{ $late->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                alt="Card image cap" style="max-height: 220px">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $late->title }}</h5>
+                                <p class="card-text" style="text-align: justify">{!! \Str::words($late->content, 50) !!}</p>
+                                <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-primary">Read More
+                                    <i class="fa-solid fa-angles-right"></i></a>
+                            </div>
+                            <div class="card-footer bg-white text-muted">
+                                <i class="fa-solid fa-calendar fa-fw"></i>
+                                {{ $late->created_at->translatedFormat('l, j F Y') }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem;">
-                        <img class="card-img-top" src="https://picsum.photos/200?random=2" alt="Card image cap"
-                            style="max-height: 220px">
-                        <div class="card-body">
-                            <h5 class="card-title">Judul Berita 2</h5>
-                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Deleniti, dolores
-                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
-                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
-                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
-                            <a href="#" class="btn btn-primary">Read More <i
-                                    class="fa-solid fa-angles-right"></i></a>
-                        </div>
-                        <div class="card-footer bg-white text-muted">
-                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
-                        </div>
-                    </div>
-                </div>
-                <div class="col d-flex justify-content-center">
-                    <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem;">
-                        <img class="card-img-top" src="https://picsum.photos/200?random=3" alt="Card image cap"
-                            style="max-height: 220px">
-                        <div class="card-body">
-                            <h5 class="card-title">Judul Berita 3</h5>
-                            <p class="card-text" style="text-align: justify">Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Deleniti,
-                                dolores
-                                architecto, magnam nobis explicabo, ex natus iste assumenda est iure quia amet quaerat quae
-                                debitis? Dolorem alias aperiam deleniti perferendis. Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Eum voluptate minima est, quos iusto, qui quam repellendus cum totam harum
-                                porro! Odit nobis quo nulla adipisci soluta a debitis deserunt!</p>
-                            <a href="#" class="btn btn-primary">Read More <i
-                                    class="fa-solid fa-angles-right"></i></a>
-                        </div>
-                        <div class="card-footer bg-white text-muted">
-                            <i class="fa-solid fa-calendar fa-fw"></i> 30 Juni 2023
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="row">
@@ -317,7 +264,7 @@
             </div>
 
             <!-- Second Row of Cards -->
-            <div class="row mt-5">
+            <div class="row mt-md-5">
                 <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
                     <div class="card position-relative" style="width: 24rem;">
                         <img src="https://picsum.photos/300?random=4" class="img-fluid rounded" alt="">

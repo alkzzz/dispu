@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => ucwords(fake()->sentence(6)),
             'content' => ucwords(fake()->paragraphs(15, true)),
+            'featured' => rand(0, 1),
             'created_at' => now()->subDays(rand(0, 10))
         ];
     }

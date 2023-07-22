@@ -12,22 +12,24 @@ class PostController extends Controller
     # Frontend
     public function frontend_index()
     {
-        $posts = Post::with('categories')->latest()->paginate(3);
+        $posts = Post::with('categories')->where('hidden', false)->latest()->paginate(3);
         return view('frontend.post.index', compact('posts'));
     }
 
     public function getPost($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        views($post)->record();
+        $view_count = views($post)->record();
 
-        return view('frontend.post.show', compact('post'));
+        return view('frontend.post.show', compact('post', 'view_count'));
     }
 
     # Backend
     public function index()
     {
-        $posts = Post::with('categories')->latest()->get();
+        $posts = Post::with('categories')
+            ->where('hidden', false)
+            ->latest()->get();
         return view('backend.post.index', compact('posts'));
     }
 
@@ -49,6 +51,9 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $input['title'];
         $post->content = $input['content'];
+        if ($request->has('featured')) {
+            $post->featured = true;
+        }
         $post->save();
         $post->categories()->sync($input['category_id']);
         if ($request->hasFile('gambar')) {
@@ -72,6 +77,11 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $input['title'];
         $post->content = $input['content'];
+        if ($request->has('featured')) {
+            $post->featured = true;
+        } else {
+            $post->featured = false;
+        }
         $post->save();
         $post->categories()->sync($input['category_id']);
         if ($request->hasFile('gambar')) {

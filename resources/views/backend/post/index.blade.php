@@ -19,13 +19,13 @@
             <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
                 Tambah</a>
         </div>
-
         <div class="mt-4">
             <table id="postTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="col">Judul Berita</th>
+                        <th class="col" style="max-width: 320px">Judul Berita</th>
                         <th class="col">Gambar</th>
+                        <th class="col">Tampil</th>
                         <th class="col">Tanggal</th>
                         <th class="col">Kategori</th>
                         <th class="col">Aksi</th>
@@ -40,18 +40,27 @@
                                     src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     class="img-thumbnail" alt="thumbnail">
                             </td>
-                            <td class="col">{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
+                            <td class="col text-center">
+                                @if ($post->featured)
+                                    <i class="text-primary fa-regular fa-square-check fa-xl"></i>
+                                @else
+                                    <i class="text-danger fa-regular fa-circle-xmark fa-xl"></i>
+                                @endif
+                            </td>
+                            <td class="col date-column" data-order="{{ $post->created_at }}">
+                                {{ $post->created_at->translatedFormat('l, j F Y') }}<br>
                                 ({{ $post->created_at->diffForHumans() }})
                             </td>
                             <td class="col">
-                                <ul style="list-style-type:none;padding:0;margin:0">
-                                    @php $color = ['primary', 'warning', 'danger', 'info', 'success'] @endphp
+                                @php $color = ['warning', 'danger', 'info', 'success', 'primary'] @endphp
+                                <div class="text-wrap" style="max-width: 12rem;">
                                     @foreach ($post->categories as $category)
-                                        <li class="d-block mb-1 badge text-bg-{{ $color[$loop->index] }}"
-                                            style="font-size: 0.8rem">
-                                            {{ $category->title }}</li>
+                                        <p style="font-size: 0.7rem"
+                                            class="badge rounded-pill text-bg-{{ $color[$loop->index] }} my-0">
+                                            {{ $category->title }}
+                                        </p>
                                     @endforeach
-                                </ul>
+                                </div>
                             </td>
                             <td class="col">
                                 <a class="btn btn-info btn-sm" href="{{ route('dashboard.berita.show', $post->id) }}"
@@ -88,7 +97,15 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#postTable').DataTable();
+            $('#postTable').DataTable({
+                columnDefs: [{
+                    targets: 'date-column',
+                    type: 'date',
+                }],
+                order: [
+                    [2, 'desc']
+                ]
+            });
             $('.confirmDelete').click(function(e) {
                 let id = $(this).data('id');
                 let formPost = $('#post-' + id);

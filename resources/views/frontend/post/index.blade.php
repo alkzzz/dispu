@@ -59,8 +59,9 @@
                         <div class="col-4">
                             <div class="card shadow p-1 mb-3 bg-white rounded">
                                 <a href="{{ route('frontend.getPost', $post->slug) }}">
-                                    <img class="img-fluid" src="https://picsum.photos/500?random=1" alt=""
-                                        srcset="">
+                                    <img class="img-fluid"
+                                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        alt="Gambar {{ $post->title }}">
                                     <div class="card-img-overlay"></div>
                                 </a>
                             </div>
@@ -69,8 +70,9 @@
                         <div class="col-4">
                             <div class="card shadow p-1 mb-3 bg-white rounded">
                                 <a href="{{ route('frontend.getPost', $post->slug) }}">
-                                    <img class="img-fluid" src="https://picsum.photos/500?random=1" alt=""
-                                        srcset="">
+                                    <img class="img-fluid"
+                                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        alt="Gambar {{ $post->title }}">
                                     <div class="card-img-overlay"></div>
                                 </a>
                             </div>

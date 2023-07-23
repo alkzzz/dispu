@@ -16,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if (!$this->app->environment('production')) {
+            $this->app->register('App\Providers\FakerServiceProvider');
+        }
     }
 
     /**
@@ -27,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         $frontmenus = Menu::orderBy('order')->get()->skip(1);
         View::share('frontmenus', $frontmenus);
+
+        $footerlinks = \DB::table('footer_links')->orderBy('title')->get()->split(2);
+        View::share('footerlinks', $footerlinks);
 
         $home = Post::where('title', 'Home')->first();
         $period_hari_ini = Period::pastDays(0);

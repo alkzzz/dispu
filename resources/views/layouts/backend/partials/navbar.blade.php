@@ -47,19 +47,15 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                             Berita
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.galeri.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-images"></i></i></div>
                             Galeri
-                        </a>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-film"></i></div>
-                            Gambar Slider
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.sosial-media.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                             Media Sosial
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.link-terkait.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                             Link Terkait
                         </a>

@@ -12,6 +12,13 @@ class Handler extends ExceptionHandler
      *
      * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
      */
+    public function report(Throwable $e)
+    {
+        if ($e instanceof \Illuminate\Session\TokenMismatchException) {
+            return redirect()->route('login');
+        }
+    }
+
     protected $levels = [
         //
     ];

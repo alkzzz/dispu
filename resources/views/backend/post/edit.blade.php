@@ -24,7 +24,7 @@
 
 
 @section('content')
-    <h2 class="pb-2 border-bottom border-dark">Tambah Berita</h2>
+    <h2 class="pb-2 border-bottom border-dark">Edit Berita</h2>
 
     <div class="row mt-3">
         <!-- Display success messages -->

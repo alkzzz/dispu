@@ -6,8 +6,9 @@ use App\Models\Link;
 
 class LinkController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $link_ids = Link::pluck('id');
-        return view('backend.link', compact('link_ids'));
+        return view('backend.customlink', compact('link_ids'));
     }
 }

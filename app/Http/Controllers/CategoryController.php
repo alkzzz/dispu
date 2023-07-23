@@ -12,8 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category_ids = Category::pluck('id');
-        return view('backend.category', compact('category_ids'));
+        return view('backend.category');
     }
 
     public function getCategory($slug)

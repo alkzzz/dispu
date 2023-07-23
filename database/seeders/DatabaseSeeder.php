@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        \DB::table('media')->truncate();
 
         $this->call([
             UserSeeder::class,
@@ -21,9 +22,11 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             LinkSeeder::class,
             PostSeeder::class,
+            GallerySeeder::class,
             CategoryPostSeeder::class,
             MenuSeeder::class,
             SocmedSeeder::class,
+            FooterLinkSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

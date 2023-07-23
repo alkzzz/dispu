@@ -29,7 +29,7 @@ return [
     ],
     [
         'title' => 'Galeri',
-        'url' => route('galeri'),
+        'url' => route('frontend.galeri.index'),
         'order' => 3,
         'type' => null,
         'type_id' => 0,

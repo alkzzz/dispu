@@ -3,15 +3,14 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Link;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Menu;
+use DB;
 
-class LinkCrud extends Component
+class FooterlinkCrud extends Component
 {
     use LivewireAlert;
 
-    public $links, $title, $url,  $link_id;
+    public $links, $title, $url, $link_id;
     public $updateMode = false;
     public $deleteMode = false;
 
@@ -51,24 +50,24 @@ class LinkCrud extends Component
 
     public function render()
     {
-        $this->links = Link::orderBy('title')->get();
-        return view('livewire.link-crud', ['links' => $this->links]);
+        $this->links = DB::table('footer_links')->orderBy('title')->get()->split(2);
+        return view('livewire.footerlink-crud', ['links' => $this->links]);
     }
 
     public function store()
     {
         $this->validate();
-        Link::create([
+        DB::table('footer_links')->insert([
             'title' => $this->title,
             'url' => $this->url
         ]);
         $this->resetForm();
-        session()->flash('message', 'Custom Link baru telah ditambahkan.');
+        session()->flash('message', 'Link terkait baru telah ditambahkan.');
     }
 
     public function edit($id)
     {
-        $link = Link::findOrFail($id);
+        $link = DB::table('footer_links')->where('id', $id)->first();
         $this->link_id = $link->id;
         $this->title = $link->title;
         $this->url = $link->url;
@@ -78,19 +77,11 @@ class LinkCrud extends Component
     public function update()
     {
         $this->validate();
-        $link = Link::findOrFail($this->link_id);
-        $link->update([
-            'title' => $this->title,
-            'url' => $this->url
-        ]);
-
-        $menu_link = Menu::where('type', 'link')->where('type_id', $this->link_id)->first();
-        if (isset($menu_link)) {
-            $menu_link->title = $link->title;
-            $menu_link->url = $link->url;
-            $menu_link->save();
-        }
-
+        DB::table('footer_links')->where('id', $this->link_id)
+            ->update([
+                'title' => $this->title,
+                'url' => $this->url
+            ]);
 
         $this->resetForm();
         session()->flash('message', 'Custom Link telah diupdate.');
@@ -98,7 +89,7 @@ class LinkCrud extends Component
 
     public function delete($id)
     {
-        $link = Link::findOrFail($id);
+        $link = DB::table('footer_links')->where('id', $id)->first();
         $this->link_id = $link->id;
         $this->alert('warning', 'Hapus Custom Link?', [
             'text' => 'Menghapus link yang ada pada menu juga akan menghapus menu tersebut!',
@@ -118,10 +109,9 @@ class LinkCrud extends Component
 
     public function confirmDelete()
     {
-        $link = Link::findOrFail($this->link_id);
-        $link->delete();
+        DB::table('footer_links')->delete($this->link_id);
 
-        session()->flash('message', 'Custom Link telah dihapus.');
+        session()->flash('message', 'Link terkait telah dihapus.');
 
         $this->deleteMode = false;
         $this->resetForm();

@@ -18,16 +18,11 @@ Route::get('/', HomePageController::class)->name('index');
 
 Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
 
-Route::get('/galeri', function () {
-    return view('frontend.galeri');
-})->name('galeri');
+Route::get('/galeri', [App\Http\Controllers\GalleryController::class, 'frontend_index'])->name('frontend.galeri.index');
 
 Route::get('/kontak', function () {
     return view('frontend.kontak');
 })->name('kontak');
-
-
-Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('menu');
 
 Auth::routes([
     'register' => false, // Registration Routes...
@@ -62,9 +57,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/berita/edit/{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('dashboard.berita.edit');
     Route::put('/dashboard/berita/update/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('dashboard.berita.update');
     Route::delete('/dashboard/berita/delete/{id}', [App\Http\Controllers\PostController::class, 'delete'])->name('dashboard.berita.delete');
+    #Galeri
+    Route::get('/dashboard/galeri', [App\Http\Controllers\GalleryController::class, 'index'])->name('dashboard.galeri.index');
+    Route::get('/dashboard/galeri/create', [App\Http\Controllers\GalleryController::class, 'create'])->name('dashboard.galeri.create');
+    Route::post('/dashboard/galeri/store', [App\Http\Controllers\GalleryController::class, 'store'])->name('dashboard.galeri.store');
+    Route::get('/dashboard/galeri/edit/{id}', [App\Http\Controllers\GalleryController::class, 'edit'])->name('dashboard.galeri.edit');
+    Route::put('/dashboard/galeri/update/{id}', [App\Http\Controllers\GalleryController::class, 'update'])->name('dashboard.galeri.update');
+    Route::delete('/dashboard/galeri/delete/{id}', [App\Http\Controllers\GalleryController::class, 'delete'])->name('dashboard.galeri.delete');
     #Sosial Media
     Route::get('/dashboard/sosial-media', [App\Http\Controllers\SocmedController::class, 'index'])->name('dashboard.sosial-media.index');
     Route::post('/dashboard/sosial-media/update', [App\Http\Controllers\SocmedController::class, 'update'])->name('dashboard.sosial-media.update');
+    #Link Terkait
+    Route::get('/dashboard/link-terkait', function () {
+        return view('backend.footerlink');
+    })->name('dashboard.link-terkait.index');
 });
 
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');

@@ -1,18 +1,18 @@
 @extends('layouts.frontend.layout')
 
 @section('extra_css')
+    <link rel="stylesheet" href="{{ asset('lightbox/css/lightbox.min.css') }}">
     <style>
         /* Style for the carousel caption */
         .carousel-caption {
             background-color: rgba(0, 0, 0, 0.5);
-            /* Blurred background color */
             color: #fff;
-            /* Text color */
             padding: 10px;
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
+            min-height: 6rem
         }
 
         .caption-overlay {
@@ -21,10 +21,33 @@
             left: 0;
             right: 0;
             background-color: rgba(0, 0, 0, 0.6);
-            /* Adjust the opacity (0.6) as needed */
             color: #fff;
-            /* Set the text color to white or any other suitable color */
             padding: 10px;
+        }
+
+        .bidang-card-style {
+            width: 100%;
+            min-height: 10rem;
+            background-color: #f8f9fa;
+        }
+
+        .bidang-card-style table {
+            height: 100%;
+        }
+
+        .bidang-card-style td {
+            vertical-align: middle;
+        }
+
+        .card-title {
+            color: black;
+        }
+
+        @media (max-width: 767.98px) {
+            .carousel-caption .h4 {
+                font-size: 1rem;
+                /* You can adjust the font size as per your preference */
+            }
         }
     </style>
 @endsection
@@ -39,7 +62,7 @@
                             <img src="@if ($feat->getFirstMediaUrl('berita')) {{ $feat->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 class="d-block w-100" alt="Gambar {{ $feat->title }}">
                             <div class="carousel-caption text-center">
-                                <h4 class="mb-2">{{ $feat->title }}</h4>
+                                <p class="h4 text-sm">{{ $feat->title }}</p>
                                 <a href="{{ route('frontend.getPost', $feat->slug) }}" class="btn btn-primary">Read More <i
                                         class="fa-solid fa-angles-right"></i></a>
                             </div>
@@ -108,78 +131,117 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-md mb-3">
-                                <div class="card" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-sekretariat') }}"><img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang sekretariat.svg') }}"
-                                            alt="Bidang Sekretariat" style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Sekretariat</h5>
+                                <a class="text-decoration-none" href="{{ url('kategori/bidang-sekretariat') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-4"
+                                                        src="{{ asset('img/icon/icon bidang sekretariat.svg') }}"
+                                                        alt="Bidang Sekretariat" style="width: 27%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Sekretariat</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <div class="card" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-bina-marga') }}">
-                                        <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang bina marga.svg') }}"
-                                            alt="Bidang Bina Marga" style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Bina Marga</h5>
+                                <a class="text-decoration-none" href="{{ url('kategori/bidang-bina-marga') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-4"
+                                                        src="{{ asset('img/icon/icon bidang bina marga.svg') }}"
+                                                        alt="Bidang Bina Marga" style="width: 30%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Bina Marga</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <div class="card d-flex justify-content-center h-100" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-tata-ruang') }}">
-                                        <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang tata ruang.svg') }}"
-                                            alt="Bidang Tata Ruang" style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Tata Ruang</h5>
+                                <a class="text-decoration-none" href="{{ url('kategori/bidang-tata-ruang') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-4"
+                                                        src="{{ asset('img/icon/icon bidang tata ruang.svg') }}"
+                                                        alt="Bidang Tata Ruang" style="width: 25%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Tata Ruang</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md mb-3">
-                                <div class="card" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-cipta-karya') }}">
-                                        <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang cipta karya.svg') }}"
-                                            alt="Bidang Cipta Karya" style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Cipta Karya</h5>
+                                <a class="text-decoration-none" href="{{ url('kategori/bidang-cipta-karya') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-4"
+                                                        src="{{ asset('img/icon/icon bidang cipta karya.svg') }}"
+                                                        alt="Bidang Cipta Karya" style="width: 25%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Cipta Karya</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <div class="card" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-pengembangan-konstruksi') }}">
-                                        <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang pengembangan konstruksi.svg') }}"
-                                            alt="Bidang Pengembangan Konstruksi"
-                                            style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Pengembangan Konstruksi</h5>
+                                <a class="text-decoration-none"
+                                    href="{{ url('kategori/bidang-pengembangan-konstruksi') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-3"
+                                                        src="{{ asset('img/icon/icon bidang pengembangan konstruksi.svg') }}"
+                                                        alt="Bidang Pengembangan Konstruksi"
+                                                        style="width: 24%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Pengembangan Konstruksi</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <div class="card" style="width: 100%;">
-                                    <a class="d-flex justify-content-center h-100"
-                                        href="{{ url('kategori/bidang-sumber-daya-air') }}">
-                                        <img class="card-img-top mt-3"
-                                            src="{{ asset('img/icon/icon bidang sumber daya air.svg') }}"
-                                            alt="Bidang Sumber Daya Air" style="width: 25%; margin: 0 auto;" /></a>
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">Bidang Sumber Daya Air</h5>
+                                <a class="text-decoration-none" href="{{ url('kategori/bidang-sumber-daya-air') }}">
+                                    <div class="card bidang-card-style">
+                                        <table class="h-100 w-100">
+                                            <tr>
+                                                <td class="align-middle text-center">
+                                                    <img class="card-img-top mt-4"
+                                                        src="{{ asset('img/icon/icon bidang sumber daya air.svg') }}"
+                                                        alt="Bidang Sumber Daya Air"
+                                                        style="width: 25%; margin: 0 auto;" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Bidang Sumber Daya Air</h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -192,7 +254,7 @@
             <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
             <div class="row mt-2">
                 @foreach ($latest as $late)
-                    <div class="col d-flex justify-content-center">
+                    <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                         <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
                             <img class="card-img-top"
                                 src="@if ($late->getFirstMediaUrl('berita')) {{ $late->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
@@ -222,87 +284,32 @@
     <div class="container-fluid mt-4 py-4" style="background: #FFF5CC">
         <div class="container mb-3">
             <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
-
-            <!-- First Row of Cards -->
-            <div class="row mt-4">
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=1" class="card-img" alt="...">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
+            @foreach ($galleries->chunk(3) as $galleryChunk)
+                <div class="row d-flex justify-content-center align-items-center">
+                    @foreach ($galleryChunk as $gallery)
+                        <div class="col-md-4 col-sm-12 g-3">
+                            <div class="card border-dark" style="min-width:26.5rem">
+                                <img src="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                    class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
+                                <a href="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                    data-title="{{ $gallery->title }}" data-lightbox="galeri">
+                                    <div class="card-img-overlay d-flex flex-column align-items-start">
+                                        <div class="caption-overlay">
+                                            <p class="card-text fw-semibold text-white mt-auto lead"
+                                                style="line-height: 1.3rem">
+                                                {{ $gallery->title }}
+                                                <br><span style="font-size: 0.8rem;font-weight: 300"><i
+                                                        class="fa-solid fa-location-dot" style="color: #ff0000;"></i>
+                                                    {{ $gallery->location }}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=2" class="img-fluid rounded" alt="">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=3" class="img-fluid rounded" alt="">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Second Row of Cards -->
-            <div class="row mt-md-5">
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=4" class="img-fluid rounded" alt="">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=5" class="img-fluid rounded" alt="">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
-                    <div class="card position-relative" style="width: 24rem;">
-                        <img src="https://picsum.photos/300?random=6" class="img-fluid rounded" alt="">
-                        <div class="caption-overlay">
-                            <p class="card-text fw-semibold text-white mt-auto lead" style="line-height: 1.3rem">
-                                Pembangunan Gedung
-                                <br><span style="font-size: 0.8rem;font-weight: 300"><i class="fa-solid fa-location-dot"
-                                        style="color: #ff0000;"></i> Kecamatan Banjarbaru Utara</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
             <div class="row">
                 <div class="col-12 d-flex justify-content-center py-2 mt-3">
                     <a name="" id="" class="btn btn-lg btn-primary" href="{{ url('galeri') }}"
@@ -311,4 +318,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('extra_js')
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="{{ asset('lightbox/js/lightbox.min.js') }}"></script>
+    <script>
+        lightbox.option({
+            'maxWidth': 1280,
+            'fitImagesInViewport': true,
+            'wrapAround': true
+        })
+    </script>
 @endsection

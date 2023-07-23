@@ -13,7 +13,6 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         \DB::table('posts')->truncate();
-        \DB::table('media')->truncate();
 
         \DB::table('posts')->insert([
             'title' => 'Home',
@@ -25,7 +24,9 @@ class PostSeeder extends Seeder
 
         $posts = \App\Models\Post::factory()->count(20)->create();
 
-        $imageUrl = fake()->imageUrl(640, 480, null, false);
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+        $imageUrl = $faker->imageUrl(640, 480);
 
         foreach ($posts as $post) {
             $post->addMediaFromUrl($imageUrl)->toMediaCollection('berita');

@@ -29,7 +29,6 @@
     <div class="row mt-3">
         <!-- Display success messages -->
         @if (session()->has('message'))
-            <h1>heh</h1>
             <div class="alert alert-danger">{{ session('message') }}</div>
         @endif
         <form action="{{ route('dashboard.halaman.store') }}" method="post" enctype="multipart/form-data">

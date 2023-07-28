@@ -288,10 +288,10 @@
                 <div class="row d-flex justify-content-center align-items-center">
                     @foreach ($galleryChunk as $gallery)
                         <div class="col-md-4 col-sm-12 g-3">
-                            <div class="card border-dark" style="min-width:26.5rem">
-                                <img src="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                            <div class="card border-dark">
+                                <img src="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
-                                <a href="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     data-title="{{ $gallery->title }}" data-lightbox="galeri">
                                     <div class="card-img-overlay d-flex flex-column align-items-start">
                                         <div class="caption-overlay">

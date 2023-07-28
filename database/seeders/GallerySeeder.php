@@ -18,7 +18,7 @@ class GallerySeeder extends Seeder
 
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
-        $imageUrl = $faker->imageUrl(1280, 720);
+        $imageUrl = $faker->imageUrl(800, 600);
 
         foreach ($galleries as $galeri) {
             $galeri->addMediaFromUrl($imageUrl)->toMediaCollection('galeri');

@@ -36,7 +36,7 @@
                 </li>
             </ul>
             <!-- Add the search box here -->
-            <div class="mt-2">
+            <div class="mb-3 mb-md-0">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit">

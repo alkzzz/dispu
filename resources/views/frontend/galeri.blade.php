@@ -47,15 +47,15 @@
         @foreach ($galleries->chunk(3) as $galleryChunk)
             <div class="row d-flex justify-content-center align-items-center">
                 @foreach ($galleryChunk as $gallery)
-                    <div class="col-4 g-3">
-                        <div class="card border-dark" style="min-width:26.5rem">
-                            <img src="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                    <div class="col-12 col-md-4 g-3">
+                        <div class="card border-dark">
+                            <img src="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 class="img-fluid rounded" alt="">
-                            <a href="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                            <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 data-title="{{ $gallery->title }}" data-lightbox="galeri">
                                 <div class="card-img-overlay d-flex flex-column align-items-start">
                                     <div class="caption-overlay">
-                                        <p class="card-text fw-semibold text-white mt-auto lead"
+                                        <p class="fs-6 card-text fw-semibold text-white mt-auto lead"
                                             style="line-height: 1.3rem">
                                             {{ $gallery->title }}
                                             <br><span style="font-size: 0.8rem;font-weight: 300"><i

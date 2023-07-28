@@ -38,10 +38,10 @@
                             <td class="col">{{ $gallery->title }}</td>
                             <td class="col">{{ $gallery->location }}</td>
                             <td class="col">
-                                <a href="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     data-title="{{ $gallery->title }}" data-lightbox="galeri">
-                                    <img style="width: 80px;height:80px"
-                                        src="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                    <img style="width: 128px;height:72px"
+                                        src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                         class="img-thumbnail" alt="thumbnail">
                                 </a>
                             </td>
@@ -51,7 +51,7 @@
                             </td>
                             <td class="col">
                                 <a class="btn btn-info btn-sm"
-                                    href="@if ($gallery->getFirstMediaUrl('galeri')) {{ $gallery->getFirstMediaUrl('galeri') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                    href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     data-title="{{ $gallery->title }}" data-lightbox="galeri" role="button"><i
                                         class="fa-solid fa-eye"></i>
                                     Show</a>

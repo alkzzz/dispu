@@ -64,7 +64,7 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-network-wired"></i></div>
                             Menu
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('dashboard.user') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                             User
                         </a>

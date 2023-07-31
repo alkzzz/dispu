@@ -21,7 +21,7 @@ class Gallery extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('preview')
-            ->fit(Manipulations::FIT_CONTAIN, 256, 144);
+            ->fit(Manipulations::FIT_STRETCH, 256, 144);
 
         $this->addMediaConversion('large')
             ->fit(Manipulations::FIT_STRETCH, 1280, 720);

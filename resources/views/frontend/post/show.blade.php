@@ -36,7 +36,12 @@
         </p>
 
         <div class="row">
-            <div style="text-align: justify">{!! $post->content !!}</div>
+            <div class="col-12 mb-4">
+                <img class="img-fluid"
+                    src="@if ($post->getFirstMediaUrl('berita', 'large')) {{ $post->getFirstMediaUrl('berita', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                    alt="Gambar {{ $post->title }}">
+            </div>
+            <div class="col-12" style="text-align: justify">{!! $post->content !!}</div>
         </div>
     </div>
 @endsection

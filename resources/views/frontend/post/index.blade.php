@@ -60,7 +60,7 @@
                             <div class="card shadow p-1 mb-3 bg-white rounded">
                                 <a href="{{ route('frontend.getPost', $post->slug) }}">
                                     <img class="img-fluid"
-                                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        src="@if ($post->getFirstMediaUrl('berita', 'large')) {{ $post->getFirstMediaUrl('berita', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                         alt="Gambar {{ $post->title }}">
                                     <div class="card-img-overlay"></div>
                                 </a>
@@ -71,7 +71,7 @@
                             <div class="card shadow p-1 mb-3 bg-white rounded">
                                 <a href="{{ route('frontend.getPost', $post->slug) }}">
                                     <img class="img-fluid"
-                                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        src="@if ($post->getFirstMediaUrl('berita', 'large')) {{ $post->getFirstMediaUrl('berita', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                         alt="Gambar {{ $post->title }}">
                                     <div class="card-img-overlay"></div>
                                 </a>

@@ -6,7 +6,7 @@
                     <h5 class="mb-3">Link Terkait #{{ $key + 1 }}</h5>
                     <ul class="nav flex-column">
                         @foreach ($linkSplit as $link)
-                            <li class="nav-item mb-2"><a href="#"
+                            <li class="nav-item mb-2"><a href="{{ $link->url }}" target="_blank"
                                     class="nav-link p-0 text-light">{{ $link->title }}</a></li>
                         @endforeach
                     </ul>

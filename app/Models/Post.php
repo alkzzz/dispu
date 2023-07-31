@@ -46,7 +46,9 @@ class Post extends Model implements HasMedia, Viewable
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('preview')
-            ->fit(Manipulations::FIT_CROP, 300, 300)
-            ->nonQueued();
+            ->fit(Manipulations::FIT_STRETCH, 256, 144);
+
+        $this->addMediaConversion('large')
+            ->fit(Manipulations::FIT_STRETCH, 1280, 720);
     }
 }

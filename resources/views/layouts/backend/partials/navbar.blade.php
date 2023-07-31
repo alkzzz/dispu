@@ -39,25 +39,25 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                             Kategori
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.link') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
-                            Custom Links
-                        </a>
                         <a class="nav-link" href="{{ route('dashboard.berita.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                             Berita
+                        </a>
+                        <a class="nav-link" href="{{ route('dashboard.link') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
+                            Custom Links
                         </a>
                         <a class="nav-link" href="{{ route('dashboard.galeri.index') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-images"></i></i></div>
                             Galeri
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.sosial-media.index') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                            Media Sosial
-                        </a>
-                        <a class="nav-link" href="{{ route('dashboard.link-terkait.index') }}">
+                        <a class="nav-link" href="{{ route('dashboard.link-terkait') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                             Link Terkait
+                        </a>
+                        <a class="nav-link" href="{{ route('dashboard.sosial-media') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                            Media Sosial
                         </a>
                         <div class="sb-sidenav-menu-heading">Manajemen Web</div>
                         <a class="nav-link" href="{{ route('dashboard.menu') }}">
@@ -67,6 +67,10 @@
                         <a class="nav-link" href="{{ route('dashboard.user') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                             User
+                        </a>
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
+                            Backup
                         </a>
                         <div class="sb-sidenav-menu-heading"></div>
                     </div>

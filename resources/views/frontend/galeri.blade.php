@@ -49,7 +49,7 @@
                 @foreach ($galleryChunk as $gallery)
                     <div class="col-12 col-md-4 g-3">
                         <div class="card border-dark">
-                            <img src="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                            <img src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 class="img-fluid rounded" alt="">
                             <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 data-title="{{ $gallery->title }}" data-lightbox="galeri">

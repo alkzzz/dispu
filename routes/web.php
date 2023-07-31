@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
     #User
     Route::get('/dashboard/user', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard.user');
+    Route::put('/dashboard/user/reset-password/{id}', [App\Http\Controllers\UserController::class, 'reset'])->name('dashboard.reset.password');
+    Route::delete('/dashboard/user/delete/{id}', [App\Http\Controllers\UserController::class, 'delete'])->name('dashboard.user.delete');
     #Berita
     Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');
     Route::get('/dashboard/berita/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('dashboard.berita.show');
@@ -67,12 +69,16 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/dashboard/galeri/update/{id}', [App\Http\Controllers\GalleryController::class, 'update'])->name('dashboard.galeri.update');
     Route::delete('/dashboard/galeri/delete/{id}', [App\Http\Controllers\GalleryController::class, 'delete'])->name('dashboard.galeri.delete');
     #Sosial Media
-    Route::get('/dashboard/sosial-media', [App\Http\Controllers\SocmedController::class, 'index'])->name('dashboard.sosial-media.index');
+    Route::get('/dashboard/sosial-media', [App\Http\Controllers\SocmedController::class, 'index'])->name('dashboard.sosial-media');
     Route::post('/dashboard/sosial-media/update', [App\Http\Controllers\SocmedController::class, 'update'])->name('dashboard.sosial-media.update');
     #Link Terkait
     Route::get('/dashboard/link-terkait', function () {
         return view('backend.footerlink');
-    })->name('dashboard.link-terkait.index');
+    })->name('dashboard.link-terkait');
+    #Backup
+    Route::get('/dashboard/backup', function () {
+        return view('backend.backup');
+    })->name('dashboard.backup');
 });
 
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');

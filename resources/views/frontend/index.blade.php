@@ -59,7 +59,7 @@
                 <div class="carousel-inner">
                     @foreach ($featured as $feat)
                         <div class="carousel-item @if ($loop->index == 0) active @endif">
-                            <img src="@if ($feat->getFirstMediaUrl('berita')) {{ $feat->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                            <img src="@if ($feat->getFirstMediaUrl('berita', 'large')) {{ $feat->getFirstMediaUrl('berita', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 class="d-block w-100" alt="Gambar {{ $feat->title }}">
                             <div class="carousel-caption text-center">
                                 <p class="h4 text-sm">{{ $feat->title }}</p>
@@ -257,7 +257,7 @@
                     <div class="col-md-4 col-sm-12 d-flex justify-content-center">
                         <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
                             <img class="card-img-top"
-                                src="@if ($late->getFirstMediaUrl('berita')) {{ $late->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                src="@if ($late->getFirstMediaUrl('berita', 'preview')) {{ $late->getFirstMediaUrl('berita', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                 alt="Card image cap" style="max-height: 220px">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $late->title }}</h5>
@@ -289,7 +289,7 @@
                     @foreach ($galleryChunk as $gallery)
                         <div class="col-md-4 col-sm-12 g-3">
                             <div class="card border-dark">
-                                <img src="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                <img src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
                                 <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                     data-title="{{ $gallery->title }}" data-lightbox="galeri">
@@ -312,8 +312,9 @@
             @endforeach
             <div class="row">
                 <div class="col-12 d-flex justify-content-center py-2 mt-3">
-                    <a name="" id="" class="btn btn-lg btn-primary" href="{{ url('galeri') }}"
-                        role="button">Lihat Semua Galeri <i class="fa-solid fa-arrow-right-long"></i></a>
+                    <a name="" id="" class="btn btn-lg btn-primary"
+                        href="{{ route('frontend.galeri.index') }}" role="button">Lihat Semua Galeri <i
+                            class="fa-solid fa-arrow-right-long"></i></a>
                 </div>
             </div>
         </div>

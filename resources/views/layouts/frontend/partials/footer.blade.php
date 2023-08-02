@@ -1,9 +1,9 @@
 <div class="wrapper">
     <div class="container-fluid text-light px-0 pt-2" style="background-color: #3c52f9">
         <div class="row px-4 py-4">
-            @foreach ($footerlinks as $key => $linkSplit)
+            @foreach ($footerlinks as $linkSplit)
                 <div class="col-md-4 col-6 d-flex justify-content-center flex-column">
-                    <h5 class="mb-3">Link Terkait #{{ $key + 1 }}</h5>
+                    <h5 class="mb-3">Link Terkait</h5>
                     <ul class="nav flex-column">
                         @foreach ($linkSplit as $link)
                             <li class="nav-item mb-2"><a href="{{ $link->url }}" target="_blank"

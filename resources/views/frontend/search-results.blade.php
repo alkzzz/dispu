@@ -1,11 +1,11 @@
 @extends('layouts.frontend.layout')
 
-@section('title', 'Berita')
+@section('title', 'Hasil Pencarian')
 
 @section('header-title')
     <div class="container-fluid">
         <div class="row text-center text-white" style="background-color: #030f6b;height:100px">
-            <h1 style="margin: auto">{{ strtoupper('Berita') }}</h1>
+            <h1 style="margin: auto">SEARCH RESULTS</h1>
         </div>
     </div>
 @endsection
@@ -15,7 +15,6 @@
         <nav aria-label="breadcrumb" class="container mt-3">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{ url('galeri') }}" class="text-dark">Berita</a></li>
             </ol>
         </nav>
     </div>
@@ -23,12 +22,9 @@
 
 @section('content')
     <div class="container mt-4">
-        <h2 class="pb-2 border-bottom border-2 black" style="margin-bottom: 3rem">Berita Dinas Pekerjaan Umum dan Penataan
-            Ruang
-            Kota Banjarbaru</h2>
         @php $color = ['warning', 'danger', 'info', 'success'] @endphp
 
-        @foreach ($posts->chunk(2) as $postChunk)
+        @foreach ($results->chunk(2) as $postChunk)
             @foreach ($postChunk as $post)
                 <div class="row">
                     @if ($loop->index % 2 == 0)
@@ -36,7 +32,7 @@
                             <div class="col-8">
                                 <a class="text-decoration-none text-dark"
                                     href="{{ route('frontend.getPost', $post->slug) }}">
-                                    <h3>{{ $post->title }}</h3>
+                                    <h3>{!! highlightKeywords($post->title, $query) !!}</h3>
                                 </a>
                                 <p style="color:gray;font-size:0.9rem;font-weight:500"><i>
                                         <i class="fa-solid fa-calendar fa-fw"></i>
@@ -44,7 +40,7 @@
                                         ({{ $post->created_at->diffForHumans() }})
                                     </i>
                                 </p>
-                                <p class="fs-5" style="text-align: justify">{{ \Str::words($post->content, 90) }}</p>
+                                <p class="fs-5" style="text-align: justify">{!! highlightKeywords(\Str::words($post->content, 90), $query) !!}</p>
                                 <ul class="px-0">
                                     @foreach ($post->categories as $category)
                                         <a class="text-decoration-none"
@@ -113,8 +109,6 @@
             @endforeach
         @endforeach
         <div class="row mt-4">
-            {{ $posts->links() }}
+            {{ $results->links() }}
         </div>
-
-    </div>
-@endsection
+    @endsection

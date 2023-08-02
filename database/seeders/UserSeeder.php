@@ -24,42 +24,42 @@ class UserSeeder extends Seeder
         ]);
 
         $adminsekretariat = User::factory()->create([
-            'name' => 'Admin Sekretariat',
+            'name' => 'Admin Bidang Sekretariat',
             'username' => 'sekretariat',
             'email' => 'sekretariat@admin.com',
             'password' => bcrypt('123456')
         ]);
 
         $adminbinamarga = User::factory()->create([
-            'name' => 'Admin Bina Marga',
+            'name' => 'Admin Bidang Bina Marga',
             'username' => 'binamarga',
             'email' => 'binamarga@admin.com',
             'password' => bcrypt('123456')
         ]);
 
         $admintataruang = User::factory()->create([
-            'name' => 'Admin Tata Ruang',
+            'name' => 'Admin Bidang Tata Ruang',
             'username' => 'tataruang',
             'email' => 'tataruang@admin.com',
             'password' => bcrypt('123456')
         ]);
 
         $adminciptakarya = User::factory()->create([
-            'name' => 'Admin Cipta Karya',
+            'name' => 'Admin Bidang Cipta Karya',
             'username' => 'ciptakarya',
             'email' => 'ciptakarya@admin.com',
             'password' => bcrypt('123456')
         ]);
 
         $adminkonstruksi = User::factory()->create([
-            'name' => 'Admin Pengembangan Konstruksi',
+            'name' => 'Admin Bidang Pengembangan Konstruksi',
             'username' => 'konstruksi',
             'email' => 'konstruksi@admin.com',
             'password' => bcrypt('123456')
         ]);
 
         $adminsda = User::factory()->create([
-            'name' => 'Admin Sumber Daya Air',
+            'name' => 'Admin Bidang Sumber Daya Air',
             'username' => 'sumberdayaair',
             'email' => 'sda@admin.com',
             'password' => bcrypt('123456')

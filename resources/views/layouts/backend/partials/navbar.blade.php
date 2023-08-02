@@ -59,19 +59,21 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                             Media Sosial
                         </a>
-                        <div class="sb-sidenav-menu-heading">Manajemen Web</div>
-                        <a class="nav-link" href="{{ route('dashboard.menu') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-network-wired"></i></div>
-                            Menu
-                        </a>
-                        <a class="nav-link" href="{{ route('dashboard.user') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                            User
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
-                            Backup
-                        </a>
+                        @role('Super Admin')
+                            <div class="sb-sidenav-menu-heading">Manajemen Web</div>
+                            <a class="nav-link" href="{{ route('dashboard.menu') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-network-wired"></i></div>
+                                Menu
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.user') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                                User
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.backup') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
+                                Backup
+                            </a>
+                        @endrole
                         <div class="sb-sidenav-menu-heading"></div>
                     </div>
                     <div class="sb-sidenav-footer">

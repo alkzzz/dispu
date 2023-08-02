@@ -13,7 +13,7 @@ class Page extends Model
 
     protected $fillable = ['title', 'content'];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
@@ -24,5 +24,4 @@ class Page extends Model
     {
         return 'slug';
     }
-
 }

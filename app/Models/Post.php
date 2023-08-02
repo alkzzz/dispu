@@ -13,10 +13,11 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use Laravel\Scout\Searchable;
 
 class Post extends Model implements HasMedia, Viewable
 {
-    use HasFactory, HasSlug, InteractsWithMedia, InteractsWithViews;
+    use HasFactory, HasSlug, InteractsWithMedia, InteractsWithViews, Searchable;
 
     protected $fillable = [
         'title',
@@ -50,5 +51,13 @@ class Post extends Model implements HasMedia, Viewable
 
         $this->addMediaConversion('large')
             ->fit(Manipulations::FIT_STRETCH, 1280, 720);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+        ];
     }
 }

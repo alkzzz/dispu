@@ -31,7 +31,10 @@ class DashboardController extends Controller
         $total_related_links = \DB::table('footer_links')->count();
         $total_menus = \App\Models\Menu::count();
         $total_users = \App\Models\User::count();
-        $last_backup = '5 Agustus 2023';
-        return view('dashboard', compact('total_pages', 'total_categories', 'total_posts', 'total_links', 'total_galleries', 'total_related_links', 'total_menus', 'total_users', 'last_backup'));
+        $date_backup = now()->subDays(1);
+        $day_backup = $date_backup->day;
+        $month_backup = $date_backup->locale('id')->monthName;
+        $year_backup = $date_backup->year;
+        return view('dashboard', compact('total_pages', 'total_categories', 'total_posts', 'total_links', 'total_galleries', 'total_related_links', 'total_menus', 'total_users', 'day_backup', 'month_backup', 'year_backup'));
     }
 }

@@ -20,6 +20,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->first();
         if ($category != null) {
             $posts = $category->posts()->paginate(3);
+            // dd($posts);
             return view('frontend.category', compact('category', 'posts'));
         } else {
             abort(404);

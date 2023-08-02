@@ -136,72 +136,74 @@
                 </a>
             </div>
         </div>
-        <hr>
-        <div class="row mt-4">
-            <div class="col-lg-4">
-                <a href="{{ route('dashboard.menu') }}" class="text-decoration-none">
-                    <div class="card border-success mb-3">
-                        <div class="fs-4 card-header bg-success text-white text-center">Menu</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-network-wired text-success" style="font-size:8rem"></i>
-                                </div>
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <div>
-                                        <h5 class="card-title mb-0 text-success">Jumlah Menu</h5>
-                                        <p class="display-4 mb-0 text-success">{{ $total_menus }}</p>
+        @role('Super Admin')
+            <hr>
+            <div class="row mt-4">
+                <div class="col-lg-4">
+                    <a href="{{ route('dashboard.menu') }}" class="text-decoration-none">
+                        <div class="card border-success mb-3">
+                            <div class="fs-4 card-header bg-success text-white text-center">Menu</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-network-wired text-success" style="font-size:8rem"></i>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <div>
+                                            <h5 class="card-title mb-0 text-success">Jumlah Menu</h5>
+                                            <p class="display-4 mb-0 text-success">{{ $total_menus }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="fs-6 fw-bold card-footer bg-success text-white text-center">VIEW ALL</div>
                         </div>
-                        <div class="fs-6 fw-bold card-footer bg-success text-white text-center">VIEW ALL</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4">
-                <a href="{{ route('dashboard.user') }}" class="text-decoration-none">
-                    <div class="card border-danger mb-3">
-                        <div class="fs-4 card-header bg-danger text-white text-center">User</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-users text-danger" style="font-size:8rem"></i>
-                                </div>
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <div>
-                                        <h5 class="card-title mb-0 text-danger">Jumlah User</h5>
-                                        <p class="display-4 mb-0 text-danger">{{ $total_users }}</p>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="{{ route('dashboard.user') }}" class="text-decoration-none">
+                        <div class="card border-danger mb-3">
+                            <div class="fs-4 card-header bg-danger text-white text-center">User</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-users text-danger" style="font-size:8rem"></i>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <div>
+                                            <h5 class="card-title mb-0 text-danger">Jumlah User</h5>
+                                            <p class="display-4 mb-0 text-danger">{{ $total_users }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="fs-6 fw-bold card-footer bg-danger text-white text-center">VIEW ALL</div>
                         </div>
-                        <div class="fs-6 fw-bold card-footer bg-danger text-white text-center">VIEW ALL</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4">
-                <a href="{{ route('dashboard.backup') }}" class="text-decoration-none">
-                    <div class="card border-info mb-3">
-                        <div class="fs-4 card-header bg-info text-white text-center">Backup</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <i class="fa-solid fa-database text-info" style="font-size:8rem"></i>
-                                </div>
-                                <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <div>
-                                        <h5 class="card-title mb-0 text-info">Backup Terakhir</h5>
-                                        <p class="display-4 mb-0 text-info">2</p>
-                                        <p class="text-info">Agustus 2023</p>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="{{ route('dashboard.backup') }}" class="text-decoration-none">
+                        <div class="card border-info mb-3">
+                            <div class="fs-4 card-header bg-info text-white text-center">Backup</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-database text-info" style="font-size:8rem"></i>
+                                    </div>
+                                    <div class="col-6 d-flex align-items-center justify-content-center">
+                                        <div>
+                                            <h5 class="card-title mb-0 text-info">Backup Terakhir</h5>
+                                            <p class="display-4 mb-0 text-info">{{ $day_backup }}</p>
+                                            <p class="text-info">{{ $month_backup }} {{ $year_backup }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="fs-6 fw-bold card-footer bg-info text-white text-center">VIEW ALL</div>
                         </div>
-                        <div class="fs-6 fw-bold card-footer bg-info text-white text-center">VIEW ALL</div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
+        @endrole
     </div>
 @endsection

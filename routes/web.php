@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,20 @@ Route::get('/kontak', function () {
     return view('frontend.kontak');
 })->name('kontak');
 
+Route::get('/search', function (Request $request) {
+    $query = $request->q;
+    $results = \App\Models\Post::search($query)->paginate(3)->appends(['q' => $query]);;
+    // dd($results->count());
+    return view('frontend.search-results', compact('query', 'results'));
+})->name('search');
+
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['role:Super Admin|Admin Bidang']], function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     #Kategori
     Route::get('/dashboard/kategori', [App\Http\Controllers\CategoryController::class, 'index'])->name('dashboard.kategori');
@@ -44,15 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/halaman/edit/{id}', [App\Http\Controllers\PageController::class, 'edit'])->name('dashboard.halaman.edit');
     Route::put('/dashboard/halaman/update/{id}', [App\Http\Controllers\PageController::class, 'update'])->name('dashboard.halaman.update');
     Route::delete('/dashboard/halaman/delete/{id}', [App\Http\Controllers\PageController::class, 'delete'])->name('dashboard.halaman.delete');
-    #Menu
-    Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
-    Route::post('/dashboard/menu/store', [App\Http\Controllers\MenuController::class, 'store'])->name('dashboard.menu.store');
-    Route::post('/dashboard/menu/sort', [App\Http\Controllers\MenuController::class, 'sort'])->name('dashboard.menu.sort');
-    Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
-    #User
-    Route::get('/dashboard/user', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard.user');
-    Route::put('/dashboard/user/reset-password/{id}', [App\Http\Controllers\UserController::class, 'reset'])->name('dashboard.reset.password');
-    Route::delete('/dashboard/user/delete/{id}', [App\Http\Controllers\UserController::class, 'delete'])->name('dashboard.user.delete');
     #Berita
     Route::get('/dashboard/berita', [App\Http\Controllers\PostController::class, 'index'])->name('dashboard.berita.index');
     Route::get('/dashboard/berita/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('dashboard.berita.show');
@@ -75,10 +74,26 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/link-terkait', function () {
         return view('backend.footerlink');
     })->name('dashboard.link-terkait');
+});
+
+Route::group(['middleware' => ['role:Super Admin']], function () {
+    #Menu
+    Route::get('/dashboard/menu', [App\Http\Controllers\MenuController::class, 'index'])->name('dashboard.menu');
+    Route::post('/dashboard/menu/store', [App\Http\Controllers\MenuController::class, 'store'])->name('dashboard.menu.store');
+    Route::post('/dashboard/menu/sort', [App\Http\Controllers\MenuController::class, 'sort'])->name('dashboard.menu.sort');
+    Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
+    #User
+    Route::get('/dashboard/user', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard.user');
+    Route::put('/dashboard/user/reset-password/{id}', [App\Http\Controllers\UserController::class, 'reset'])->name('dashboard.reset.password');
+    Route::delete('/dashboard/user/delete/{id}', [App\Http\Controllers\UserController::class, 'delete'])->name('dashboard.user.delete');
+
     #Backup
     Route::get('/dashboard/backup', function () {
         return view('backend.backup');
     })->name('dashboard.backup');
+    Route::get('dashboard/backup/download', function () {
+        return response()->download(storage_path('app/backup-web-dispu-bjb/webdispubjb-2023-07-30-12-34-00.zip'));
+    })->name('dashboard.backup-download');
 });
 
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');

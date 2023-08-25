@@ -16,12 +16,12 @@ class GallerySeeder extends Seeder
 
         $galleries = \App\Models\Gallery::factory()->count(20)->create();
 
-        // $faker = \Faker\Factory::create();
-        // $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
-        // $imageUrl = $faker->imageUrl(800, 600);
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+        $imageUrl = $faker->imageUrl(800, 600);
 
-        // foreach ($galleries as $galeri) {
-        //     $galeri->addMediaFromUrl($imageUrl)->toMediaCollection('galeri');
-        // }
+        foreach ($galleries as $galeri) {
+            $galeri->addMediaFromUrl($imageUrl)->toMediaCollection('galeri');
+        }
     }
 }

@@ -24,12 +24,12 @@ class PostSeeder extends Seeder
 
         $posts = \App\Models\Post::factory()->count(20)->create();
 
-        $faker = \Faker\Factory::create();
-        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
-        $imageUrl = $faker->imageUrl(800, 600);
+        // $faker = \Faker\Factory::create();
+        // $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+        // $imageUrl = $faker->imageUrl(800, 600);
 
-        foreach ($posts as $post) {
-            $post->addMediaFromUrl($imageUrl)->toMediaCollection('berita');
-        }
+        // foreach ($posts as $post) {
+        //     $post->addMediaFromUrl($imageUrl)->toMediaCollection('berita');
+        // }
     }
 }

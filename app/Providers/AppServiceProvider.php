@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
         $home = Post::where('title', 'Home')->first();
         $period_hari_ini = Period::pastDays(0);
-        $period_kemarin = Period::pastDays(-1);
+        $period_kemarin = Period::pastDays(1);
         $period_minggu_ini = Period::pastWeeks(1);
         $period_bulan_ini = Period::pastMonths(1);
         $period_tahun_ini = Period::pastYears(1);

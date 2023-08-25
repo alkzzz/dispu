@@ -6,6 +6,9 @@
                 class="fas fa-bars"></i></button>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto">
+            <a class="nav-link" href="#passwordModal" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                <i class="fa-solid fa-key align-middle"></i> Ubah Password
+            </a>
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -55,10 +58,6 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-sitemap"></i></div>
                             Link Terkait
                         </a>
-                        <a class="nav-link" href="{{ route('dashboard.sosial-media') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
-                            Media Sosial
-                        </a>
                         @role('Super Admin')
                             <div class="sb-sidenav-menu-heading">Manajemen Web</div>
                             <a class="nav-link" href="{{ route('dashboard.menu') }}">
@@ -68,6 +67,18 @@
                             <a class="nav-link" href="{{ route('dashboard.user') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 User
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.dokumen.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
+                                Dokumen
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.sosial-media') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                                Media Sosial
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.gambar-depan') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-image"></i></div>
+                                Foto Depan
                             </a>
                             <a class="nav-link" href="{{ route('dashboard.backup') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>

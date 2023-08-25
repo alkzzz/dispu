@@ -2,7 +2,7 @@
 
 @section('extra_css')
     {{-- Summernote --}}
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" rel="stylesheet">
     {{-- Select2 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     {{-- Select2 BS5-theme --}}
@@ -29,7 +29,7 @@
     <div class="row mt-3">
         <!-- Display success messages -->
         @if (session()->has('message'))
-            <div class="alert alert-success">{{ session('message') }}</div>
+            <div class="alert alert-danger">{{ session('message') }}</div>
         @endif
         <form action="{{ route('dashboard.berita.store') }}" method="post" enctype="multipart/form-data">
             @csrf
@@ -49,6 +49,15 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi Berita</label>
                     <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+                </div>
+                <div>
+                    <p class="my-0 py-0 text-primary" style="font-size:0.8rem">Untuk meupload link Youtube harap menghapus
+                        teks setelah
+                        simbol &</p>
+                    <p class="mb-3 text-primary" style="font-size:0.8rem">Contoh:
+                        https://www.youtube.com/watch?v=ACtuNpcyJNg&ab_channel=SAJADAHHIJAU
+                        menjadi
+                        https://www.youtube.com/watch?v=ACtuNpcyJNg</p>
                 </div>
                 <div class="form-check form-switch fs-5 mb-3">
                     <input class="form-check-input" type="checkbox" role="switch" id="featured" name="featured"
@@ -81,7 +90,7 @@
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
     {{-- Summernote --}}
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
     {{-- Select2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script>

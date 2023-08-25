@@ -44,13 +44,6 @@
             font-weight: 500;
         }
 
-        #carouselControls .carousel-item img {
-            object-fit: cover;
-            object-position: center;
-            height: 70vh;
-            overflow: hidden;
-        }
-
         .wrapper {
             display: flex;
             flex-direction: column;
@@ -72,7 +65,7 @@
 
 <body onload=display_ct();>
     <div class="py-2" style="background-color:#030f6b">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
             <div>
                 <p id="tanggal" class="text-light mb-0"></p>
             </div>

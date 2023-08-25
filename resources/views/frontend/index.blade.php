@@ -3,7 +3,13 @@
 @section('extra_css')
     <link rel="stylesheet" href="{{ asset('lightbox/css/lightbox.min.css') }}">
     <style>
-        /* Style for the carousel caption */
+        #carouselControls .carousel-item img {
+            object-fit: cover;
+            object-position: center;
+            height: 80vh;
+            overflow: hidden;
+        }
+
         .carousel-caption {
             background-color: rgba(0, 0, 0, 0.5);
             color: #fff;

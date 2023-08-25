@@ -10,12 +10,16 @@
     </div>
     <hr>
     <div class="row">
+        <div class="col-6">
+            <h5 class="text-decoration-underline">Gambar</h5>
+            <img src="{{ $post->getFirstMediaUrl('berita') }}" class="img-fluid rounded" alt="">
+        </div>
         <div class="col">
             <h5 class="text-decoration-underline">Kategori</h5>
             <ul style="list-style-type:none;margin:0;padding:0">
                 @php $color = ['primary', 'warning', 'danger', 'info', 'success'] @endphp
                 @foreach ($post->categories as $category)
-                    <li class="fs-6 badge text-bg-{{ $color[$loop->index] }}">{{ $category->name }}</li>
+                    <li class="fs-6 badge text-bg-{{ $color[$loop->index] }}">{{ $category->title }}</li>
                 @endforeach
             </ul>
         </div>
@@ -24,9 +28,6 @@
             <p>{{ $post->created_at->translatedFormat('l, j F Y') }}<br>
                 ({{ $post->created_at->diffForHumans() }})</p>
         </div>
-        <div class="col-6">
-            <h5 class="text-decoration-underline">Gambar</h5>
-            <img src="{{ $post->getFirstMediaUrl('berita') }}" class="img-fluid rounded" alt="">
-        </div>
+
     </div>
 @endsection

@@ -38,7 +38,7 @@
                             <td class="col">{{ $page->created_at->translatedFormat('l, j F Y') }}<br>
                                 ({{ $page->created_at->diffForHumans() }})
                             </td>
-                            <td class="col">{{ $page->created_at->translatedFormat('l, j F Y') }}<br>
+                            <td class="col">{{ $page->updated_at->translatedFormat('l, j F Y') }}<br>
                                 ({{ $page->updated_at->diffForHumans() }})
                             </td>
                             <td class="col">
@@ -47,16 +47,18 @@
                                     Show</a>
                                 <a class="btn btn-warning btn-sm" href="{{ route('dashboard.halaman.edit', $page->id) }}"
                                     role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <form id="page-{{ $page->id }}"
-                                    class="d-inline"action="{{ route('dashboard.halaman.delete', $page->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button id="confirmDelete-{{ $page->id }}" data-id={{ $page->id }}
-                                        class="btn btn-danger btn-sm confirmDelete" type="button"><i
-                                            class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
-                                </form>
+                                @role('Super Admin')
+                                    <form id="page-{{ $page->id }}"
+                                        class="d-inline"action="{{ route('dashboard.halaman.delete', $page->id) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button id="confirmDelete-{{ $page->id }}" data-id={{ $page->id }}
+                                            class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                                class="fa-solid fa-trash-can"></i>
+                                            Delete</button>
+                                    </form>
+                                @endrole
                             </td>
                         </tr>
                     @empty

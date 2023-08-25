@@ -73,7 +73,7 @@ class CategoryCrud extends Component
      */
     public function render()
     {
-        $this->categories = Category::orderBy('title')->get();
+        $this->categories = Category::where('id', '>', 6)->orderBy('title')->get();
         return view('livewire.category-crud', ['categories' => $this->categories]);
     }
 
@@ -90,7 +90,7 @@ class CategoryCrud extends Component
 
         Category::create([
             'title' => $this->title,
-            'url' => route('frontend.getCategory', \Str::slug('title'))
+            'url' => route('frontend.getCategory', \Str::slug($this->title))
         ]);
         $this->resetForm();
         session()->flash('message', 'Kategori baru telah ditambahkan.');
@@ -122,7 +122,7 @@ class CategoryCrud extends Component
         $category->update(['title' => $this->title]);
 
         $menu_category = Menu::where('type', 'category')->where('type_id', $this->category_id)->first();
-        if(isset($menu_category)) {
+        if (isset($menu_category)) {
             $menu_category->title = $category->title;
             $menu_category->url = $category->url;
             $menu_category->save();
@@ -156,7 +156,7 @@ class CategoryCrud extends Component
             'cancelButtonText' => '<i class="fa-solid fa-ban"></i> Cancel',
             'onConfirmed' => 'confirmDelete',
             'showCancelButton' => true,
-           ]);
+        ]);
     }
 
     public function confirmDelete()
@@ -169,5 +169,4 @@ class CategoryCrud extends Component
         $this->deleteMode = false;
         $this->resetForm();
     }
-
 }

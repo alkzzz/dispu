@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,24 @@ use Illuminate\Http\Request;
 |
 */
 
+#Homepage
 Route::get('/', HomePageController::class)->name('index');
-
+#Berita
 Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
-
+#Galeri
 Route::get('/galeri', [App\Http\Controllers\GalleryController::class, 'frontend_index'])->name('frontend.galeri.index');
-
+#Dokumen
+Route::get('/daftar-dokumen', [App\Http\Controllers\DocumentController::class, 'frontend_index'])->name('dokumen');
+Route::get('/dokumen/download/{id}', [App\Http\Controllers\DocumentController::class, 'download'])->name('dokumen.download');
+#Konsultasi Jasa Konstruksi
+Route::get('/konsultasi-jasa-konstruksi', function () {
+    return view('frontend.konsultasi');
+})->name('konsultasi-jasa-konstruksi');
+#Kontak
 Route::get('/kontak', function () {
     return view('frontend.kontak');
 })->name('kontak');
-
+#Search
 Route::get('/search', function (Request $request) {
     $query = $request->q;
     $results = \App\Models\Post::search($query)->paginate(3)->appends(['q' => $query]);;
@@ -74,6 +83,15 @@ Route::group(['middleware' => ['role:Super Admin|Admin Bidang']], function () {
     Route::get('/dashboard/link-terkait', function () {
         return view('backend.footerlink');
     })->name('dashboard.link-terkait');
+    #Ubah Password
+    Route::post('/ubah-password', [App\Http\Controllers\UserController::class, 'update_password'])->name('dashboard.update.password');
+    #Dokumen
+    Route::get('/dashboard/dokumen', [App\Http\Controllers\DocumentController::class, 'index'])->name('dashboard.dokumen.index');
+    Route::get('/dashboard/dokumen/create', [App\Http\Controllers\DocumentController::class, 'create'])->name('dashboard.dokumen.create');
+    Route::post('/dashboard/dokumen/store', [App\Http\Controllers\DocumentController::class, 'store'])->name('dashboard.dokumen.store');
+    Route::get('/dashboard/dokumen/edit/{id}', [App\Http\Controllers\DocumentController::class, 'edit'])->name('dashboard.dokumen.edit');
+    Route::put('/dashboard/dokumen/update/{id}', [App\Http\Controllers\DocumentController::class, 'update'])->name('dashboard.dokumen.update');
+    Route::delete('/dashboard/dokumen/delete/{id}', [App\Http\Controllers\DocumentController::class, 'delete'])->name('dashboard.dokumen.delete');
 });
 
 Route::group(['middleware' => ['role:Super Admin']], function () {
@@ -86,7 +104,33 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     Route::get('/dashboard/user', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard.user');
     Route::put('/dashboard/user/reset-password/{id}', [App\Http\Controllers\UserController::class, 'reset'])->name('dashboard.reset.password');
     Route::delete('/dashboard/user/delete/{id}', [App\Http\Controllers\UserController::class, 'delete'])->name('dashboard.user.delete');
-
+    #Foto Depan
+    Route::get('/dashboard/gambar-depan', function () {
+        $gambardepan = \DB::table('gambar_depan')->latest()->first();
+        return view('backend.gambar-depan', compact('gambardepan'));
+    })->name('dashboard.gambar-depan');
+    Route::post('/dashboard/gambar-depan/store', function (Request $request): RedirectResponse {
+        $nama = $request->nama;
+        if ($request->has('gambar')) {
+            $file = $request->file('gambar');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img'), $fileName);
+            $file_path = 'img/' . $fileName;
+            \DB::table('gambar_depan')->insert([
+                'nama' => $nama,
+                'link' => $file_path,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } else {
+            \DB::table('gambar_depan')->updateOrInsert([
+                'nama' => $nama,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        return redirect()->route('dashboard');
+    })->name('dashboard.gambar-depan.store');
     #Backup
     Route::get('/dashboard/backup', function () {
         return view('backend.backup');

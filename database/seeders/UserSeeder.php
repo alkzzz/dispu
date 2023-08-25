@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'username' => 'superadmin',
             'email' => 'super@admin.com',
+            'bidang' => 'Super Admin',
             'password' => bcrypt('123456')
         ]);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Sekretariat',
             'username' => 'sekretariat',
             'email' => 'sekretariat@admin.com',
+            'bidang' => 'Bidang Sekretariat',
             'password' => bcrypt('123456')
         ]);
 
@@ -34,6 +36,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Bina Marga',
             'username' => 'binamarga',
             'email' => 'binamarga@admin.com',
+            'bidang' => 'Bidang Bina Marga',
             'password' => bcrypt('123456')
         ]);
 
@@ -41,6 +44,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Tata Ruang',
             'username' => 'tataruang',
             'email' => 'tataruang@admin.com',
+            'bidang' => 'Bidang Tata Ruang',
             'password' => bcrypt('123456')
         ]);
 
@@ -48,6 +52,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Cipta Karya',
             'username' => 'ciptakarya',
             'email' => 'ciptakarya@admin.com',
+            'bidang' => 'Bidang Cipta Karya',
             'password' => bcrypt('123456')
         ]);
 
@@ -55,6 +60,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Pengembangan Konstruksi',
             'username' => 'konstruksi',
             'email' => 'konstruksi@admin.com',
+            'bidang' => 'Bidang Pengembangan Konstruksi',
             'password' => bcrypt('123456')
         ]);
 
@@ -62,6 +68,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Bidang Sumber Daya Air',
             'username' => 'sumberdayaair',
             'email' => 'sda@admin.com',
+            'bidang' => 'Bidang Sumber Daya Air',
             'password' => bcrypt('123456')
         ]);
 

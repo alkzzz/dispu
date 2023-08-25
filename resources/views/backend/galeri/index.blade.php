@@ -57,16 +57,18 @@
                                     Show</a>
                                 <a class="btn btn-warning btn-sm" href="{{ route('dashboard.galeri.edit', $gallery->id) }}"
                                     role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <form id="page-{{ $gallery->id }}"
-                                    class="d-inline"action="{{ route('dashboard.galeri.delete', $gallery->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button id="confirmDelete-{{ $gallery->id }}" data-id={{ $gallery->id }}
-                                        class="btn btn-danger btn-sm confirmDelete" type="button"><i
-                                            class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
-                                </form>
+                                @role('Super Admin')
+                                    <form id="page-{{ $gallery->id }}"
+                                        class="d-inline"action="{{ route('dashboard.galeri.delete', $gallery->id) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button id="confirmDelete-{{ $gallery->id }}" data-id={{ $gallery->id }}
+                                            class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                                class="fa-solid fa-trash-can"></i>
+                                            Delete</button>
+                                    </form>
+                                @endrole
                             </td>
                         </tr>
                     @empty

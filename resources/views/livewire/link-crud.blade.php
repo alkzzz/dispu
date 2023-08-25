@@ -66,8 +66,10 @@
                                 class="fa-regular fa-circle-check"></i> Cek Link</a>
                         <button class="btn btn-warning btn-sm" wire:click="edit({{ $link->id }})"><i
                                 class="fa-solid fa-pen-to-square"></i> Edit</button>
-                        <button class="btn btn-danger btn-sm" wire:click="delete({{ $link->id }})"><i
-                                class="fa-solid fa-trash-can"></i> Delete</button>
+                        @role('Super Admin')
+                            <button class="btn btn-danger btn-sm" wire:click="delete({{ $link->id }})"><i
+                                    class="fa-solid fa-trash-can"></i> Delete</button>
+                        @endrole
                     </td>
                 </tr>
             @empty

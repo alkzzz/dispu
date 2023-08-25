@@ -54,6 +54,30 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
+        'title' => 'Layanan',
+        'slug' => 'layanan',
+        'url' => '#',
+        'content' => 'Isi Halaman layanan',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Konsultasi Jasa Konstruksi',
+        'slug' => 'konsultasi-jasa-konstruksi',
+        'url' => route('konsultasi-jasa-konstruksi'),
+        'content' => '',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
+        'title' => 'Dokumen',
+        'slug' => 'dokumen',
+        'url' => '#',
+        'content' => 'Isi Halaman dokumen',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ],
+    [
         'title' => 'Kontak',
         'slug' => 'kontak',
         'url' => '#',

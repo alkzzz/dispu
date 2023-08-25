@@ -102,7 +102,7 @@ return [
     'required_with_all'    => ':attribute wajib diisi bila terdapat :values.',
     'required_without'     => ':attribute wajib diisi bila tidak terdapat :values.',
     'required_without_all' => ':attribute wajib diisi bila sama sekali tidak terdapat :values.',
-    'same'                 => ':attribute dan :other harus sama.',
+    'same'                 => ':other dan :attribute harus sama.',
     'size'                 => [
         'numeric' => ':attribute harus berukuran :size.',
         'file'    => ':attribute harus berukuran :size kilobyte.',
@@ -146,6 +146,8 @@ return [
     */
 
     'attributes' => [
-        'title' => 'Judul'
+        'title' => 'Judul',
+        'new_password' => 'Password baru',
+        'confirm_password' => 'Konfirmasi password',
     ],
 ];

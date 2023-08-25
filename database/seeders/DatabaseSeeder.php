@@ -14,7 +14,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        \DB::table('media')->truncate();
+        DB::table('media')->truncate();
+        DB::table('gambar_depan')->truncate();
+        DB::table('documents')->truncate();
+
+        DB::table('gambar_depan')->insert([
+            'nama' => 'Eka Yuliesda Akbari, S.T., M.T',
+            'link' => asset('img/Gambar Section 1.png'),
+            'created_at' => now(),
+        ]);
+
+        for ($i = 0; $i < 5; $i++) {
+            DB::table('documents')->insert([
+                'title' => \Str::random(10),
+                'path' => \Str::random(20),
+                'created_at' => now(),
+            ]);
+        }
 
         $this->call([
             UserSeeder::class,

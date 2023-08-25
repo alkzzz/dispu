@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h2 class="pb-2 border-bottom border-dark">Dashboard</h2>
+        @if (session()->has('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="row">
             <h3 class="col-12 mt-4 fst-italic">Selamat Datang, {{ auth()->user()->name }}</h3>
             <hr>
@@ -69,6 +74,7 @@
                     </div>
                 </a>
             </div>
+
         </div>
         <hr>
         <div class="row mt-4">
@@ -184,17 +190,16 @@
                 <div class="col-lg-4">
                     <a href="{{ route('dashboard.backup') }}" class="text-decoration-none">
                         <div class="card border-info mb-3">
-                            <div class="fs-4 card-header bg-info text-white text-center">Backup</div>
+                            <div class="fs-4 card-header bg-info text-white text-center">Dokumen</div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6 d-flex align-items-center justify-content-center">
-                                        <i class="fa-solid fa-database text-info" style="font-size:8rem"></i>
+                                        <i class="fa-solid fa-file text-info" style="font-size:8rem"></i>
                                     </div>
                                     <div class="col-6 d-flex align-items-center justify-content-center">
                                         <div>
-                                            <h5 class="card-title mb-0 text-info">Backup Terakhir</h5>
-                                            <p class="display-4 mb-0 text-info">{{ $day_backup }}</p>
-                                            <p class="text-info">{{ $month_backup }} {{ $year_backup }}</p>
+                                            <h5 class="card-title mb-0 text-info">Jumlah Dokumen</h5>
+                                            <p class="display-4 mb-0 text-info">{{ $total_documents }}</p>
                                         </div>
                                     </div>
                                 </div>

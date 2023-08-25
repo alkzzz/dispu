@@ -7,7 +7,8 @@
                     <ul class="nav flex-column">
                         @foreach ($linkSplit as $link)
                             <li class="nav-item mb-2"><a href="{{ $link->url }}" target="_blank"
-                                    class="nav-link p-0 text-light">{{ $link->title }}</a></li>
+                                    class="nav-link p-0 text-light" style="font-size:0.9rem">{{ $link->title }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>

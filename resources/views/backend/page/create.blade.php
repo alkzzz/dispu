@@ -48,6 +48,15 @@
                     <label for="content" class="form-label">Isi Halaman</label>
                     <textarea class="form-control" id="content" rows="3" name="content"></textarea>
                 </div>
+                <div>
+                    <p class="my-0 py-0 text-primary" style="font-size:0.8rem">Untuk meupload link Youtube harap menghapus
+                        teks setelah
+                        simbol &</p>
+                    <p class="mb-3 text-primary" style="font-size:0.8rem">Contoh:
+                        https://www.youtube.com/watch?v=ACtuNpcyJNg&ab_channel=SAJADAHHIJAU
+                        menjadi
+                        https://www.youtube.com/watch?v=ACtuNpcyJNg</p>
+                </div>
                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
                 <a class="btn btn-danger" href="{{ route('dashboard.halaman.index') }}" role="button"><i
                         class="fa-solid fa-ban"></i> Cancel</a>

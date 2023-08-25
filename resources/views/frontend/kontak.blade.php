@@ -5,7 +5,7 @@
 @section('extra_css')
     <style>
         .blue-icon {
-        color: #007bff;
+            color: #007bff;
         }
     </style>
 @endsection
@@ -30,7 +30,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container my-5">
         <h2 class="pb-2 border-bottom border-2 black" style="margin-bottom: 2rem">Kontak Kami</h2>
         <div class="row">
             <div class="col-md-4">

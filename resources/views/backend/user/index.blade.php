@@ -1,7 +1,5 @@
 @extends('layouts.backend.layout')
 
-
-
 @section('content')
     <h2 class="pb-2 border-bottom border-dark">User</h2>
 
@@ -40,7 +38,7 @@
                                         class="fa-solid fa-unlock-keyhole"></i>
                                     Reset Password</button>
                             </form>
-                            <form id="userDelete-{{ $user->id }}"
+                            {{-- <form id="userDelete-{{ $user->id }}"
                                 class="d-inline"action="{{ route('dashboard.user.delete', $user->id) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -48,7 +46,7 @@
                                     class="btn btn-danger btn-sm confirmDelete" type="button"><i
                                         class="fa-solid fa-trash-can"></i>
                                     Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @empty

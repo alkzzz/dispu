@@ -60,4 +60,25 @@ class Post extends Model implements HasMedia, Viewable
             'content' => $this->content,
         ];
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function updates()
+    {
+        return $this->hasMany(Update::class);
+    }
+
+    public function latestUpdate()
+    {
+        return $this->hasOne(Update::class)->latest();
+    }
+
+    public function userOfLatestUpdate()
+    {
+        return $this->hasOneThrough(User::class, Update::class)
+            ->latest('updates.updated_at');
+    }
 }

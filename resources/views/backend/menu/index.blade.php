@@ -66,7 +66,7 @@
                                 <form id="formAddMenuPage" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
 
-                                    @if(!$pages->isEmpty())
+                                    @if (!$pages->isEmpty())
                                         @foreach ($pages as $page)
                                             <div class="form-check">
                                                 <input class="form-check-input addMenu" name="page_menu[]" type="checkbox"
@@ -79,7 +79,8 @@
                                             </div>
                                         @endforeach
                                     @else
-                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada halaman yang dibuat atau semua halaman sudah dimasukkan ke menu</p>
+                                        <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada halaman yang
+                                            dibuat atau semua halaman sudah dimasukkan ke menu</p>
                                     @endif
                                 </form>
                                 <hr>
@@ -107,20 +108,21 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @if(!$categories->isEmpty())
-                                    @foreach ($categories as $category)
-                                        <div class="form-check">
-                                            <input class="form-check-input addMenu" type="checkbox" name="category_menu[]"
-                                                value="{{ $category->id }}" id="categoryCheck">
-                                            <label class="form-check-label" for="categoryCheck">
-                                                <a href="{{ $category->url }}" target="_blank"
-                                                    rel="noopener noreferrer">{{ $category->title }}</a>
-                                            </label>
-                                            <input type="hidden" name="menu" value="1">
-                                        </div>
-                                    @endforeach
+                                    @if (!$categories->isEmpty())
+                                        @foreach ($categories as $category)
+                                            <div class="form-check">
+                                                <input class="form-check-input addMenu" type="checkbox"
+                                                    name="category_menu[]" value="{{ $category->id }}" id="categoryCheck">
+                                                <label class="form-check-label" for="categoryCheck">
+                                                    <a href="{{ $category->url }}" target="_blank"
+                                                        rel="noopener noreferrer">{{ $category->title }}</a>
+                                                </label>
+                                                <input type="hidden" name="menu" value="1">
+                                            </div>
+                                        @endforeach
                                     @else
-                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada kategori yang dibuat atau semua kategori sudah dimasukkan ke menu</p>
+                                        <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada kategori yang
+                                            dibuat atau semua kategori sudah dimasukkan ke menu</p>
                                     @endif
                                 </form>
                                 <hr>
@@ -149,20 +151,21 @@
                             <div class="accordion-body">
                                 <form id="formAddMenuLink" action="{{ route('dashboard.menu.store') }}" method="post">
                                     @csrf
-                                    @if(!$links->isEmpty())
-                                    @foreach ($links as $link)
-                                        <div class="form-check">
-                                            <input class="form-check-input addMenu" type="checkbox" name="link_menu[]"
-                                                value="{{ $link->id }}" id="linkCheck">
-                                            <label class="form-check-label" for="linkCheck">
-                                                <a href="{{ $link->url }}" target="_blank"
-                                                    rel="noopener noreferrer">{{ $link->title }}</a>
-                                            </label>
-                                            <input type="hidden" name="menu" value="1">
-                                        </div>
-                                    @endforeach
+                                    @if (!$links->isEmpty())
+                                        @foreach ($links as $link)
+                                            <div class="form-check">
+                                                <input class="form-check-input addMenu" type="checkbox"
+                                                    name="link_menu[]" value="{{ $link->id }}" id="linkCheck">
+                                                <label class="form-check-label" for="linkCheck">
+                                                    <a href="{{ $link->url }}" target="_blank"
+                                                        rel="noopener noreferrer">{{ $link->title }}</a>
+                                                </label>
+                                                <input type="hidden" name="menu" value="1">
+                                            </div>
+                                        @endforeach
                                     @else
-                                    <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada link yang dibuat atau semua link sudah dimasukkan ke menu</p>
+                                        <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada link yang dibuat
+                                            atau semua link sudah dimasukkan ke menu</p>
                                     @endif
                                 </form>
                                 <hr>
@@ -240,7 +243,11 @@
                                             @if ($menu->has_child) data-bs-target="#menu-{{ $menu->id }}" aria-expanded="false" @endif>
                                             <i class="iconMenu fa-solid fa-bars fa-lg pe-2"></i>
                                             <span id="judulmenu-{{ $menu->id }}">{{ $menu->title }}</span>
-                                            @if (strcmp($menu->title, 'Berita') and strcmp($menu->title, 'Galeri'))
+                                            @if (strcmp($menu->title, 'Berita') and
+                                                    strcmp($menu->title, 'Galeri') and
+                                                    strcmp($menu->title, 'Layanan') and
+                                                    strcmp($menu->title, 'Dokumen') and
+                                                    strcmp($menu->title, 'Kontak'))
                                                 <i data-id={{ $menu->id }}
                                                     class="fa-regular fa-circle-xmark fa-lg delete-menu-icon"></i>
                                                 <form id="deleteMenu-{{ $menu->id }}"
@@ -270,6 +277,7 @@
                                                                         @if (isset($child)) id="judulmenu-{{ $child->id }}">
                                                                         {{ $child->title }}
                                                                     </span>
+                                                                    @if (strcmp($child->title, 'Konsultasi Jasa Konstruksi'))
                                                                     <i data-id={{ $child->id }} data-type="submenu"
                                                                         class="fa-regular fa-circle-xmark fa-xl delete-menu-icon"></i>
                                                                         <form id="deleteSubMenu-{{ $child->id }}"
@@ -278,7 +286,8 @@
                                                                             @csrf
                                                                             @method('delete')
                                                                         </form> @endif
-                                                                        </button>
+                                                                        @endif
+                                                                </button>
                                                             </h2>
                                                         </div>
                                                     @endforeach

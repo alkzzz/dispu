@@ -112,13 +112,14 @@
                                 <p class="lead" style="text-align: justify">{!! \Str::words($sambutan->content, 133) !!}
                                 </p>
                                 <p><b>Kepala Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</b></p>
-                                <p><b>Eka Yuliesda Akbari, ST, MT</b></p>
+                                <p><b>{{ $gambardepan->nama }}</b></p>
                                 <a class="btn btn-primary btn-lg" href="{{ url('sambutan-kepala-dinas') }}"
                                     role="button">Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
                             </div>
                         </div>
                         <div class="col-md-6 order-1 d-flex justify-content-center px-0">
-                            <img src="{{ asset('img/Gambar Section 1.png') }}" alt="Jumbotron Image" class="img-fluid">
+                            <img src="@if ($gambardepan) {{ asset($gambardepan->link) }} @else  {{ asset('img/Gambar Section 1.png') }} @endif"
+                                alt="Kepala Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru" class="img-fluid">
                         </div>
                     </div>
                 </div>

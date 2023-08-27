@@ -30,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
         $frontmenus = Menu::orderBy('order')->get()->skip(1);
         View::share('frontmenus', $frontmenus);
 
+        $gambardepan = \DB::table('gambar_depan')->latest()->first();
+        View::share('gambardepan', $gambardepan);
+
         $footerlinks = \DB::table('footer_links')->orderBy('title')->get()->split(2);
         View::share('footerlinks', $footerlinks);
 

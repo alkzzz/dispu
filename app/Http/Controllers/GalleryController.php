@@ -39,7 +39,7 @@ class GalleryController extends Controller
         $galeri->title = $input['title'];
         $galeri->location = $input['location'];
         if ($request->hasFile('gambar')) {
-            $galeri->addMediaFromRequest('gambar')->usingName($galeri->title)->toMediaCollection('galeri');
+            $galeri->addMediaFromRequest('gambar')->usingName(substr($galeri->title, 0, 10))->toMediaCollection('galeri');
         }
         $galeri->save();
         session()->flash('message', 'Galeri baru telah ditambahkan.');

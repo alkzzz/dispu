@@ -81,7 +81,7 @@ class PostController extends Controller
         $post->save();
         $post->categories()->sync($input['category_id']);
         if ($request->hasFile('gambar')) {
-            $post->addMediaFromRequest('gambar')->usingName($post->title)->toMediaCollection('berita');
+            $post->addMediaFromRequest('gambar')->usingName(substr($post->title, 0, 10))->toMediaCollection('berita');
         }
         session()->flash('message', 'Berita baru telah ditambahkan.');
         return redirect()->route('dashboard.berita.index');
@@ -110,7 +110,7 @@ class PostController extends Controller
         $post->categories()->sync($input['category_id']);
         if ($request->hasFile('gambar')) {
             $post->clearMediaCollection('berita');
-            $post->addMediaFromRequest('gambar')->usingName($post->title)->toMediaCollection('berita');
+            $post->addMediaFromRequest('gambar')->usingName(substr($post->title, 0, 10))->toMediaCollection('berita');
         }
         session()->flash('message', 'Berita telah diupdate.');
         return redirect()->route('dashboard.berita.index');

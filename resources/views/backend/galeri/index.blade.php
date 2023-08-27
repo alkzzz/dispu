@@ -22,7 +22,7 @@
         </div>
 
         <div class="mt-4">
-            <table id="pageTable" class="table table-striped table-hover">
+            <table id="galeriTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="col">Judul Galeri</th>
@@ -33,49 +33,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($galleries as $gallery)
-                        <tr>
-                            <td class="col">{{ $gallery->title }}</td>
-                            <td class="col">{{ $gallery->location }}</td>
-                            <td class="col">
-                                <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                    data-title="{{ $gallery->title }}" data-lightbox="galeri">
-                                    <img style="width: 128px;height:72px"
-                                        src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                        class="img-thumbnail" alt="thumbnail">
-                                </a>
-                            </td>
-                            <td class="col date-column" data-order="{{ $gallery->created_at }}">
-                                {{ $gallery->created_at->translatedFormat('l, j F Y') }}<br>
-                                ({{ $gallery->created_at->diffForHumans() }})
-                            </td>
-                            <td class="col">
-                                <a class="btn btn-info btn-sm"
-                                    href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                    data-title="{{ $gallery->title }}" data-lightbox="galeri" role="button"><i
-                                        class="fa-solid fa-eye"></i>
-                                    Show</a>
-                                <a class="btn btn-warning btn-sm" href="{{ route('dashboard.galeri.edit', $gallery->id) }}"
-                                    role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                @role('Super Admin')
-                                    <form id="page-{{ $gallery->id }}"
-                                        class="d-inline"action="{{ route('dashboard.galeri.delete', $gallery->id) }}"
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button id="confirmDelete-{{ $gallery->id }}" data-id={{ $gallery->id }}
-                                            class="btn btn-danger btn-sm confirmDelete" type="button"><i
-                                                class="fa-solid fa-trash-can"></i>
-                                            Delete</button>
-                                    </form>
-                                @endrole
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">Belum ada galeri yang dibuat.</td>
-                        </tr>
-                    @endforelse
+                    @if ($galleries->count() > 0)
+                        @foreach ($galleries as $gallery)
+                            <tr>
+                                <td class="col">{{ $gallery->title }}</td>
+                                <td class="col">{{ $gallery->location }}</td>
+                                <td class="col">
+                                    <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        data-title="{{ $gallery->title }}" data-lightbox="galeri">
+                                        <img style="width: 128px;height:72px"
+                                            src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                            class="img-thumbnail" alt="thumbnail">
+                                    </a>
+                                </td>
+                                <td class="col date-column" data-order="{{ $gallery->created_at }}">
+                                    {{ $gallery->created_at->translatedFormat('l, j F Y') }}<br>
+                                    ({{ $gallery->created_at->diffForHumans() }})
+                                </td>
+                                <td class="col">
+                                    <a class="btn btn-info btn-sm"
+                                        href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        data-title="{{ $gallery->title }}" data-lightbox="galeri" role="button"><i
+                                            class="fa-solid fa-eye"></i>
+                                        Show</a>
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('dashboard.galeri.edit', $gallery->id) }}" role="button"><i
+                                            class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    @role('Super Admin')
+                                        <form id="galeri-{{ $gallery->id }}"
+                                            class="d-inline"action="{{ route('dashboard.galeri.delete', $gallery->id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button id="confirmDelete-{{ $gallery->id }}" data-id={{ $gallery->id }}
+                                                class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                                    class="fa-solid fa-trash-can"></i>
+                                                Delete</button>
+                                        </form>
+                                    @endrole
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -97,7 +96,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#pageTable').DataTable({
+            $('#galeriTable').DataTable({
                 columnDefs: [{
                     targets: 'date-column',
                     type: 'date',
@@ -108,8 +107,8 @@
             });
             $('.confirmDelete').click(function(e) {
                 let id = $(this).data('id');
-                let formpage = $('#page-' + id);
-                console.log(formpage);
+                let formgaleri = $('#galeri-' + id);
+                console.log(formgaleri);
                 Swal.fire({
                     title: 'Hapus galeri?',
                     text: "Apakah anda yakin akan menghapus galeri ini?",
@@ -121,7 +120,7 @@
                     cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        formpage.submit();
+                        formgaleri.submit();
                     }
                 })
             });

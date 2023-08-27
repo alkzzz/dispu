@@ -1,6 +1,10 @@
 @extends('layouts.frontend.layout')
 
 @section('extra_css')
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
+        defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('lightbox/css/lightbox.min.css') }}">
     <style>
         #carouselControls .carousel-item img {
@@ -47,6 +51,10 @@
 
         .card-title {
             color: black;
+        }
+
+        .img-fluid.icon:hover {
+            cursor: pointer;
         }
 
         @media (max-width: 767.98px) {
@@ -287,40 +295,59 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid mt-4 py-4" style="background: #FFF5CC">
-        <div class="container mb-3">
-            <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
-            @foreach ($galleries->chunk(3) as $galleryChunk)
-                <div class="row d-flex justify-content-center align-items-center">
-                    @foreach ($galleryChunk as $gallery)
-                        <div class="col-md-4 col-sm-12 g-3">
-                            <div class="card border-dark">
-                                <img src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                    class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
-                                <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                    data-title="{{ $gallery->title }}" data-lightbox="galeri">
-                                    <div class="card-img-overlay d-flex flex-column align-items-start">
-                                        <div class="caption-overlay">
-                                            <p class="card-text fw-semibold text-white mt-auto lead"
-                                                style="line-height: 1.3rem">
-                                                {{ $gallery->title }}
-                                                <br><span style="font-size: 0.8rem;font-weight: 300"><i
-                                                        class="fa-solid fa-location-dot" style="color: #ff0000;"></i>
-                                                    {{ $gallery->location }}</span>
-                                            </p>
+    <div class="row mt-4">
+        <div class="py-5 swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4"
+            data-slider-nav-autoplay-interval="2000" style="background-color: transparent">
+            <div class="slider-container">
+                @foreach ($linkicons as $linkicon)
+                    <div>
+                        <img class="img-fluid" alt="{{ $linkicon->title }}"
+                            src="@if ($linkicon->getFirstMediaUrl('link-icon', 'preview')) {{ $linkicon->getFirstMediaUrl('link-icon', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                            onclick="window.open('{{ $linkicon->url }}', '_blank');">
+                    </div>
+                @endforeach
+            </div>
+            <button type="button" class="slider-nav" aria-label="Go left"></button>
+            <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="container-fluid" style="background: #FFF5CC">
+            <div class="container mb-3 mt-3">
+                <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
+                @foreach ($galleries->chunk(3) as $galleryChunk)
+                    <div class="row d-flex justify-content-center align-items-center">
+                        @foreach ($galleryChunk as $gallery)
+                            <div class="col-md-4 col-sm-12 g-3">
+                                <div class="card border-dark">
+                                    <img src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
+                                    <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        data-title="{{ $gallery->title }}" data-lightbox="galeri">
+                                        <div class="card-img-overlay d-flex flex-column align-items-start">
+                                            <div class="caption-overlay">
+                                                <p class="card-text fw-semibold text-white mt-auto lead"
+                                                    style="line-height: 1.3rem">
+                                                    {{ $gallery->title }}
+                                                    <br><span style="font-size: 0.8rem;font-weight: 300"><i
+                                                            class="fa-solid fa-location-dot" style="color: #ff0000;"></i>
+                                                        {{ $gallery->location }}</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center py-2 mt-3">
-                    <a name="" id="" class="btn btn-lg btn-primary"
-                        href="{{ route('frontend.galeri.index') }}" role="button">Lihat Semua Galeri <i
-                            class="fa-solid fa-arrow-right-long"></i></a>
+                        @endforeach
+                    </div>
+                @endforeach
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center py-2 mt-3">
+                        <a name="" id="" class="btn btn-lg btn-primary"
+                            href="{{ route('frontend.galeri.index') }}" role="button">Lihat Semua Galeri <i
+                                class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

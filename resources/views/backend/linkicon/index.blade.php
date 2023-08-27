@@ -2,10 +2,11 @@
 
 @section('extra_css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('lightbox/css/lightbox.min.css') }}">
 @endsection
 
 @section('content')
-    <h2 class="pb-2 border-bottom border-dark">Halaman Statis</h2>
+    <h2 class="pb-2 border-bottom border-dark">Link Icon</h2>
 
     <div class="row mt-3">
         <!-- Display messages -->
@@ -16,46 +17,46 @@
         @endif
 
         <div class="col">
-            <a href="{{ route('dashboard.halaman.create') }}" class="btn btn-success"><i
+            <a href="{{ route('dashboard.link-icon.create') }}" class="btn btn-success"><i
                     class="fa-solid fa-circle-plus"></i>
                 Tambah</a>
         </div>
 
         <div class="mt-4">
-            <table id="pageTable" class="table table-striped table-hover">
+            <table id="link-iconTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="col">Judul Halaman</th>
-                        <th class="col">Tanggal Dibuat</th>
-                        <th class="col">Terakhir Diupdate</th>
-                        <th class="col">Aksi</th>
+                        <th class="col-4">Judul Link</th>
+                        <th class="col-4">Alamat URL</th>
+                        <th class="col-2">Icon</th>
+                        <th class="col-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($pages->count() > 0)
-                        @foreach ($pages as $page)
+                    @if ($linkicons->count() > 0)
+                        @foreach ($linkicons as $linkicon)
                             <tr>
-                                <td class="col">{{ $page->title }}</td>
-                                <td class="col">{{ $page->created_at->translatedFormat('l, j F Y') }}<br>
-                                    ({{ $page->created_at->diffForHumans() }})
-                                </td>
-                                <td class="col">{{ $page->updated_at->translatedFormat('l, j F Y') }}<br>
-                                    ({{ $page->updated_at->diffForHumans() }})
+                                <td class="col">{{ $linkicon->title }}</td>
+                                <td class="col">{{ $linkicon->url }}</td>
+                                <td class="col">
+                                    <a href="@if ($linkicon->getFirstMediaUrl('link-icon', 'large')) {{ $linkicon->getFirstMediaUrl('link-icon', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        data-title="{{ $linkicon->title }}" data-lightbox="link-icon">
+                                        <img style="width: 128px;height:72px"
+                                            src="@if ($linkicon->getFirstMediaUrl('link-icon', 'preview')) {{ $linkicon->getFirstMediaUrl('link-icon', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                            class="img-thumbnail" alt="thumbnail">
+                                    </a>
                                 </td>
                                 <td class="col">
-                                    <a class="btn btn-info btn-sm" href="{{ route('dashboard.halaman.show', $page->id) }}"
-                                        role="button"><i class="fa-solid fa-eye"></i>
-                                        Show</a>
                                     <a class="btn btn-warning btn-sm"
-                                        href="{{ route('dashboard.halaman.edit', $page->id) }}" role="button"><i
+                                        href="{{ route('dashboard.link-icon.edit', $linkicon->id) }}" role="button"><i
                                             class="fa-solid fa-pen-to-square"></i> Edit</a>
                                     @role('Super Admin')
-                                        <form id="page-{{ $page->id }}"
-                                            class="d-inline"action="{{ route('dashboard.halaman.delete', $page->id) }}"
+                                        <form id="link-icon-{{ $linkicon->id }}"
+                                            class="d-inline"action="{{ route('dashboard.link-icon.delete', $linkicon->id) }}"
                                             method="post">
                                             @csrf
                                             @method('delete')
-                                            <button id="confirmDelete-{{ $page->id }}" data-id={{ $page->id }}
+                                            <button id="confirmDelete-{{ $linkicon->id }}" data-id={{ $linkicon->id }}
                                                 class="btn btn-danger btn-sm confirmDelete" type="button"><i
                                                     class="fa-solid fa-trash-can"></i>
                                                 Delete</button>
@@ -76,16 +77,31 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ asset('lightbox/js/lightbox.min.js') }}"></script>
+    <script>
+        lightbox.option({
+            'maxWidth': 1280,
+            'fitImagesInViewport': true,
+            'wrapAround': true
+        })
+    </script>
     <script>
         $(document).ready(function() {
-            $('#pageTable').DataTable();
+            $('#link-iconTable').DataTable({
+                columnDefs: [{
+                    targets: 'date-column',
+                    type: 'date',
+                }],
+                order: [
+                    [2, 'desc']
+                ]
+            });
             $('.confirmDelete').click(function(e) {
                 let id = $(this).data('id');
-                let formpage = $('#page-' + id);
-                console.log(formpage);
+                let formlinkicon = $('#link-icon-' + id);
                 Swal.fire({
-                    title: 'Hapus halaman?',
-                    text: "Apakah anda yakin akan menghapus halaman ini?",
+                    title: 'Hapus Link Icon?',
+                    text: "Apakah anda yakin akan menghapus link icon ini?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -94,7 +110,7 @@
                     cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        formpage.submit();
+                        formlinkicon.submit();
                     }
                 })
             });

@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         DB::table('media')->truncate();
         DB::table('gambar_depan')->truncate();
         DB::table('documents')->truncate();
+        DB::table('saran')->truncate();
+        DB::table('link_icons')->truncate();
 
         DB::table('gambar_depan')->insert([
             'nama' => 'Eka Yuliesda Akbari, S.T., M.T',
@@ -24,13 +26,14 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
         ]);
 
-        for ($i = 0; $i < 5; $i++) {
-            DB::table('documents')->insert([
-                'title' => \Str::random(10),
-                'path' => \Str::random(20),
-                'created_at' => now(),
+        for ($i = 0; $i < 20; $i++) {
+            DB::table('saran')->insert([
+                'nama' => \Str::random(10),
+                'isi' => \Str::random(100),
+                'created_at' => now()->subDays(rand(1, 55)),
             ]);
         }
+
 
         $this->call([
             UserSeeder::class,
@@ -43,6 +46,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             SocmedSeeder::class,
             FooterLinkSeeder::class,
+            LinkIconSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

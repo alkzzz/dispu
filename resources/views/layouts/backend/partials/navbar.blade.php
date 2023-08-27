@@ -80,6 +80,14 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file-image"></i></div>
                                 Foto Depan
                             </a>
+                            <a class="nav-link" href="{{ route('dashboard.link-icon.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-icons"></i></div>
+                                Link Icon
+                            </a>
+                            <a class="nav-link" href="{{ route('dashboard.saran.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-comments"></i></div>
+                                Kotak Saran
+                            </a>
                             <a class="nav-link" href="{{ route('dashboard.backup') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
                                 Backup

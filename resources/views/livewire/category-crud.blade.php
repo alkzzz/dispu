@@ -42,24 +42,21 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($categories as $category)
-                <tr>
-                    <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $category->title }}</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" wire:click="edit({{ $category->id }})"><i
-                                class="fa-solid fa-pen-to-square"></i> Edit</button>
-                        @role('Super Admin')
-                            <button class="btn btn-danger btn-sm" wire:click="delete({{ $category->id }})"><i
-                                    class="fa-solid fa-trash-can"></i> Delete</button>
-                        @endrole
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="3">Belum ada kategori yang dibuat.</td>
-                </tr>
-            @endforelse
+            @if ($categories->count() > 0)
+                @foreach ($categories as $category)
+                    <tr>
+                        <td>{{ $loop->index + 1 }}</td>
+                        <td>{{ $category->title }}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" wire:click="edit({{ $category->id }})"><i
+                                    class="fa-solid fa-pen-to-square"></i> Edit</button>
+                            @role('Super Admin')
+                                <button class="btn btn-danger btn-sm" wire:click="delete({{ $category->id }})"><i
+                                        class="fa-solid fa-trash-can"></i> Delete</button>
+                            @endrole
+                        </td>
+                    </tr>
+                @endforeach
         </tbody>
     </table>
 </div>

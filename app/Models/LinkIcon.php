@@ -9,13 +9,13 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Image\Manipulations;
 
-class Gallery extends Model implements HasMedia
+class LinkIcon extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'title',
-        'location'
+        'url'
     ];
 
     public function registerMediaConversions(Media $media = null): void

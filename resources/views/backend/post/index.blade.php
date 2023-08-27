@@ -16,8 +16,10 @@
         @endif
 
         <div class="col">
-            <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
-                Tambah</a>
+            @role('Admin Bidang')
+                <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
+                    Tambah</a>
+            @endrole
         </div>
         <div class="mt-4">
             <table id="postTable" class="table table-striped table-hover">
@@ -32,58 +34,57 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($posts as $post)
-                        <tr>
-                            <td class="col">{{ $post->title }}</td>
-                            <td class="col">
-                                <img style="width: 80px;height:80px"
-                                    src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                    class="img-thumbnail" alt="thumbnail">
-                            </td>
-                            <td class="col text-center">
-                                @if ($post->featured)
-                                    <i class="text-primary fa-regular fa-square-check fa-xl"></i>
-                                @else
-                                    <i class="text-danger fa-regular fa-circle-xmark fa-xl"></i>
-                                @endif
-                            </td>
-                            <td class="col date-column" data-order="{{ $post->created_at }}">
-                                {{ $post->created_at->translatedFormat('l, j F Y') }}<br>
-                                ({{ $post->created_at->diffForHumans() }})
-                            </td>
-                            <td class="col">
-                                @php $color = ['warning', 'danger', 'info', 'success', 'primary'] @endphp
-                                <div class="text-wrap" style="max-width: 12rem;">
-                                    @foreach ($post->categories as $category)
-                                        <p style="font-size: 0.7rem"
-                                            class="badge rounded-pill text-bg-{{ $color[$loop->index] }} my-0">
-                                            {{ $category->title }}
-                                        </p>
-                                    @endforeach
-                                </div>
-                            </td>
-                            <td class="col">
-                                <a class="btn btn-info btn-sm" href="{{ route('dashboard.berita.show', $post->id) }}"
-                                    role="button"><i class="fa-solid fa-eye"></i>
-                                    Show</a>
-                                <a class="btn btn-warning btn-sm" href="{{ route('dashboard.berita.edit', $post->id) }}"
-                                    role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <form id="post-{{ $post->id }}" class="d-inline"
-                                    action="{{ route('dashboard.berita.delete', $post->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button id="confirmDelete-{{ $post->id }}" data-id={{ $post->id }}
-                                        class="btn btn-danger btn-sm confirmDelete" type="button"><i
-                                            class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">Belum ada berita yang dibuat.</td>
-                        </tr>
-                    @endforelse
+                    @if ($posts->count() > 0)
+                        @foreach ($posts as $post)
+                            <tr>
+                                <td class="col">{{ $post->title }}</td>
+                                <td class="col">
+                                    <img style="width: 80px;height:80px"
+                                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                                        class="img-thumbnail" alt="thumbnail">
+                                </td>
+                                <td class="col text-center">
+                                    @if ($post->featured)
+                                        <i class="text-primary fa-regular fa-square-check fa-xl"></i>
+                                    @else
+                                        <i class="text-danger fa-regular fa-circle-xmark fa-xl"></i>
+                                    @endif
+                                </td>
+                                <td class="col date-column" data-order="{{ $post->created_at }}">
+                                    {{ $post->created_at->translatedFormat('l, j F Y') }}<br>
+                                    ({{ $post->created_at->diffForHumans() }})
+                                </td>
+                                <td class="col">
+                                    @php $color = ['warning', 'danger', 'info', 'success', 'primary'] @endphp
+                                    <div class="text-wrap" style="max-width: 12rem;">
+                                        @foreach ($post->categories as $category)
+                                            <p style="font-size: 0.7rem"
+                                                class="badge rounded-pill text-bg-{{ $color[$loop->index] }} my-0">
+                                                {{ $category->title }}
+                                            </p>
+                                        @endforeach
+                                    </div>
+                                </td>
+                                <td class="col">
+                                    <a class="btn btn-info btn-sm" href="{{ route('dashboard.berita.show', $post->id) }}"
+                                        role="button"><i class="fa-solid fa-eye"></i>
+                                        Show</a>
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('dashboard.berita.edit', $post->id) }}" role="button"><i
+                                            class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    <form id="post-{{ $post->id }}" class="d-inline"
+                                        action="{{ route('dashboard.berita.delete', $post->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button id="confirmDelete-{{ $post->id }}" data-id={{ $post->id }}
+                                            class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                                class="fa-solid fa-trash-can"></i>
+                                            Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

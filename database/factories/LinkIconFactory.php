@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LinkIcon>
  */
-class CategoryFactory extends Factory
+class LinkIconFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => ucfirst(fake()->country()),
-            'url' => fake()->url(),
+            'title' => ucwords(fake()->sentence(6)),
+            'url' => fake()->url,
         ];
     }
 }

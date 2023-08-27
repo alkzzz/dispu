@@ -22,6 +22,8 @@ Route::get('/', HomePageController::class)->name('index');
 Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
 #Galeri
 Route::get('/galeri', [App\Http\Controllers\GalleryController::class, 'frontend_index'])->name('frontend.galeri.index');
+#Saran
+Route::post('/saran/kirim', [App\Http\Controllers\SaranController::class, 'kirim'])->name('frontend.kirim.saran');
 #Dokumen
 Route::get('/daftar-dokumen', [App\Http\Controllers\DocumentController::class, 'frontend_index'])->name('dokumen');
 Route::get('/dokumen/download/{id}', [App\Http\Controllers\DocumentController::class, 'download'])->name('dokumen.download');
@@ -37,7 +39,6 @@ Route::get('/kontak', function () {
 Route::get('/search', function (Request $request) {
     $query = $request->q;
     $results = \App\Models\Post::search($query)->paginate(3)->appends(['q' => $query]);;
-    // dd($results->count());
     return view('frontend.search-results', compact('query', 'results'));
 })->name('search');
 
@@ -131,6 +132,15 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
         }
         return redirect()->route('dashboard');
     })->name('dashboard.gambar-depan.store');
+    #Link Icon
+    Route::get('/dashboard/link-icon', [App\Http\Controllers\LinkIconController::class, 'index'])->name('dashboard.link-icon.index');
+    Route::get('/dashboard/link-icon/create', [App\Http\Controllers\LinkIconController::class, 'create'])->name('dashboard.link-icon.create');
+    Route::post('/dashboard/link-icon/store', [App\Http\Controllers\LinkIconController::class, 'store'])->name('dashboard.link-icon.store');
+    Route::get('/dashboard/link-icon/edit/{id}', [App\Http\Controllers\LinkIconController::class, 'edit'])->name('dashboard.link-icon.edit');
+    Route::put('/dashboard/link-icon/update/{id}', [App\Http\Controllers\LinkIconController::class, 'update'])->name('dashboard.link-icon.update');
+    Route::delete('/dashboard/link-icon/delete/{id}', [App\Http\Controllers\LinkIconController::class, 'delete'])->name('dashboard.link-icon.delete');
+    #Kotak Saran
+    Route::get('/dashboard/saran', [App\Http\Controllers\SaranController::class, 'index'])->name('dashboard.saran.index');
     #Backup
     Route::get('/dashboard/backup', function () {
         return view('backend.backup');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Gallery;
+use App\Models\LinkIcon;
 
 class HomePageController extends Controller
 {
@@ -18,9 +19,10 @@ class HomePageController extends Controller
         $featured = Post::where('hidden', false)->where('featured', true)->latest()->get();
         $latest = Post::where('hidden', false)->latest()->take(3)->get();
         $galleries = Gallery::latest()->take(6)->get();
+        $linkicons = LinkIcon::orderBy('title')->get();
 
         views($home)->record();
 
-        return view('frontend.index', compact('sambutan', 'featured', 'latest', 'galleries'));
+        return view('frontend.index', compact('sambutan', 'featured', 'latest', 'galleries', 'linkicons'));
     }
 }

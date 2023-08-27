@@ -31,35 +31,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($documents as $document)
-                        @php $tanggal = Carbon\Carbon::parse($document->created_at) @endphp
-                        <tr>
-                            <td class="col">{{ $document->title }}</td>
-                            <td class="col">
-                                {{ $tanggal->translatedFormat('l, j F Y') }}<br>
-                                ({{ $tanggal->diffForHumans() }})
-                            </td>
-                            <td class="col">
-                                <a class="btn btn-warning btn-sm"
-                                    href="{{ route('dashboard.dokumen.edit', $document->id) }}" role="button"><i
-                                        class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                <form id="document-{{ $document->id }}"
-                                    class="d-inline"action="{{ route('dashboard.dokumen.delete', $document->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button id="confirmDelete-{{ $document->id }}" data-id={{ $document->id }}
-                                        class="btn btn-danger btn-sm confirmDelete" type="button"><i
-                                            class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">Belum ada dokumen yang dibuat.</td>
-                        </tr>
-                    @endforelse
+                    @if ($documents->count() > 0)
+                        @foreach ($documents as $document)
+                            @php $tanggal = Carbon\Carbon::parse($document->created_at) @endphp
+                            <tr>
+                                <td class="col">{{ $document->title }}</td>
+                                <td class="col">
+                                    {{ $tanggal->translatedFormat('l, j F Y') }}<br>
+                                    ({{ $tanggal->diffForHumans() }})
+                                </td>
+                                <td class="col">
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('dashboard.dokumen.edit', $document->id) }}" role="button"><i
+                                            class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    <form id="document-{{ $document->id }}"
+                                        class="d-inline"action="{{ route('dashboard.dokumen.delete', $document->id) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button id="confirmDelete-{{ $document->id }}" data-id={{ $document->id }}
+                                            class="btn btn-danger btn-sm confirmDelete" type="button"><i
+                                                class="fa-solid fa-trash-can"></i>
+                                            Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

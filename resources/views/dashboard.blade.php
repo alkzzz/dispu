@@ -74,7 +74,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
         <hr>
         <div class="row mt-4">

@@ -27,8 +27,9 @@ class PostController extends Controller
     # Backend
     public function index()
     {
-        $bidang_user = \Auth::user()->bidang;
-        if (\Auth::user()->bidang != 'Super Admin') {
+        $bidang_user = optional(\Auth::user()->bidang)->title;
+        $role = \Auth::user()->roles[0];
+        if ($role->name != 'Super Admin') {
             $posts = Post::with('categories')
                 ->where('hidden', false)
                 ->whereHas('categories', function ($query) use ($bidang_user) {
@@ -53,7 +54,7 @@ class PostController extends Controller
 
     public function create()
     {
-        $bidang_user = \Auth::user()->bidang;
+        $bidang_user = optional(\Auth::user()->bidang)->title;
         $kategori_user = Category::where('title', $bidang_user)->pluck('id');
 
         $categories = Category::where('id', '>', 6)->orderBy('title')->get();
@@ -68,7 +69,7 @@ class PostController extends Controller
             'content' => ['required']
         ]);
 
-        $bidang_user = \Auth::user()->bidang;
+        $bidang_user = optional(\Auth::user()->bidang)->title;
         $kategori_id = Category::where('title', $bidang_user)->first()->id;
         array_unshift($input['category_id'], $kategori_id);;
 
@@ -91,8 +92,11 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        $post_categories = $post->categories()->get();
-        return view('backend.post.edit', compact('categories', 'post'));
+        $post_categories = [];
+        foreach ($post->categories as $value) {
+            $post_categories[] = $value->pivot->category_id;
+        }
+        return view('backend.post.edit', compact('categories', 'post', 'post_categories'));
     }
 
     public function update(Request $request, $id): RedirectResponse

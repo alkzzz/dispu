@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('id_bidang')->nullable();
+            $table->foreign('id_bidang')->references('id')->on('bidang')->onDelete('cascade');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('bidang');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

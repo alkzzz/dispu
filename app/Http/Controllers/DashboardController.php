@@ -23,9 +23,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $bidang_user = optional(\Auth::user()->bidang)->title;
+        $role = \Auth::user()->roles[0];
+        if ($role->name == 'Super Admin') {
+            $total_posts = \App\Models\Post::count();
+        } else {
+            $total_posts = \App\Models\Post::with('categories')
+                ->where('hidden', false)
+                ->whereHas('categories', function ($query) use ($bidang_user) {
+                    $query->where('title', $bidang_user);
+                })
+                ->count();
+        }
+
         $total_pages = \App\Models\Page::count();
         $total_categories = \App\Models\Category::count();
-        $total_posts = \App\Models\Post::count();
+
         $total_links = \App\Models\Link::count();
         $total_galleries = \App\Models\Gallery::count();
         $total_related_links = \DB::table('footer_links')->count();

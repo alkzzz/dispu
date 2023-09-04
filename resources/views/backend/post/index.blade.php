@@ -16,10 +16,10 @@
         @endif
 
         <div class="col">
-            @role('Admin Bidang')
-                <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
-                    Tambah</a>
-            @endrole
+            {{-- @role('Admin Bidang') --}}
+            <a href="{{ route('dashboard.berita.create') }}" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i>
+                Tambah</a>
+            {{-- @endrole --}}
         </div>
         <div class="mt-4">
             <table id="postTable" class="table table-striped table-hover">

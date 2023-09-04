@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Bidang;
 use App\Models\Page;
 use App\Models\Category;
 use App\Models\Link;
@@ -16,14 +17,16 @@ class MenuController extends Controller
      */
     public function index()
     {
+        $bidang_menu_list = Menu::where('type', 'bidang')->pluck('type_id');
         $page_menu_list = Menu::where('type', 'page')->pluck('type_id');
         $category_menu_list = Menu::where('type', 'category')->pluck('type_id');
         $link_menu_list = Menu::where('type', 'link')->pluck('type_id');
+        $bidangs = Bidang::whereNotIn('id', $bidang_menu_list)->orderBy('title')->get();
         $pages = Page::whereNotIn('id', $page_menu_list)->orderBy('title')->get();
         $categories = Category::whereNotIn('id', $category_menu_list)->orderBy('title')->get();
         $links = Link::whereNotIn('id', $link_menu_list)->orderBy('title')->get();
         $menus = Menu::orderBy('order')->get();
-        return view('backend.menu.index', compact('pages', 'categories', 'links', 'menus'));
+        return view('backend.menu.index', compact('bidangs', 'pages', 'categories', 'links', 'menus'));
     }
 
     public function sort(Request $request): RedirectResponse
@@ -51,7 +54,17 @@ class MenuController extends Controller
     {
         $input = $request->all();
         if ($request->has('menu')) {
-            if (!empty($input['page_menu'])) {
+            if (!empty($input['bidang_menu'])) {
+                $bidangs = bidang::whereIn('id', $input['bidang_menu'])->get();
+                foreach ($bidangs as $bidang) {
+                    Menu::create([
+                        'title' => $bidang->title,
+                        'type' => 'bidang',
+                        'type_id' => $bidang->id,
+                        'url' => $bidang->url
+                    ]);
+                }
+            } else if (!empty($input['page_menu'])) {
                 $pages = Page::whereIn('id', $input['page_menu'])->get();
                 foreach ($pages as $page) {
                     Menu::create([
@@ -83,7 +96,24 @@ class MenuController extends Controller
                 }
             }
         } elseif ($request->has('submenu')) {
-            if ($input['type'] == 'page') {
+            if ($input['type'] == 'bidang') {
+                $parent = Menu::find($input['parent_id']);
+                $childArray = $parent->child ?? [];
+                $bidangs = Bidang::whereIn('id', $input['selected'])->get();
+                foreach ($bidangs as $bidang) {
+                    $child = new Menu;
+                    $child->title = $bidang->title;
+                    $child->type = 'bidang';
+                    $child->type_id = $bidang->id;
+                    $child->url = $bidang->url;
+                    $child->parent_id = $input['parent_id'];
+                    $child->save();
+                    $childArray[] = $child->id;
+                }
+                $parent->has_child = true;
+                $parent->child = $childArray;
+                $parent->save();
+            } else if ($input['type'] == 'page') {
                 $parent = Menu::find($input['parent_id']);
                 $childArray = $parent->child ?? [];
                 $pages = Page::whereIn('id', $input['selected'])->get();

@@ -16,12 +16,12 @@ class LinkIconSeeder extends Seeder
 
         $linkicons = \App\Models\LinkIcon::factory()->count(10)->create();
 
-        $faker = \Faker\Factory::create();
-        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
-        $imageUrl = $faker->imageUrl(800, 600);
+        // $faker = \Faker\Factory::create();
+        // $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+        // $imageUrl = $faker->imageUrl(800, 600);
 
-        foreach ($linkicons as $linkicon) {
-            $linkicon->addMediaFromUrl($imageUrl)->toMediaCollection('link-icon');
-        }
+        // foreach ($linkicons as $linkicon) {
+        //     $linkicon->addMediaFromUrl($imageUrl)->toMediaCollection('link-icon');
+        // }
     }
 }

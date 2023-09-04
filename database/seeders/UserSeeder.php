@@ -20,55 +20,54 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'username' => 'superadmin',
             'email' => 'super@admin.com',
-            'bidang' => 'Super Admin',
             'password' => bcrypt('123456')
         ]);
 
         $adminsekretariat = User::factory()->create([
             'name' => 'Admin Bidang Sekretariat',
             'username' => 'sekretariat',
+            'id_bidang' => 1,
             'email' => 'sekretariat@admin.com',
-            'bidang' => 'Bidang Sekretariat',
             'password' => bcrypt('123456')
         ]);
 
         $adminbinamarga = User::factory()->create([
             'name' => 'Admin Bidang Bina Marga',
             'username' => 'binamarga',
+            'id_bidang' => 2,
             'email' => 'binamarga@admin.com',
-            'bidang' => 'Bidang Bina Marga',
             'password' => bcrypt('123456')
         ]);
 
         $admintataruang = User::factory()->create([
             'name' => 'Admin Bidang Tata Ruang',
             'username' => 'tataruang',
+            'id_bidang' => 3,
             'email' => 'tataruang@admin.com',
-            'bidang' => 'Bidang Tata Ruang',
             'password' => bcrypt('123456')
         ]);
 
         $adminciptakarya = User::factory()->create([
             'name' => 'Admin Bidang Cipta Karya',
             'username' => 'ciptakarya',
+            'id_bidang' => 4,
             'email' => 'ciptakarya@admin.com',
-            'bidang' => 'Bidang Cipta Karya',
             'password' => bcrypt('123456')
         ]);
 
         $adminkonstruksi = User::factory()->create([
             'name' => 'Admin Bidang Pengembangan Konstruksi',
             'username' => 'konstruksi',
+            'id_bidang' => 5,
             'email' => 'konstruksi@admin.com',
-            'bidang' => 'Bidang Pengembangan Konstruksi',
             'password' => bcrypt('123456')
         ]);
 
         $adminsda = User::factory()->create([
             'name' => 'Admin Bidang Sumber Daya Air',
             'username' => 'sumberdayaair',
+            'id_bidang' => 6,
             'email' => 'sda@admin.com',
-            'bidang' => 'Bidang Sumber Daya Air',
             'password' => bcrypt('123456')
         ]);
 

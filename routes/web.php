@@ -101,6 +101,13 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     Route::post('/dashboard/menu/store', [App\Http\Controllers\MenuController::class, 'store'])->name('dashboard.menu.store');
     Route::post('/dashboard/menu/sort', [App\Http\Controllers\MenuController::class, 'sort'])->name('dashboard.menu.sort');
     Route::delete('/dashboard/menu/delete/{id}', [App\Http\Controllers\MenuController::class, 'delete'])->name('dashboard.menu.delete');
+    #Bidang
+    Route::get('/dashboard/bidang', [App\Http\Controllers\BidangController::class, 'index'])->name('dashboard.bidang');
+    Route::get('/dashboard/bidang/create', [App\Http\Controllers\BidangController::class, 'create'])->name('dashboard.bidang.create');
+    Route::post('/dashboard/bidang/store', [App\Http\Controllers\BidangController::class, 'store'])->name('dashboard.bidang.store');
+    Route::get('/dashboard/bidang/edit/{id}', [App\Http\Controllers\BidangController::class, 'edit'])->name('dashboard.bidang.edit');
+    Route::put('/dashboard/bidang/update/{id}', [App\Http\Controllers\BidangController::class, 'update'])->name('dashboard.bidang.update');
+    Route::delete('/dashboard/bidang/delete/{id}', [App\Http\Controllers\BidangController::class, 'delete'])->name('dashboard.bidang.delete');
     #User
     Route::get('/dashboard/user', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard.user');
     Route::put('/dashboard/user/reset-password/{id}', [App\Http\Controllers\UserController::class, 'reset'])->name('dashboard.reset.password');
@@ -150,6 +157,7 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     })->name('dashboard.backup-download');
 });
 
+Route::get('/bidang/{slug}', [App\Http\Controllers\BidangController::class, 'getBidang'])->name('frontend.getBidang');
 Route::get('/kategori/{slug}', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('frontend.getCategory');
 Route::get('/berita/{slug}', [App\Http\Controllers\PostController::class, 'getPost'])->name('frontend.getPost');
 Route::get('{slug}', [App\Http\Controllers\PageController::class, 'getPage'])->name('frontend.getPage');

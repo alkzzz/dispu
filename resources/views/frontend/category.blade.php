@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-8">
                         <h3>{{ $post->title }}</h3>
-                        <p class="fs-5" style="text-align: justify">{{ \Str::words($post->content, 130) }}
+                        <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
                         </p>
                         <a class="btn btn-primary" href="{{ route('frontend.getPost', $post->slug) }}" role="button">Read
                             More <i class="fa-solid fa-angles-right"></i></a>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-8">
                         <h3>{{ $post->title }}</h3>
-                        <p class="fs-5" style="text-align: justify">{{ \Str::words($post->content, 130) }}
+                        <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
                         </p>
                         <a name="" id="" class="btn btn-primary"
                             href="{{ route('frontend.getPost', $post->slug) }}" role="button">Read More <i

@@ -39,7 +39,7 @@
                     <input type="text" class="form-control" id="title" name="title" required>
                 </div>
                 <div class="mb-3">
-                    <select name="category_id[]" class="form-select" id="kategori" multiple required>
+                    <select name="category_id[]" class="form-select" id="kategori" required>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"@if ($loop->first) selected @endif>
                                 {{ $category->title }}</option>

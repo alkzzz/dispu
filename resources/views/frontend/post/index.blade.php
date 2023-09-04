@@ -44,7 +44,7 @@
                                         ({{ $post->created_at->diffForHumans() }})
                                     </i>
                                 </p>
-                                <p class="fs-5" style="text-align: justify">{{ \Str::words($post->content, 90) }}</p>
+                                <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}</p>
                                 <ul class="px-0">
                                     @foreach ($post->categories as $category)
                                         <a class="text-decoration-none"
@@ -92,7 +92,7 @@
                                         ({{ $post->created_at->diffForHumans() }})
                                     </i>
                                 </p>
-                                <p class="fs-5" style="text-align: justify">{{ \Str::words($post->content, 90) }}</p>
+                                <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}</p>
                                 <ul class="px-0">
                                     @foreach ($post->categories as $category)
                                         <a class="text-decoration-none"

@@ -54,6 +54,49 @@
                 </div>
                 <div class="accordion" id="selectMenuItem">
                     <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingBidang">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#selectBidangMenu" aria-expanded="false" aria-controls="selectBidangMenu">
+                                Bidang
+                            </button>
+                        </h2>
+                        <div id="selectBidangMenu" class="accordion-collapse collapse" aria-labelledby="headingBidang"
+                            data-bs-parent="#selectMenuItem">
+                            <div class="accordion-body">
+                                <form id="formAddMenuBidang" action="{{ route('dashboard.menu.store') }}" method="post">
+                                    @csrf
+                                    @if (!$bidangs->isEmpty())
+                                        @foreach ($bidangs as $bidang)
+                                            <div class="form-check">
+                                                <input class="form-check-input addMenu" type="checkbox" name="bidang_menu[]"
+                                                    value="{{ $bidang->id }}" id="bidangCheck">
+                                                <label class="form-check-label" for="bidangCheck">
+                                                    <a href="{{ $bidang->url }}" target="_blank"
+                                                        rel="noopener noreferrer">{{ $bidang->title }}</a>
+                                                </label>
+                                                <input type="hidden" name="menu" value="1">
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p style="font-size:0.58rem;font-style:italic;color:red">Belum ada bidang yang
+                                            dibuat
+                                            atau semua bidang sudah dimasukkan ke menu</p>
+                                    @endif
+                                </form>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <a id="btnAddMenuBidang" class="btn btn-sm btn-primary disabled btnAddMenu"
+                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to
+                                        Menu</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#modal-submenu" data-type="bidang"
+                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#" role="button"><i
+                                            class="fa-solid fa-plus fa-sm"></i> Add
+                                        to Submenu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
                         <h2 class="accordion-header" id="headingPage">
                             <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#selectPageMenu" aria-expanded="true" aria-controls="selectPageMenu">
@@ -85,11 +128,12 @@
                                 </form>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <a id="btnAddMenuPage" class="btn btn-sm btn-primary disabled btnAddMenu" href="#"
-                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to Menu</a>
+                                    <a id="btnAddMenuPage" class="btn btn-sm btn-primary disabled btnAddMenu"
+                                        href="#" role="button"><i class="fa-solid fa-plus fa-sm"></i> Add to
+                                        Menu</a>
                                     <a data-bs-toggle="modal" data-bs-target="#modal-submenu" data-type="page"
-                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#" role="button"><i
-                                            class="fa-solid fa-plus fa-sm"></i> Add
+                                        class="btn btn-sm btn-info disabled btnAddSubMenu" href="#"
+                                        role="button"><i class="fa-solid fa-plus fa-sm"></i> Add
                                         to Submenu</a>
                                 </div>
                             </div>
@@ -97,22 +141,24 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingCategory">
-                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#selectCategoryMenu" aria-expanded="false"
+                            <button class="accordion-button collapsed fw-semibold" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#selectCategoryMenu" aria-expanded="false"
                                 aria-controls="selectCategoryMenu">
                                 Kategori
                             </button>
                         </h2>
-                        <div id="selectCategoryMenu" class="accordion-collapse collapse" aria-labelledby="headingCategory"
-                            data-bs-parent="#selectMenuItem">
+                        <div id="selectCategoryMenu" class="accordion-collapse collapse"
+                            aria-labelledby="headingCategory" data-bs-parent="#selectMenuItem">
                             <div class="accordion-body">
-                                <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}" method="post">
+                                <form id="formAddMenuCategory" action="{{ route('dashboard.menu.store') }}"
+                                    method="post">
                                     @csrf
                                     @if (!$categories->isEmpty())
                                         @foreach ($categories as $category)
                                             <div class="form-check">
                                                 <input class="form-check-input addMenu" type="checkbox"
-                                                    name="category_menu[]" value="{{ $category->id }}" id="categoryCheck">
+                                                    name="category_menu[]" value="{{ $category->id }}"
+                                                    id="categoryCheck">
                                                 <label class="form-check-label" for="categoryCheck">
                                                     <a href="{{ $category->url }}" target="_blank"
                                                         rel="noopener noreferrer">{{ $category->title }}</a>
@@ -424,6 +470,9 @@
                     $('.btnAddMenu').addClass('disabled');
                     $('.btnAddSubMenu').addClass('disabled');
                 }
+            });
+            $('#btnAddMenuBidang').on('click', function() {
+                $('#formAddMenuBidang').submit();
             });
             $('#btnAddMenuPage').on('click', function() {
                 $('#formAddMenuPage').submit();

@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PageSeeder::class,
             CategorySeeder::class,
+            BidangSeeder::class,
             LinkSeeder::class,
             PostSeeder::class,
             GallerySeeder::class,

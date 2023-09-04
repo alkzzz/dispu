@@ -40,13 +40,15 @@
                     <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">
                 </div>
                 <div class="mb-3">
-                    <select name="category_id[]" class="form-select" id="kategori" data-placeholder="Pilih Kategori"
-                        multiple>
+                    <select name="category_id[]" class="form-select" id="kategori" required>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if ($post->categories->contains($category->id)) selected @endif>
-                                {{ $category->title }}</option>
+                            <option value="{{ $category->id }}"
+                                @if ($loop->first && count($post_categories) < 2) selected
+                                @elseif (isset($post_categories[1]) && $category->id == $post_categories[1])
+                                    selected @endif>
+                                {{ $category->title }}
+                            </option>
                         @endforeach
-
                     </select>
                 </div>
                 <div class="mb-3">
@@ -71,7 +73,10 @@
                 <div class="mb-3">
                     <label for="Image" class="form-label">Upload Gambar</label>
                     <input name="gambar" class="form-control" type="file" id="formFile" onchange="preview()">
-                    <img style="width:300px;height:300px" id="frame" src="{{ $post->getFirstMediaUrl('berita') }}"
+                    <img style="width:300px;height:300px" id="frame"
+                        src="@if ($post->getFirstMediaUrl('berita')) {{ $post->getFirstMediaUrl('berita') }}
+                    @else
+                    {{ asset('img/no-image.jpg') }} @endif"
                         class="img-fluid mt-3" />
                     <a name="" id="" class="btn btn-sm btn-warning align-top mt-3 ms-2" href="#frame"
                         onclick="clearImage()"><i class="fa-solid fa-ban"></i> Hapus Gambar</a>

@@ -7,14 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css"
         rel="stylesheet" />
-    <script>
-        $.fn.poshytip = {
-            defaults: null
-        }
-    </script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js">
-    </script>
 @endsection
 
 @section('content')
@@ -58,6 +50,14 @@
 @endsection
 
 @section('extra_js')
+    <script>
+        $.fn.poshytip = {
+            defaults: null
+        }
+    </script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js">
+    </script>
     <script type="text/javascript">
         $.fn.editable.defaults.mode = 'inline';
         $.ajaxSetup({

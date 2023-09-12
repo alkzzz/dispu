@@ -76,6 +76,10 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
                                 Dokumen
                             </a>
+                            <a class="nav-link" href="{{ route('kontak.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
+                                Kontak
+                            </a>
                             <a class="nav-link" href="{{ route('dashboard.sosial-media') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                                 Media Sosial

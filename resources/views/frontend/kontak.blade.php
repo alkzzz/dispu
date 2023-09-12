@@ -16,7 +16,7 @@
         .contact-card:hover {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
-
+/*
         .contact-form button {
             background-color: #007bff;
             color: white;
@@ -29,7 +29,7 @@
 
         .contact-form button:hover {
             background-color: #0056b3;
-        }
+        } */
     </style>
 @endsection
 
@@ -68,22 +68,22 @@
             <div class="col-md-6 mb-4">
                 <div class="mb-3">
                     <h5><i class="fas fa-map-marker-alt blue-icon me-2"></i>Alamat</h5>
-                    <p>Jl. Mitra Praja No.9 Banjarbaru</p>
+                    <p class="small">{{ $contact->address }}</p>
                 </div>
 
                 <div class="mb-3">
                     <h5><i class="fas fa-envelope blue-icon me-2"></i>Email</h5>
-                    <p>admin@dispupr.banjarbarukota.go.id</p>
+                    <p class="small">{{ $contact->email }}</p>
                 </div>
 
                 <div class="mb-3">
                     <h5><i class="fas fa-phone blue-icon me-2"></i>Telepon</h5>
-                    <p>(0511) 5931688</p>
+                    <p class="small">{{ $contact->phone_number }}</p>
                 </div>
 
                 <div>
                     <h5><i class="fas fa-clock blue-icon me-2"></i>Jam Kerja</h5>
-                    <p>Senin - Kamis: 08.00 - 16.30 WITA <br>Jum'at: 09.00 - 16.30 WITA</p>
+                    <p class="small">{!! $contact->working_hours !!}</p>
                 </div>
             </div>
 
@@ -100,7 +100,7 @@
                             <textarea rows="4" class="form-control" placeholder="Saran Anda..." name="isi"></textarea>
                         </div>
                         <div class="d-flex justify-content-start">
-                            <button type="submit">Kirim</button>
+                            <button class="btn btn-primary px-4 py-2 rounded-pill" type="submit">Kirim</button>
                         </div>
                     </form>
                 </div>

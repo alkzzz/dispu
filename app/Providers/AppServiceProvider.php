@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use App\Models\Menu;
 use App\Models\Post;
+use App\Models\Contact;
 use CyrildeWit\EloquentViewable\Support\Period;
 
 class AppServiceProvider extends ServiceProvider
@@ -71,5 +72,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('bulan_ini', $bulan_ini);
         View::share('tahun_ini', $tahun_ini);
         View::share('total', $total);
+
+        $contact = Contact::first();
+        View::share('contact', $contact);
     }
 }

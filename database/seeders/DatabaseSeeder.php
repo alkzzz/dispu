@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             SocmedSeeder::class,
             FooterLinkSeeder::class,
             LinkIconSeeder::class,
+            ContactSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

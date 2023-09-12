@@ -30,8 +30,8 @@
         <div class="col text-light small mb-0 py-2">
             <b>Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</b>
             <br><br>
-            Jl. Mitra Praja No.9 Banjarbaru<br>
-            (0511) 5931688
+            {{ $contact->address }}<br>
+            {{ $contact->phone_number }}
         </div>
         <div class="col text-light mb-0 py-2">
             <div class="row d-flex justify-content-between">

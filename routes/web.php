@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -148,6 +149,8 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     Route::delete('/dashboard/link-icon/delete/{id}', [App\Http\Controllers\LinkIconController::class, 'delete'])->name('dashboard.link-icon.delete');
     #Kotak Saran
     Route::get('/dashboard/saran', [App\Http\Controllers\SaranController::class, 'index'])->name('dashboard.saran.index');
+    #Kontak
+    Route::resource('/dashboard/kontak', ContactController::class)->only(['index', 'update']);
     #Backup
     Route::get('/dashboard/backup', function () {
         return view('backend.backup');

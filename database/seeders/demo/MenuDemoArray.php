@@ -112,8 +112,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Sekretariat',
-        'url' => route('frontend.getBidang', 'bidang-sekretariat'),
+        'title' => 'Sekretariat',
+        'url' => route('frontend.getBidang', 'sekretariat'),
         'type' => 'bidang',
         'type_id' => 1,
         'order' => 99,
@@ -124,8 +124,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Bina Marga',
-        'url' => route('frontend.getBidang', 'bidang-bina-marga'),
+        'title' => 'Bina Marga',
+        'url' => route('frontend.getBidang', 'bina-marga'),
         'type' => 'bidang',
         'type_id' => 2,
         'order' => 99,
@@ -136,8 +136,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Tata Ruang',
-        'url' => route('frontend.getBidang', 'bidang-tata-ruang'),
+        'title' => 'Tata Ruang',
+        'url' => route('frontend.getBidang', 'tata-ruang'),
         'type' => 'bidang',
         'type_id' => 3,
         'order' => 99,
@@ -148,8 +148,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Cipta Karya',
-        'url' => route('frontend.getBidang', 'bidang-cipta-karya'),
+        'title' => 'Cipta Karya',
+        'url' => route('frontend.getBidang', 'cipta-karya'),
         'type' => 'bidang',
         'type_id' => 4,
         'order' => 99,
@@ -160,8 +160,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Pengembangan Konstruksi',
-        'url' => route('frontend.getBidang', 'bidang-pengembangan-konstruksi'),
+        'title' => 'Pengembangan Konstruksi',
+        'url' => route('frontend.getBidang', 'pengembangan-konstruksi'),
         'type' => 'bidang',
         'type_id' => 5,
         'order' => 99,
@@ -172,8 +172,8 @@ return [
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Sumber Daya Air',
-        'url' => route('frontend.getBidang', 'bidang-sumber-daya-air'),
+        'title' => 'Sumber Daya Air',
+        'url' => route('frontend.getBidang', 'sumber-daya-air'),
         'type' => 'bidang',
         'type_id' => 6,
         'order' => 99,

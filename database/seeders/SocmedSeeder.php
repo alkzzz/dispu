@@ -16,7 +16,6 @@ class SocmedSeeder extends Seeder
 
         \DB::table('socmeds')->insert([
             ['name' => 'Facebook', 'link' => 'https://facebook.com/'],
-            ['name' => 'Twitter', 'link' => 'https://twitter.com/'],
             ['name' => 'Youtube', 'link' => 'https://youtube.com/'],
             ['name' => 'Instagram', 'link' => 'https://instagram.com/'],
         ]);

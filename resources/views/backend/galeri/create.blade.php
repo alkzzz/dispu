@@ -40,7 +40,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="Image" class="form-label">Upload Gambar</label>
-                    <input name="gambar" class="form-control" type="file" id="formFile" onchange="preview()">
+                    <input name="gambar" class="form-control" type="file" id="formFile" onchange="preview()" accept="image/png, image/gif, image/jpeg">
                     <img style="width:300px;height:300px" id="frame" src="{{ asset('img/no-image.jpg') }}"
                         class="img-fluid mt-3" />
                     <a class="btn btn-sm btn-warning align-top mt-3 ms-2" href="#frame" onclick="clearImage()"><i

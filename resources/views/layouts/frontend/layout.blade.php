@@ -25,7 +25,7 @@
     <style>
         body {
             background: white;
-            font-family: 'Inter', sherif;
+            font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
             font-size: 16px !important;
         }
 
@@ -59,33 +59,35 @@
             content: "/";
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     @yield('extra_css')
 
 </head>
 
 <body onload=display_ct();>
     <div class="py-2" style="background-color:#030f6b">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-            <div>
-                <p id="tanggal" class="text-light mb-0"></p>
-            </div>
-            @auth
-                <div>
-                    <a class="text-white" href="{{ route('dashboard') }}">Halaman Admin</a>
+        <div class="container-fluid align-items-center small">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 text-center">
+                    <p id="tanggal" class="text-light  mb-0"></p>
                 </div>
-            @endauth
-            <div>
-
-                @php
-                    $socmeds = \DB::table('socmeds')
-                        ->orderBy('name')
-                        ->get();
-                @endphp
-                @foreach ($socmeds as $socmed)
-                    <a href="{{ $socmed->link }}" target="_blank" class="mx-3" style="color:transparent">
-                        <i class="fa-brands fa-{{ strtolower($socmed->name) }} fa-lg text-light"></i>
-                    </a>
-                @endforeach
+                @auth
+                <div class="col-md-4 col-lg-4 text-center">
+                        <a class="text-white" href="{{ route('dashboard') }}">Halaman Admin</a>
+                    </div>
+                @endauth
+                <div class="col-md-4 col-lg-4 text-center">
+                    @php
+                        $socmeds = \DB::table('socmeds')
+                            ->orderBy('name')
+                            ->get();
+                    @endphp
+                    @foreach ($socmeds as $socmed)
+                        <a href="{{ $socmed->link }}" target="_blank" class="mx-3" style="color:transparent">
+                            <i class="fa-brands fa-{{ strtolower($socmed->name) }} fa-lg text-light"></i>
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

@@ -8,49 +8,49 @@ $imageUrl = $faker->imageUrl(800, 600);
 
 return [
     [
-        'title' => 'Bidang Sekretariat',
-        'url' => route('frontend.getBidang', 'bidang-sekretariat'),
-        'slug' => 'bidang-sekretariat',
+        'title' => 'Sekretariat',
+        'url' => route('frontend.getBidang', 'sekretariat'),
+        'slug' => 'sekretariat',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Bina Marga',
-        'url' => route('frontend.getBidang', 'bidang-bina-marga'),
-        'slug' => 'bidang-bina-marga',
+        'title' => 'Bina Marga',
+        'url' => route('frontend.getBidang', 'bina-marga'),
+        'slug' => 'bina-marga',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Tata Ruang',
-        'url' => route('frontend.getBidang', 'bidang-tata-ruang'),
-        'slug' => 'bidang-tata-ruang',
+        'title' => 'Tata Ruang',
+        'url' => route('frontend.getBidang', 'tata-ruang'),
+        'slug' => 'tata-ruang',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Cipta Karya',
-        'url' => route('frontend.getBidang', 'bidang-cipta-karya'),
-        'slug' => 'bidang-cipta-karya',
+        'title' => 'Cipta Karya',
+        'url' => route('frontend.getBidang', 'cipta-karya'),
+        'slug' => 'cipta-karya',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Pengembangan Konstruksi',
-        'url' => route('frontend.getBidang', 'bidang-pengembangan-konstruksi'),
-        'slug' => 'bidang-pengembangan-konstruksi',
+        'title' => 'Pengembangan Konstruksi',
+        'url' => route('frontend.getBidang', 'pengembangan-konstruksi'),
+        'slug' => 'pengembangan-konstruksi',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()
     ],
     [
-        'title' => 'Bidang Sumber Daya Air',
-        'url' => route('frontend.getBidang', 'bidang-sumber-daya-air'),
-        'slug' => 'bidang-sumber-daya-air',
+        'title' => 'Sumber Daya Air',
+        'url' => route('frontend.getBidang', 'sumber-daya-air'),
+        'slug' => 'sumber-daya-air',
         'description' => $faker->paragraph(5),
         'created_at' => Carbon::now(),
         'updated_at' => Carbon::now()

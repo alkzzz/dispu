@@ -1,0 +1,21 @@
+body .btn-primary {
+    border-color: #030F6B;
+    color: #ffffff;
+    background-color: #030F6B;
+}
+
+footer.footer-info {
+    background-color: #070c38;
+    background: linear-gradient(rgb(7, 12, 56, 0.95), rgba(7, 12, 56, 0.95)), url('/img/pupr-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.gallery-info {
+    background-color: #070c38;
+    background: linear-gradient(rgba(251, 183, 23, 0.9), rgba(251, 183, 23, 0.9)), url('/img/pupr-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

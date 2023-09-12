@@ -15,7 +15,7 @@
         }
 
         .carousel-caption {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(7, 12, 56, 0.7);
             color: #fff;
             padding: 10px;
             position: absolute;
@@ -30,7 +30,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(7, 12, 56, 0.7);
             color: #fff;
             padding: 10px;
         }
@@ -67,17 +67,17 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="container-fluid pb-md-3">
+    <div class="">
+        <div class="pb-md-3">
             <div id="carouselControls" class="carousel slide md-mh-100" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($featured as $feat)
                         <div class="carousel-item @if ($loop->index == 0) active @endif">
                             <img src="@if ($feat->getFirstMediaUrl('berita', 'large')) {{ $feat->getFirstMediaUrl('berita', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                class="d-block w-100" alt="Gambar {{ $feat->title }}">
-                            <div class="carousel-caption text-center">
+                                class="d-block w-100" alt="Gambar {{ $feat->title }}" style="height:370pt">
+                            <div class="carousel-caption text-center py-3">
                                 <p class="h4 text-sm">{{ $feat->title }}</p>
-                                <a href="{{ route('frontend.getPost', $feat->slug) }}" class="btn btn-primary">Read More <i
+                                <a href="{{ route('frontend.getPost', $feat->slug) }}" class="btn btn-primary px-4 py-2 rounded-pill small">Informasi Lebih Lanjut <i
                                         class="fa-solid fa-angles-right"></i></a>
                             </div>
                         </div>
@@ -96,25 +96,25 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="">
         <div class="container-fluid">
-            <div class="jumbotron my-5">
+            <div class="jumbotron my-3 mb-5">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 mt-4 order-2">
                             <div class="container">
-                                <h5 class="fw-semibold" style="color: #FFD42B">Dinas Pekerjaan Umum dan Penataan Ruang Kota
+                                <h5 class="fw-bold" style="color: #ffc107">Dinas Pekerjaan Umum dan Penataan Ruang Kota
                                     Banjarbaru</h5>
-                                <h2 class="fw-bold" style="line-height: 2.5rem">Selamat Datang di Website Resmi <br>Dinas
-                                    Pekerjaan Umum dan Penataan
-                                    Ruang
-                                    Kota Banjarbaru</h2>
+                                <h3 class="fw-bold" style="">Selamat Datang di Website Resmi <br>Dinas
+                                    Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</h3>
                                 <p class="lead" style="text-align: justify">{!! \Str::words($sambutan->content, 133) !!}
                                 </p>
-                                <p><b>Kepala Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</b></p>
-                                <p><b>{{ $gambardepan->nama }}</b></p>
-                                <a class="btn btn-primary btn-lg" href="{{ url('sambutan-kepala-dinas') }}"
-                                    role="button">Selengkapnya <i class="fa-solid fa-arrow-right-long"></i></a>
+                                <p>
+                                    <b>Kepala Dinas Pekerjaan Umum dan Penataan Ruang Kota Banjarbaru</b>,
+                                    <b>{{ $gambardepan->nama }}</b>
+                                </p>
+                                <a class="btn btn-primary px-4 py-2 rounded-pill small" href="{{ url('sambutan-kepala-dinas') }}"
+                                    role="button">Selengkapnya</a>
                             </div>
                         </div>
                         <div class="col-md-6 order-1 d-flex justify-content-center px-0">
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    <div class="row py-3">
+    {{-- <div class=" py-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="px-0 col-12 col-md-5">
@@ -146,7 +146,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-md mb-3">
-                                <a class="text-decoration-none" href="{{ url('kategori/bidang-sekretariat') }}">
+                                <a class="text-decoration-none" href="{{ url('kategori/sekretariat') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -164,7 +164,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <a class="text-decoration-none" href="{{ url('kategori/bidang-bina-marga') }}">
+                                <a class="text-decoration-none" href="{{ url('kategori/bina-marga') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -182,7 +182,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <a class="text-decoration-none" href="{{ url('kategori/bidang-tata-ruang') }}">
+                                <a class="text-decoration-none" href="{{ url('kategori/tata-ruang') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -202,7 +202,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md mb-3">
-                                <a class="text-decoration-none" href="{{ url('kategori/bidang-cipta-karya') }}">
+                                <a class="text-decoration-none" href="{{ url('kategori/cipta-karya') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -221,7 +221,7 @@
                             </div>
                             <div class="col-12 col-md mb-3">
                                 <a class="text-decoration-none"
-                                    href="{{ url('kategori/bidang-pengembangan-konstruksi') }}">
+                                    href="{{ url('kategori/pengembangan-konstruksi') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -240,7 +240,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md mb-3">
-                                <a class="text-decoration-none" href="{{ url('kategori/bidang-sumber-daya-air') }}">
+                                <a class="text-decoration-none" href="{{ url('kategori/sumber-daya-air') }}">
                                     <div class="card bidang-card-style">
                                         <table class="h-100 w-100">
                                             <tr>
@@ -263,41 +263,62 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container py-3">
-        <div class="row d-flex justify-content-center">
-            <h3 class="text-center py-2 border-bottom border-1">Berita Terbaru</h3>
-            <div class="row mt-2">
-                @foreach ($latest as $late)
-                    <div class="col-md-4 col-sm-12 d-flex justify-content-center">
-                        <div class="card shadow p-1 mb-4 bg-white rounded" style="width: 24rem">
-                            <img class="card-img-top"
-                                src="@if ($late->getFirstMediaUrl('berita', 'preview')) {{ $late->getFirstMediaUrl('berita', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                                alt="Card image cap" style="max-height: 220px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $late->title }}</h5>
-                                <p class="card-text" style="text-align: justify">{!! \Str::words($late->content, 50) !!}</p>
-                                <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-primary">Read More
-                                    <i class="fa-solid fa-angles-right"></i></a>
-                            </div>
-                            <div class="card-footer bg-white text-muted">
-                                <i class="fa-solid fa-calendar fa-fw"></i>
-                                {{ $late->created_at->translatedFormat('l, j F Y') }}
+    </div> --}}
+    <div class="container-fluid" style="background: #f0f0f0">
+        <div class="container py-3">
+            <div class="row d-flex justify-content-center">
+                <h4 class="text-center py-2 text-uppercase">Berita Terbaru</h4>
+                <div class="row mt-2">
+                    @foreach ($latest as $late)
+                        <div class="col-md-4 col-sm-12 d-flex justify-content-center g-3">
+                            <div class="card h-100">
+                                <img class="card-img-top object-fit-cover"
+                                src="@if ($late->getFirstMediaUrl('berita', 'preview')) {{ $late->getFirstMediaUrl('berita', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif" alt="image" height="180">
+                                <div class="card-body pb-1">
+                                    <h5 class="card-title mb-0">{{ $late->title }}</h5>
+                                </div>
+                                <div class="card-body py-0">
+                                    <p class="small">{!! \Str::words($late->content, 30) !!}</p>
+                                </p></div>
+                                <div class="card-body py-0">
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-outline-primary h-75 pt-1">Read More &nbsp;<i class="fa-solid fa-angles-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body py-3 ">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="text-muted small lh-1">{{ $late->created_at->translatedFormat('l, j F Y') }}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <a class="btn btn-lg btn-primary" href="{{ route('frontend.berita.index') }}" role="button">Lihat
-                    Semua Berita <i class="fa-solid fa-arrow-right-long"></i></a>
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-center">
+                    <a class="btn btn-primary px-4 py-2 rounded-pill small" href="{{ route('frontend.berita.index') }}" role="button">Lihat
+                        Semua Berita </a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="py-5 swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white shadow-lg py-3 py-lg-4"
+    <div class="container-fluid" style="background: #030f6b">
+        <div class="container py-4">
+            <div class="d-flex">
+                <div class="flex-shrink-0 me-2">
+                    <a href="https://lapor.go.id" target="_blank"><img width="150" src="{{ asset('logo/lapor-logo.png') }}" alt=""></a>
+                </div>
+                <div class="flex-grow-1">
+                    <h6 class="text-uppercase text-white mb-1 mt-2">SARAN DAN PENGADUAN</h6>
+                    <h6 class="small text-white fw-light">Saran dan masukan untuk kemajuan PUPR Kota Banjarbaru.</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-3">
+        <div class="py-5 px-3 swiffy-slider slider-item-show5 slider-nav-outside slider-nav-dark slider-nav-sm slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 bg-white py-3 py-lg-4"
             data-slider-nav-autoplay-interval="2000" style="background-color: transparent">
             <div class="slider-container">
                 @foreach ($linkicons as $linkicon)
@@ -313,15 +334,15 @@
 
         </div>
     </div>
-    <div class="row mt-0">
-        <div class="container-fluid" style="background: #FFF5CC">
-            <div class="container mb-3 mt-3">
-                <h3 class="text-center py-2 mt-2 border-bottom border-1 border-secondary">Galeri Kegiatan</h3>
-                @foreach ($galleries->chunk(3) as $galleryChunk)
+    <div class="mt-0">
+        <div class="container-fluid gallery-info">
+            <div class="container py-3">
+                <h4 class="text-center py-2 mt-2 text-uppercase">Galeri Kegiatan</h4>
+                @foreach ($galleries->chunk(4) as $galleryChunk)
                     <div class="row d-flex justify-content-center align-items-center">
                         @foreach ($galleryChunk as $gallery)
-                            <div class="col-md-4 col-sm-12 g-3">
-                                <div class="card border-dark">
+                            <div class="col-md-3 col-sm-12 g-3">
+                                <div class="card">
                                     <img src="@if ($gallery->getFirstMediaUrl('galeri', 'preview')) {{ $gallery->getFirstMediaUrl('galeri', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif"
                                         class="img-fluid rounded" alt="Gambar {{ $gallery->title }}">
                                     <a href="@if ($gallery->getFirstMediaUrl('galeri', 'large')) {{ $gallery->getFirstMediaUrl('galeri', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
@@ -329,11 +350,10 @@
                                         <div class="card-img-overlay d-flex flex-column align-items-start">
                                             <div class="caption-overlay">
                                                 <p class="card-text fw-semibold text-white mt-auto lead"
-                                                    style="line-height: 1.3rem">
+                                                    style="line-height: 1.3rem;font-size:1rem">
                                                     {{ $gallery->title }}
                                                     <br><span style="font-size: 0.8rem;font-weight: 300"><i
-                                                            class="fa-solid fa-location-dot" style="color: #ff0000;"></i>
-                                                        {{ $gallery->location }}</span>
+                                                            class="fa-solid fa-location-dot" style="color: #ff0000;"></i>&nbsp; {{ $gallery->location }}</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -345,9 +365,8 @@
                 @endforeach
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center py-2 mt-3">
-                        <a name="" id="" class="btn btn-lg btn-primary"
-                            href="{{ route('frontend.galeri.index') }}" role="button">Lihat Semua Galeri <i
-                                class="fa-solid fa-arrow-right-long"></i></a>
+                        <a name="" id="" class="btn btn-primary px-4 py-2 rounded-pill small"
+                            href="{{ route('frontend.galeri.index') }}" role="button">Lihat Semua Galeri</a>
                     </div>
                 </div>
             </div>

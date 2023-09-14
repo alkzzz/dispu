@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KuesionerExport;
 use App\Models\QuestionnaireQuestion;
 use App\Models\Respondent;
 use App\Models\RespondentAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuestionnaireController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = QuestionnaireQuestion::with('answers')->get();
-        return view('frontend.kuesioner', compact('questions'));
+        $questions = QuestionnaireQuestion::get();
+        $respondents = Respondent::with('respondentAnswers.answer')->whereYear('created_at', date('Y'))->get();
+        return view('backend.kuesioner', compact('respondents', 'questions'));
+
     }
 
     /**
@@ -24,7 +28,8 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-        //
+        $questions = QuestionnaireQuestion::with('answers')->get();
+        return view('frontend.kuesioner', compact('questions'));
     }
 
     /**
@@ -46,7 +51,7 @@ class QuestionnaireController extends Controller
 
             DB::commit();
             session()->flash('message', 'Berhasil mengirim respon.');
-            return redirect()->route('kuesioner.index');
+            return redirect()->route('kuesioner.create');
         } catch (Throwable $e) {
             DB::rollBack();
             return redirect()->back()->with(['message' => "An error occurred in the system: {$e->getMessage()}", 'status' => 'failed']);
@@ -83,5 +88,13 @@ class QuestionnaireController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Export the specified resource.
+     */
+    public function export(Request $request)
+    {
+        return Excel::download(new KuesionerExport($request->year), 'Kuesioner ' . $request->year . '.xlsx');
     }
 }

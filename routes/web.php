@@ -20,7 +20,7 @@ use Illuminate\Http\RedirectResponse;
 #Homepage
 Route::get('/', HomePageController::class)->name('index');
 Route::get('/instagram', App\Http\Controllers\PuprInstagramController::class);
-Route::resource('/kuesioner', App\Http\Controllers\QuestionnaireController::class);
+Route::resource('/kuesioner', App\Http\Controllers\QuestionnaireController::class)->only('create', 'store');
 #Berita
 Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
 #Galeri
@@ -153,6 +153,9 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     Route::get('/dashboard/saran', [App\Http\Controllers\SaranController::class, 'index'])->name('dashboard.saran.index');
     #Kontak
     Route::resource('/dashboard/kontak', ContactController::class)->only(['index', 'update']);
+    #Kuesioner
+    Route::resource('/dashboard/kuesioner', App\Http\Controllers\QuestionnaireController::class)->only(['index']);
+    Route::post('/dashboard/kuesioner/export', [App\Http\Controllers\QuestionnaireController::class, 'export'])->name('kuesioner.export');
     #Backup
     Route::get('/dashboard/backup', function () {
         return view('backend.backup');

@@ -101,7 +101,7 @@
                 <div class="row d-flex justify-content-center align-items-center">
                     {{-- @dd($instagram) --}}
                     @foreach ($instagram  as $instagramPost)
-                        <div class="col-md-2 col-lg-2 g-2">
+                        <div class="col-md-2 col-lg-2 g-2 col-6">
                             <div class="card">
                                 <img src="data:image/jpeg;base64, {{ $instagramPost->thumbnail }}" class="img-fluid rounded" alt="Gambar">
                                 <a target="_blank" href="{{ $instagramPost->url }}">
@@ -289,42 +289,93 @@
             </div>
         </div>
     </div> --}}
-    <div class="container-fluid" style="background: #f0f0f0">
-        <div class="container py-3">
-            <div class="row d-flex justify-content-center">
-                <h4 class="text-center py-2 text-uppercase">Berita Terbaru</h4>
-                <div class="row mt-2">
-                    @foreach ($latest as $late)
-                        <div class="col-md-4 col-sm-12 d-flex justify-content-center g-3">
-                            <div class="card h-100">
-                                <img class="card-img-top object-fit-cover"
-                                src="@if ($late->getFirstMediaUrl('berita', 'preview')) {{ $late->getFirstMediaUrl('berita', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif" alt="image" height="180">
-                                <div class="card-body pb-1">
-                                    <h5 class="card-title mb-0">{{ $late->title }}</h5>
-                                </div>
-                                <div class="card-body py-0">
-                                    <p class="small">{!! \Str::words($late->content, 30) !!}</p>
-                                </p></div>
-                                <div class="card-body py-0">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-primary px-4 py-2 rounded-pill small">Read More &nbsp;<i class="fa-solid fa-angles-right"></i>
-                                        </a>
+    <div class="container-fluid" >
+        <div class="row p-0">
+            <div class="col-md-9 col-lg-9" style="background: #f0f0f0">
+                <div class="container py-3">
+                    <div class="row d-flex justify-content-center">
+                        <h4 class="text-center text-uppercase mb-0 mt-1">Berita Terbaru</h4>
+                        <div class="row">
+                            @foreach ($latest as $late)
+                                <div class="col-md-4 col-sm-12 d-flex justify-content-center g-3">
+                                    <div class="card h-100">
+                                        <img class="card-img-top object-fit-cover"
+                                        src="@if ($late->getFirstMediaUrl('berita', 'preview')) {{ $late->getFirstMediaUrl('berita', 'preview') }} @else {{ asset('img/no-image.jpg') }} @endif" alt="image" height="150">
+                                        <div class="card-body pb-1">
+                                            <h6 class="card-title mb-0">{{ $late->title }}</h6>
+                                        </div>
+                                        <div class="card-body py-0">
+                                            <p class="small" style="font-size:0.8rem">{!! \Str::words($late->content, 15) !!}</p>
+                                        </p></div>
+                                        <div class="card-body py-0">
+                                            <div class="d-flex justify-content-between">
+                                                <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-primary px-4 py-2 rounded-pill small">Read More &nbsp;<i class="fa-solid fa-angles-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body py-2">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="text-muted small">{{ $late->created_at->translatedFormat('l, j F Y') }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-body py-3 ">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="text-muted small lh-1">{{ $late->created_at->translatedFormat('l, j F Y') }}</div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-center">
+                            <a class="btn btn-primary px-4 py-2 rounded-pill small" href="{{ route('frontend.berita.index') }}" role="button">Lihat
+                                Semua Berita </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-12 d-flex justify-content-center">
-                    <a class="btn btn-primary px-4 py-2 rounded-pill small" href="{{ route('frontend.berita.index') }}" role="button">Lihat
-                        Semua Berita </a>
+            <div class="col-lg-3 col-md-3 ikm-info">
+                <div class="my-5">
+                    <div class="d-flex justify-content-center">
+                        <div class="my-5 text-center">
+                            <div class="ikm-header px-4">
+                                <h3 class="mb-0">Nilai IKM</h3>
+                                <h6>(Indeks Kepuasan Masyarakat)</h6>
+                            </div>
+                            <div class="ikm-score">
+                                @if(!$respondents->isEmpty())
+                                <h1 class="mb-0">{{ round($respondents->sum('ikm')/count($respondents), 2) }}</h1>
+                                <h6>
+                                    @if ($respondents->sum('ikm')/count($respondents) >= 88.31 && $respondents->sum('ikm')/count($respondents) <= 100)
+                                        (Sangat Baik)
+                                    @elseif($respondents->sum('ikm')/count($respondents) >= 76.61 && $respondents->sum('ikm')/count($respondents) <= 88.30)
+                                        (Baik)
+                                    @elseif($respondents->sum('ikm')/count($respondents) >= 65 && $respondents->sum('ikm')/count($respondents) <= 76.60)
+                                        (Kurang Baik)
+                                    @else
+                                        (Tidak Baik)
+                                    @endif
+                                </h6>
+                                <h6>Periode Survei: {{ date('Y') }}</h6>
+                                <h6>Jumlah Responden: {{ count($respondents) }}</h6>
+                                <div class="mb-2">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                @else
+                                <h5 class="text-center text-danger fst-italic">Belum Ada Responden</h5>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-12 d-flex justify-content-center">
+                            <a class="btn btn-primary px-4 py-2 rounded-pill small"
+                            href="{{ route('kuesioner.create') }}" role="button">
+                            <span class="fa fa-xs fa-pen-clip me-2"></span>
+                            Pengisian Kuesioner </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

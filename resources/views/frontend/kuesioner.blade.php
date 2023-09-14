@@ -18,7 +18,7 @@
         <nav aria-label="breadcrumb" class="container mt-3">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Home</a></li>
-                <li class="breadcrumb-item active"><a href={{ route('kuesioner.index') }}"
+                <li class="breadcrumb-item active"><a href={{ route('kuesioner.create') }}"
                         class="text-dark">Kuesioner</a></li>
             </ol>
         </nav>
@@ -105,11 +105,11 @@
                 </div>
                 @endforeach
             </div>
+            @endforeach
             <div class="mb-3">
                 <div class="fw-semibold small">Saran Perbaikan dan/atau Apresiasi</div>
                 <textarea rows="4" class="form-control" name="opinion"></textarea>
             </div>
-            @endforeach
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary px-4 py-2 rounded-pill"
                 onclick="return confirm('Apakah anda yakin?')"

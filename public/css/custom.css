@@ -20,6 +20,14 @@ footer.footer-info {
     background-repeat: no-repeat;
 }
 
+.ikm-info {
+    background-color: #070c38;
+    background: linear-gradient(rgba(251, 183, 23, 0.9), rgba(251, 183, 23, 0.9)), url('/img/pinus.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
 .blue-icon {
     color: #030F6B !important;
 }
@@ -27,6 +35,22 @@ footer.footer-info {
 .page-link.active, .datatable-pagination a.active, .active > .page-link, .datatable-pagination .active > a {
     background-color: #030F6B;
     border-color:  #030F6B;
+}
+
+.ikm-header {
+    background-color: #030F6B;
+    border-color:  #030F6B;
+    color: #FFF;
+    padding: 5pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
+}
+
+.ikm-score {
+    background-color: #FFF;
+    padding: 5pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
 }
 
 .caption-overlay {

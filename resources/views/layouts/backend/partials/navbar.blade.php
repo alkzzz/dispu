@@ -76,10 +76,6 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file"></i></div>
                                 Dokumen
                             </a>
-                            <a class="nav-link" href="{{ route('kontak.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
-                                Kontak
-                            </a>
                             <a class="nav-link" href="{{ route('dashboard.sosial-media') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                                 Media Sosial
@@ -95,6 +91,14 @@
                             <a class="nav-link" href="{{ route('dashboard.saran.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-comments"></i></div>
                                 Kotak Saran
+                            </a>
+                            <a class="nav-link" href="{{ route('kontak.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
+                                Kontak
+                            </a>
+                            <a class="nav-link" href="{{ route('kuesioner.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-comments"></i></div>
+                                Kuesioner
                             </a>
                             <a class="nav-link" href="{{ route('dashboard.backup') }}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>

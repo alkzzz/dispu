@@ -94,7 +94,7 @@
                         <a href="https://www.instagram.com/dinaspuprbjb" target="_blank"><img width="40" src="{{ asset('logo/instagram-logo.png') }}" alt=""></a>
                     </div>
                     <div class="flex-grow-1">
-                        <h6 class="text-uppercase text-white mb-1 mt-1 fw-bold">dinaspuprbjb</h6>
+                        <a href="https://www.instagram.com/dinaspuprbjb" class="text-white mb-1 mt-1 fw-bold">dinaspuprbjb</a>
                         <h6 class="small text-white fw-light">Instagram Feeds.</h6>
                     </div>
                 </div>

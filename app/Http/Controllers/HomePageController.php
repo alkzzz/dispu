@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\PuprInstagram;
 use App\Models\Gallery;
 use App\Models\LinkIcon;
+use InstagramScraper\Client;
 
 class HomePageController extends Controller
 {
@@ -21,8 +23,10 @@ class HomePageController extends Controller
         $galleries = Gallery::latest()->take(6)->get();
         $linkicons = LinkIcon::orderBy('title')->get();
 
+        $instagram = PuprInstagram::where('username', 'dinaspuprbjb')->take(6)->get();
+
         views($home)->record();
 
-        return view('frontend.index', compact('sambutan', 'featured', 'latest', 'galleries', 'linkicons'));
+        return view('frontend.index', compact('instagram', 'sambutan', 'featured', 'latest', 'galleries', 'linkicons'));
     }
 }

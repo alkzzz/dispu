@@ -25,51 +25,92 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="row mb-5">
-            <h2 class="pb-2 border-bottom border-2 black">Profil {{ $category->title }}</h2>
+        <div class="row mb-3">
+            <h2 class="pb-2 border-bottom border-2 black">Bidang {{ $category->title }}</h2>
             <p>{{ $bidang->description }}</p>
             <a href="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                 data-title="{{ $bidang->title }}" data-lightbox="bidang">
-                <img src="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                    class="img-fluid" alt="{{ $bidang->title }}">
+                {{-- <img src="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                    class="img-fluid" alt="{{ $bidang->title }}"> --}}
             </a>
         </div>
+    </div>
+    @if (! empty($instagramPosts))
+    <div class="mt-0">
+        <div class="container-fluid gallery-info">
+            <div class="container py-3">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-4">
+                        <a href="https://www.instagram.com/{{ $bidang->instagram }}" target="_blank"><img width="40" src="{{ asset('logo/instagram-logo.png') }}" alt=""></a>
+                    </div>
+                    <div class="flex-grow-1">
+                        <a href="https://www.instagram.com/{{ $bidang->instagram }}" class="text-white mb-1 mt-1 fw-bold">{{ "@" . $bidang->instagram }}</a>
+                        <h6 class="small text-white fw-light">Instagram Feeds.</h6>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    @foreach ($instagramPosts  as $instagramPost)
+                        <div class="col-md-2 col-lg-2 g-2">
+                            <div class="card">
+                                <img src="data:image/jpeg;base64, {{ $instagramPost->thumbnail }}" class="img-fluid rounded" alt="Gambar">
+                                <a target="_blank" href="{{ $instagramPost->url }}">
+                                    <div class="card-img-overlay d-flex flex-column align-items-start">
+                                        <div class="caption-overlay">
+                                            <p class="card-text fw-semibold text-white mt-auto lead"
+                                                style="line-height: 1.2rem;font-size:0.8rem">
+                                                {!! $instagramPost->caption !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    <div class="container mt-4">
         <div class="row">
             <h2 class="pb-2 border-bottom border-2 black" style="margin-bottom: 3rem">Berita {{ $category->title }}</h2>
             @foreach ($posts as $post)
                 @if ($loop->index % 2)
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-8 mb-3">
                             <h3>{{ $post->title }}</h3>
-                            <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
+                            <p class="fs-6" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
                             </p>
-                            <a class="btn btn-primary" href="{{ route('frontend.getPost', $post->slug) }}"
-                                role="button">Read
-                                More <i class="fa-solid fa-angles-right"></i></a>
+                            <a class="btn btn-primary px-4 py-2 rounded-pill small" href="{{ route('frontend.getPost', $post->slug) }}"
+                                role="button">Read More <i class="fa-solid fa-angles-right"></i></a>
                         </div>
                         <div class="col-4">
-                            <div class="card shadow p-1 mb-3 bg-white rounded">
-                                <img class="img-fluid" src="https://picsum.photos/500?random=1" alt=""
-                                    srcset="">
-                                <div class="card-img-overlay"></div>
-                            </div>
+                            <img class="img-fluid rounded object-fit-cover w-100"
+                            src="
+                             @if ($post->getFirstMediaUrl('berita', 'preview'))
+                                {{ $post->getFirstMediaUrl('berita', 'preview') }}
+                             @else {{ asset('img/no-image.jpg') }}
+                             @endif"
+                             alt="image" height="200pt">
                         </div>
                     </div>
                     <hr class="mb-4">
                 @else
                     <div class="row">
                         <div class="col-4">
-                            <div class="card shadow p-1 mb-3 bg-white rounded">
-                                <img class="img-fluid" src="https://picsum.photos/500?random=2" alt=""
-                                    srcset="">
-                                <div class="card-img-overlay"></div>
-                            </div>
+                            <img class="img-fluid rounded object-fit-cover w-100"
+                            src="
+                             @if ($post->getFirstMediaUrl('berita', 'preview'))
+                                {{ $post->getFirstMediaUrl('berita', 'preview') }}
+                             @else {{ asset('img/no-image.jpg') }}
+                             @endif"
+                             alt="image" height="200pt">
                         </div>
-                        <div class="col-8">
+                        <div class="col-8 mb-3">
                             <h3>{{ $post->title }}</h3>
-                            <p class="fs-5" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
+                            <p class="fs-6" style="text-align: justify">{!! \Str::words($post->content, 90) !!}
                             </p>
-                            <a name="" id="" class="btn btn-primary"
+                            <a name="" id="" class="btn btn-primary px-4 py-2 rounded-pill small"
                                 href="{{ route('frontend.getPost', $post->slug) }}" role="button">Read More <i
                                     class="fa-solid fa-angles-right"></i>
                             </a>

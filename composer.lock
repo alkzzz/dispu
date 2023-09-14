@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa74f1f609876e45bec227f895860c49",
+    "content-hash": "6bf8e4315cc18db720c4ae1df85191b4",
     "packages": [
         {
             "name": "brick/math",
@@ -3631,6 +3631,37 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "skmachine/instagram-php-scraper",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skmachine/instagram-php-scraper.git",
+                "reference": "7a05d032747b442cc56cd69ce74a98aa3ea8c3b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skmachine/instagram-php-scraper/zipball/7a05d032747b442cc56cd69ce74a98aa3ea8c3b6",
+                "reference": "7a05d032747b442cc56cd69ce74a98aa3ea8c3b6",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "InstagramScraper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Simple Instagram PHP scraper and media proxy.",
+            "support": {
+                "issues": "https://github.com/skmachine/instagram-php-scraper/issues",
+                "source": "https://github.com/skmachine/instagram-php-scraper/tree/1.0"
+            },
+            "time": "2021-12-15T06:56:31+00:00"
         },
         {
             "name": "spatie/db-dumper",

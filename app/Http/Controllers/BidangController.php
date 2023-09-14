@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bidang;
 use App\Models\Category;
+use App\Models\PuprInstagram;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\RedirectResponse;
 
@@ -14,9 +15,13 @@ class BidangController extends Controller
     {
         $bidang = Bidang::where('slug', $slug)->first();
         $category = Category::where('slug', $slug)->first();
+
         if ($category != null) {
             $posts = $category->posts()->paginate(3);
-            return view('frontend.bidang', compact('bidang', 'category', 'posts'));
+            $instagramPosts = '';
+            if (! empty($bidang->instagram)) $instagramPosts = PuprInstagram::where('username', $bidang->instagram)->take(6)->get();
+
+            return view('frontend.bidang', compact('bidang', 'category', 'posts', 'instagramPosts'));
         } else {
             abort(404);
         }

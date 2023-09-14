@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bidang', function (Blueprint $table) {
+        Schema::create('pupr_instagrams', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
+            $table->string('code');
+            $table->string('username');
             $table->string('url');
-            $table->longText('description');
-            $table->string('instagram')->nullable();
+            $table->longText('thumbnail');
+            $table->longText('caption');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bidang');
+        Schema::dropIfExists('pupr_instagrams');
     }
 };

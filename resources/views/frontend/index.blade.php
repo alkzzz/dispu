@@ -25,16 +25,6 @@
             min-height: 6rem
         }
 
-        .caption-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(7, 12, 56, 0.7);
-            color: #fff;
-            padding: 10px;
-        }
-
         .bidang-card-style {
             width: 100%;
             min-height: 10rem;
@@ -68,7 +58,7 @@
 
 @section('content')
     <div class="">
-        <div class="pb-md-3">
+        <div class="mb-0">
             <div id="carouselControls" class="carousel slide md-mh-100" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @foreach ($featured as $feat)
@@ -93,6 +83,41 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-0">
+        <div class="container-fluid gallery-info">
+            <div class="container py-3">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-4">
+                        <a href="https://www.instagram.com/dinaspuprbjb" target="_blank"><img width="40" src="{{ asset('logo/instagram-logo.png') }}" alt=""></a>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="text-uppercase text-white mb-1 mt-1 fw-bold">dinaspuprbjb</h6>
+                        <h6 class="small text-white fw-light">Instagram Feeds.</h6>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    {{-- @dd($instagram) --}}
+                    @foreach ($instagram  as $instagramPost)
+                        <div class="col-md-2 col-lg-2 g-2">
+                            <div class="card">
+                                <img src="data:image/jpeg;base64, {{ $instagramPost->thumbnail }}" class="img-fluid rounded" alt="Gambar">
+                                <a target="_blank" href="{{ $instagramPost->url }}">
+                                    <div class="card-img-overlay d-flex flex-column align-items-start">
+                                        <div class="caption-overlay">
+                                            <p class="card-text fw-semibold text-white mt-auto lead"
+                                                style="line-height: 1.2rem;font-size:0.8rem">
+                                                {!! $instagramPost->caption !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
@@ -282,7 +307,7 @@
                                 </p></div>
                                 <div class="card-body py-0">
                                     <div class="d-flex justify-content-between">
-                                        <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-outline-primary h-75 pt-1">Read More &nbsp;<i class="fa-solid fa-angles-right"></i>
+                                        <a href="{{ route('frontend.getPost', $late->slug) }}" class="btn btn-primary px-4 py-2 rounded-pill small">Read More &nbsp;<i class="fa-solid fa-angles-right"></i>
                                         </a>
                                     </div>
                                 </div>

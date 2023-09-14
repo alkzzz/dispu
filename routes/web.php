@@ -19,6 +19,7 @@ use Illuminate\Http\RedirectResponse;
 
 #Homepage
 Route::get('/', HomePageController::class)->name('index');
+Route::get('/instagram', App\Http\Controllers\PuprInstagramController::class);
 #Berita
 Route::get('/berita', [App\Http\Controllers\PostController::class, 'frontend_index'])->name('frontend.berita.index');
 #Galeri

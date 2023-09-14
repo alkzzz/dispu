@@ -23,3 +23,18 @@ footer.footer-info {
 .blue-icon {
     color: #030F6B !important;
 }
+
+.page-link.active, .datatable-pagination a.active, .active > .page-link, .datatable-pagination .active > a {
+    background-color: #030F6B;
+    border-color:  #030F6B;
+}
+
+.caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(7, 12, 56, 0.7);
+    color: #fff;
+    padding: 10px;
+}

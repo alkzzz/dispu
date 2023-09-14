@@ -27,53 +27,56 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrapFive();
-        $frontmenus = Menu::orderBy('order')->get()->skip(1);
-        View::share('frontmenus', $frontmenus);
 
-        $gambardepan = \DB::table('gambar_depan')->latest()->first();
-        View::share('gambardepan', $gambardepan);
+        if (\DB::table('contacts')->get()->count() != 0) {
+            Paginator::useBootstrapFive();
+            $frontmenus = Menu::orderBy('order')->get()->skip(1);
+            View::share('frontmenus', $frontmenus);
 
-        $footerlinks = \DB::table('footer_links')->orderBy('title')->get()->split(2);
-        View::share('footerlinks', $footerlinks);
+            $gambardepan = \DB::table('gambar_depan')->latest()->first();
+            View::share('gambardepan', $gambardepan);
 
-        $home = Post::where('title', 'Home')->first();
-        $period_hari_ini = Period::pastDays(0);
-        $period_kemarin = Period::pastDays(1);
-        $period_minggu_ini = Period::pastWeeks(1);
-        $period_bulan_ini = Period::pastMonths(1);
-        $period_tahun_ini = Period::pastYears(1);
+            $footerlinks = \DB::table('footer_links')->orderBy('title')->get()->split(2);
+            View::share('footerlinks', $footerlinks);
 
-        $hari_ini = views($home)
-            ->period($period_hari_ini)
-            ->unique()
-            ->count();
-        $kemarin = views($home)
-            ->period($period_kemarin)
-            ->unique()
-            ->count();
-        $minggu_ini = views($home)
-            ->period($period_minggu_ini)
-            ->unique()
-            ->count();
-        $bulan_ini = views($home)
-            ->period($period_bulan_ini)
-            ->unique()
-            ->count();
-        $tahun_ini = views($home)
-            ->period($period_tahun_ini)
-            ->unique()
-            ->count();
-        $total = views($home)->unique()->count();
+            $home = Post::where('title', 'Home')->first();
+            $period_hari_ini = Period::pastDays(0);
+            $period_kemarin = Period::pastDays(1);
+            $period_minggu_ini = Period::pastWeeks(1);
+            $period_bulan_ini = Period::pastMonths(1);
+            $period_tahun_ini = Period::pastYears(1);
 
-        View::share('hari_ini', $hari_ini);
-        View::share('kemarin', $kemarin);
-        View::share('minggu_ini', $minggu_ini);
-        View::share('bulan_ini', $bulan_ini);
-        View::share('tahun_ini', $tahun_ini);
-        View::share('total', $total);
+            $hari_ini = views($home)
+                ->period($period_hari_ini)
+                ->unique()
+                ->count();
+            $kemarin = views($home)
+                ->period($period_kemarin)
+                ->unique()
+                ->count();
+            $minggu_ini = views($home)
+                ->period($period_minggu_ini)
+                ->unique()
+                ->count();
+            $bulan_ini = views($home)
+                ->period($period_bulan_ini)
+                ->unique()
+                ->count();
+            $tahun_ini = views($home)
+                ->period($period_tahun_ini)
+                ->unique()
+                ->count();
+            $total = views($home)->unique()->count();
 
-        $contact = Contact::first();
-        View::share('contact', $contact);
+            View::share('hari_ini', $hari_ini);
+            View::share('kemarin', $kemarin);
+            View::share('minggu_ini', $minggu_ini);
+            View::share('bulan_ini', $bulan_ini);
+            View::share('tahun_ini', $tahun_ini);
+            View::share('total', $total);
+
+            $contact = Contact::first();
+            View::share('contact', $contact);
+        }
     }
 }

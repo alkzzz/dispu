@@ -55,7 +55,7 @@
                                     ({{ $post->created_at->diffForHumans() }})
                                 </td>
                                 <td class="col">
-                                    @php $color = ['warning', 'danger', 'info', 'success', 'primary'] @endphp
+                                    @php $color = ['warning', 'danger', 'info', 'success', 'primary', 'dark'] @endphp
                                     <div class="text-wrap" style="max-width: 12rem;">
                                         @foreach ($post->categories as $category)
                                             <p style="font-size: 0.7rem"

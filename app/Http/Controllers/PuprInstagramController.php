@@ -25,9 +25,11 @@ class PuprInstagramController extends Controller
             $image = file_get_contents($instagramPost['node']['thumbnail_src']);
             $imageData = base64_encode($image);
             PuprInstagram::updateOrCreate(
-                ['code' => $instagramPost['node']['shortcode']],
                 [
+                    'code' => $instagramPost['node']['shortcode'],
                     'username' => 'dinaspuprbjb',
+                ],
+                [
                     'url' => "https://www.instagram.com/p/" . $instagramPost['node']['shortcode'],
                     'thumbnail' => $imageData,
                     'caption' => \Str::words($instagramPost['node']['edge_media_to_caption']['edges'][0]['node']['text'], 10),
@@ -45,9 +47,11 @@ class PuprInstagramController extends Controller
                 $image = file_get_contents($instagramPost['node']['thumbnail_src']);
                 $imageData = base64_encode($image);
                 PuprInstagram::updateOrCreate(
-                    ['code' => $instagramPost['node']['shortcode']],
                     [
+                        'code' => $instagramPost['node']['shortcode'],
                         'username' => $bidangData->instagram,
+                    ],
+                    [
                         'url' => "https://www.instagram.com/p/" . $instagramPost['node']['shortcode'],
                         'thumbnail' => $imageData,
                         'caption' => \Str::words($instagramPost['node']['edge_media_to_caption']['edges'][0]['node']['text'], 10),

@@ -19,7 +19,7 @@ class BidangController extends Controller
         if ($category != null) {
             $posts = $category->posts()->paginate(3);
             $instagramPosts = '';
-            if (! empty($bidang->instagram)) $instagramPosts = PuprInstagram::where('username', $bidang->instagram)->take(6)->get();
+            if (! empty($bidang->instagram)) $instagramPosts = PuprInstagram::where('username', $bidang->instagram)->orderBy('created_at', 'DESC')->take(6)->get();
 
             return view('frontend.bidang', compact('bidang', 'category', 'posts', 'instagramPosts'));
         } else {

@@ -25,7 +25,7 @@ class HomePageController extends Controller
         $galleries = Gallery::latest()->take(6)->get();
         $linkicons = LinkIcon::orderBy('title')->get();
 
-        $instagram = PuprInstagram::where('username', 'dinaspuprbjb')->take(6)->get();
+        $instagram = PuprInstagram::where('username', 'dinaspuprbjb')->orderBy('created_at', 'DESC')->take(6)->get();
         $questions = QuestionnaireQuestion::get();
         $respondents = Respondent::with('respondentAnswers.answer')->whereYear('created_at', date('Y'))->get();
 

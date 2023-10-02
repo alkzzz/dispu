@@ -27,7 +27,7 @@
     <div class="container mt-4">
         <div class="row mb-3">
             <h2 class="pb-2 border-bottom border-2 black">Bidang {{ $category->title }}</h2>
-            <p>{{ $bidang->description }}</p>
+            <p>{!! $bidang->description !!}</p>
             <a href="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                 data-title="{{ $bidang->title }}" data-lightbox="bidang">
                 {{-- <img src="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"

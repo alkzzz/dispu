@@ -30,7 +30,7 @@ class InstagramJob implements ShouldQueue
     public function handle(): void
     {
         $client = new Client([
-            'rapidapi_key' => '3cf59ecb1bmsh721a48a28886d28p1e9af5jsnbde8b7be3b95'
+            'rapidapi_key' => '5b7a636637msh5733bd47ccbeab4p1fc1dfjsn446ac6c9bf86'
         ]);
         $instagram = $client->getAccountInfo([
             'username' => 'dinaspuprbjb'

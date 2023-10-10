@@ -46,11 +46,17 @@ class PageController extends Controller
                 Rule::unique('pages'),
             ]
         ]);
-        $page = new Page();
-        $page->title = $input['title'];
-        $page->content = $input['content'];
-        $page->url = route('frontend.getPage', \Str::slug($input['title']));
-        $page->save();
+        
+        $page = Page::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'url' => route('frontend.getPage', \Str::slug($request->title))
+        ]);
+        // $page = new Page();
+        // $page->title = $input['title'];
+        // $page->content = $input['content'];
+        // $page->url = route('frontend.getPage', \Str::slug($input['title']));
+        // $page->save();
         session()->flash('message', 'Halaman baru telah ditambahkan.');
         return redirect()->route('dashboard.halaman.index');
     }

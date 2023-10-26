@@ -24,12 +24,17 @@
         <th>No.</th>
         <th>Id Sampel</th>
         <th>Sampel</th>
+        <th>Jenis Kelamin</th>
+        <th>Pendidikan</th>
+        <th>Pekerjaan</th>
+        <th>Layanan yang diterima</th>
         @for ($count=1; $count<=count($questions); $count++)
             <th>U{{$count}}</th>
         @endfor
         <th>Jumlah</th>
         <th>NRRT</th>
         <th>IKM</th>
+        <th>Saran Perbaikan dan/atau Apresiasi</th>
     </tr>
     @if(!$respondents->isEmpty())
     @foreach($respondents as $respondent)
@@ -37,12 +42,17 @@
             <td>{{ $loop->iteration }}</td>
             <td class="fw-semibold">{{ date('Y') . '12' . (10000 + $respondent->id)  }}</td>
             <td>1</td>
+            <td>{{ $respondent->sex }}</td>
+            <td>{{ $respondent->education }}</td>
+            <td>{{ $respondent->job }}</td>
+            <td>{{ $respondent->received_services }}</td>
             @foreach ($respondent->respondentAnswers as $answer)
                 <td>{{ $answer->answer->score }}</td>
             @endforeach
             <td>{{ $respondent->total_score }}</td>
             <td>{{ round($respondent->nrrt, 2) }}</td>
             <td>{{ round($respondent->ikm, 2) }}</td>
+            <td>{{ $respondent->opinion }}</td>
         </tr>
     @endforeach
     <tr>

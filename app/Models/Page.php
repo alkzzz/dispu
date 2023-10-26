@@ -11,7 +11,7 @@ class Page extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'url'];
 
     public function getSlugOptions(): SlugOptions
     {

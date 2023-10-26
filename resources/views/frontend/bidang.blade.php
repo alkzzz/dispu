@@ -30,8 +30,8 @@
             <p>{!! $bidang->description !!}</p>
             <a href="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
                 data-title="{{ $bidang->title }}" data-lightbox="bidang">
-                {{-- <img src="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
-                    class="img-fluid" alt="{{ $bidang->title }}"> --}}
+                <img src="@if ($bidang->getFirstMediaUrl('bidang', 'large')) {{ $bidang->getFirstMediaUrl('bidang', 'large') }} @else {{ asset('img/no-image.jpg') }} @endif"
+                    class="object-fit-cover" style="object-fit:cover;object-position: 60% top;" alt="{{ $bidang->title }}" width="100%" height="300px">
             </a>
         </div>
     </div>

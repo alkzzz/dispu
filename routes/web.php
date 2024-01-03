@@ -154,7 +154,7 @@ Route::group(['middleware' => ['role:Super Admin']], function () {
     #Kontak
     Route::resource('/dashboard/kontak', ContactController::class)->only(['index', 'update']);
     #Kuesioner
-    Route::resource('/dashboard/kuesioner', App\Http\Controllers\QuestionnaireController::class)->only(['index']);
+    Route::resource('/dashboard/kuesioner', App\Http\Controllers\QuestionnaireController::class)->only(['index', 'destroy']);
     Route::post('/dashboard/kuesioner/export', [App\Http\Controllers\QuestionnaireController::class, 'export'])->name('kuesioner.export');
     #Backup
     Route::get('/dashboard/backup', function () {

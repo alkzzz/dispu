@@ -57,6 +57,7 @@
                                 <th>Jumlah</th>
                                 <th>NRRT</th>
                                 <th>IKM</th>
+                                <th>Aksi</th>
                             </tr>
                             @if(!$respondents->isEmpty())
                             @foreach($respondents as $respondent)
@@ -70,6 +71,18 @@
                                     <td>{{ $respondent->total_score }}</td>
                                     <td>{{ round($respondent->nrrt, 2) }}</td>
                                     <td>{{ round($respondent->ikm, 2) }}</td>
+                                    <td>
+                                        <form
+                                            class="d-inline" action="{{ route('kuesioner.destroy', $respondent->id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button
+                                                class="btn btn-danger btn-sm confirmDelete" type="button">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -131,4 +144,22 @@
 
 
 @section('extra_js')
+<script>
+    $('.confirmDelete').click(function(e) {
+                Swal.fire({
+                    title: 'Hapus bidang?',
+                    text: "Apakah anda yakin akan menghapus bidang ini?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '<i class="fa-solid fa-trash-can" ></i> Ya, Hapus saja',
+                    cancelButtonText: '<i class="fa-solid fa-ban"></i> Cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).closest("form").submit();
+                    }
+                })
+            });
+</script>
 @endsection

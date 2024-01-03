@@ -51,7 +51,7 @@ class QuestionnaireController extends Controller
 
             DB::commit();
             session()->flash('message', 'Berhasil mengirim respon.');
-            return redirect()->route('kuesioner.create');
+            return redirect()->back();
         } catch (Throwable $e) {
             DB::rollBack();
             return redirect()->back()->with(['message' => "An error occurred in the system: {$e->getMessage()}", 'status' => 'failed']);
@@ -87,7 +87,9 @@ class QuestionnaireController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $respondent = Respondent::findOrFail($id)->delete();
+        session()->flash('message', 'Berhasil menghapus respon.');
+        return redirect()->route('kuesioner.index');
     }
 
     /**

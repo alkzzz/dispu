@@ -15,7 +15,7 @@ class PuprInstagramController extends Controller
     public function __invoke()
     {
         $client = new Client([
-            'rapidapi_key' => '5b7a636637msh5733bd47ccbeab4p1fc1dfjsn446ac6c9bf86'
+            'rapidapi_key' => env('RAPID_API_KEY')
         ]);
         $instagram = $client->getAccountInfo([
             'username' => 'dinaspuprbjb'

@@ -15,16 +15,14 @@ class BidangController extends Controller
     {
         $bidang = Bidang::where('slug', $slug)->first();
         $category = Category::where('slug', $slug)->first();
+        $instagramPosts = '';
+        $posts = $category->posts()->paginate(3);
 
         if ($category != null) {
-            $posts = $category->posts()->paginate(3);
-            $instagramPosts = '';
             if (! empty($bidang->instagram)) $instagramPosts = PuprInstagram::where('username', $bidang->instagram)->orderBy('created_at', 'DESC')->take(6)->get();
-
-            return view('frontend.bidang', compact('bidang', 'category', 'posts', 'instagramPosts'));
-        } else {
-            abort(404);
         }
+
+        return view('frontend.bidang', compact('bidang', 'category', 'posts', 'instagramPosts'));
     }
 
     public function index()

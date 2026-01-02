@@ -16,9 +16,10 @@ class BidangController extends Controller
         $bidang = Bidang::where('slug', $slug)->first();
         $category = Category::where('slug', $slug)->first();
         $instagramPosts = '';
-        $posts = $category->posts()->paginate(3);
+        $posts = '';
 
         if ($category != null) {
+            $posts = $category->posts()->paginate(3);
             if (! empty($bidang->instagram)) $instagramPosts = PuprInstagram::where('username', $bidang->instagram)->orderBy('created_at', 'DESC')->take(6)->get();
         }
 
